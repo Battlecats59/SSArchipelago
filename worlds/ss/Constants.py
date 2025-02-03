@@ -19,6 +19,9 @@ GIVE_ITEM_ARRAY_ADDR = 0x80678774  # ARRAY[16]
 # This is the address that holds the player's file name.
 FILE_NAME_ADDR = 0x80955D38  # ARRAY[16]
 
+# A bit at this address is set if on the title screen
+GLOBAL_TITLE_LOADER_ADDR = 0x80575780
+
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "ss_visited_stages_%i"
 
 LINK_INVALID_STATES = [
@@ -27,6 +30,8 @@ LINK_INVALID_STATES = [
     b'\x5A\x32\x8C', # Door
     b'\x5A\x12\xA8', # Diving
     b'\xB4\xF4\x50', # Bird picking up link
+    b'\x5A\x31\xAC', # Sleeping
+    b'\x5A\x33\x6C', # Waking up
 ]
 
 # Valid addresses for storyflags (ending in zero - final bit is added to this address)

@@ -307,7 +307,7 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
     :param item_name: Name of the item to give.
     :return: Whether the item was successfully given.
     """
-    if not (check_link_state_for_giveitem() and check_alive()):
+    if not (check_link_state_for_giveitem() and check_alive() and not check_on_title_screen()):
         return False
 
     item_id = ITEM_TABLE[item_name].item_id  # In game item ID
@@ -331,7 +331,7 @@ async def give_items(ctx: SSContext) -> None:
 
     :param ctx: The SS client context.
     """
-    if check_link_state_for_giveitem() and check_alive():
+    if check_link_state_for_giveitem() and check_alive() and not check_on_title_screen():
         # Read the expected index of the player, which is the index of the latest item they've received.
         expected_idx = dme_read_short(EXPECTED_INDEX_ADDR)
 
@@ -460,7 +460,15 @@ def check_ingame() -> bool:
 
     :return: `True` if the player is in-game, otherwise `False`.
     """
-    return dolphin_memory_engine.read_bytes(CURR_STATE_ADDR, 3) != 0x0
+    return int.from_bytes(dolphin_memory_engine.read_bytes(CURR_STATE_ADDR, 3)) != 0x0
+
+def check_on_title_screen() -> bool:
+    """
+    Check if the player is on the Title Screen.
+    
+    :return: `True` if the player is on the title screen, otherwise `False`.
+    """
+    return int.from_bytes(dolphin_memory_engine.read_bytes(GLOBAL_TITLE_LOADER_ADDR, 1)) != 0x0
 
 def check_link_state_for_giveitem() -> bool:
     """
@@ -468,7 +476,7 @@ def check_link_state_for_giveitem() -> bool:
 
     :return: True if Link is in a valid state, False if Link is in an invalid state
     """
-    linkstate = dolphin_memory_engine.read_bytes(CURR_STATE_ADDR, 4) != 0x0
+    linkstate = dolphin_memory_engine.read_bytes(CURR_STATE_ADDR, 3)
     if linkstate in LINK_INVALID_STATES:
         return False
     else:
