@@ -360,8 +360,6 @@ async def check_locations(ctx: SSContext) -> None:
     for location, data in LOCATION_TABLE.items():
         checked = False
         [flag_type, flag_bit, flag_value, addr] = data.checked_flag
-        if data.type == SSLocType.RELIC:
-            continue  # NOT SUPPORTED YET
         if flag_type == SSLocCheckedFlag.STORY:
             flag = dme_read_byte(addr + flag_bit)
             checked = bool(flag & flag_value)
