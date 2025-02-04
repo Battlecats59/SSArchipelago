@@ -79,16 +79,11 @@ CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 FORCED_OPTIONS = {
     # Options, for now, that must be a certain value
     # Also serves as a list for me for what needs to be implemented
-    "triforce_shuffle": 2, # Anywhere
-    "got_dungeon_requirement": 0, # Required
-    "empty_unrequired_dungeons": 0, # False
     "map_mode": 4, # Anywhere
     "small_key_mode": 3, # Anywhere
     "boss_key_mode": 2, # Anywhere
-    "trial_treasure_amount": 10,
     "random_start_entrance": 0, # Vanilla, not logically implemented
     "random_start_statues": 0, # False
-    "rupoor_mode": 0, # Off
     "rupeesanity": 1, # True
     "gondo_upgrades": 1, # True
     "bit_patches": 0, # Disable

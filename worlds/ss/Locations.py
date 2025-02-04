@@ -666,7 +666,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Sky - Lumpy Pumpkin - Goddess Chest on the Roof": SSLocData(
         67,
-        SSLocFlag.GODDESS,
+        SSLocFlag.GODDESS | SSLocFlag.D_SV, # Cube in Skyview Spring, so consider this a dungeon check
         "Sky",
         "F020",
         SSLocType.T_BOX,

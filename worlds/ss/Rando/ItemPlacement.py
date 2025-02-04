@@ -116,11 +116,26 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
     # Place useful items, then filler items to fill out the remaining locations.
     # Fill the remainder of the pool with weighted consumables
     num_consumables_needed = num_items_left_to_place - len(filler_pool)
-    consumable_pool = world.multiworld.random.choices(
+    consumable_pool = []
+
+    # Fill rupoors first
+    if world.options.rupoor_mode == "added":
+        if num_consumables_needed < 15:
+            consumable_pool.extend(["Rupoor"] * num_consumables_needed)
+        else:
+            consumable_pool.extend(["Rupoor"] * 15)
+    elif world.options.rupoor_mode == "rupoor_mayhem":
+        consumable_pool.extend(["Rupoor"] * (num_consumables_needed / 2))
+    elif world.options.rupoor_mode == "rupoor_insanity":
+        consumable_pool.extend(["Rupoor"] * num_consumables_needed)
+    num_consumables_needed -= len(consumable_pool)
+
+    # Now fill the rest with consumables
+    consumable_pool.extend(world.multiworld.random.choices(
         list(CONSUMABLE_ITEMS.keys()),
         weights=list(CONSUMABLE_ITEMS.values()),
         k=num_consumables_needed,
-    )
+    ))
     filler_pool.extend(consumable_pool)
     pool.extend(filler_pool)
 
@@ -215,6 +230,14 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                     world.create_item("Dusk Relic")
                 )
                 placed.append("Dusk Relic")
+    else:
+        num_relics = options.trial_treasure_amount.value
+        for trl in TRIAL_LIST:
+            all_relics = [loc for loc in world.get_locations() if loc.parent_region == world.get_region(trl) and loc.type == SSLocType.RELIC]
+            relics_to_place = world.multiworld.random.sample(all_relics, 10 - num_relics)
+            for rel in relics_to_place:
+                rel.place_locked_item(world.create_item("Dusk Relic"))
+                placed.append("Dusk Relic")
 
     if not options.shopsanity:
         for loc, itm in BEEDLES_SHOP_VANILLA_ITEMS.items():
@@ -249,6 +272,19 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                 world.create_item("Progressive Sword")
             )
             placed.append("Progressive Sword")
+
+    if options.triforce_shuffle == "vanilla":
+        world.get_location("Sky Keep - Sacred Power of Din").place_locked_item(world.create_item("Triforce of Power"))
+        world.get_location("Sky Keep - Sacred Power of Nayru").place_locked_item(world.create_item("Triforce of Wisdom"))
+        world.get_location("Sky Keep - Sacred Power of Farore").place_locked_item(world.create_item("Triforce of Courage"))
+        placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
+    elif options.triforce_shuffle == "sky_keep":
+        locations_to_place = [loc for loc in world.get_locations() if loc.parent_region == world.get_region("Sky Keep")]
+        triforce_locations = world.multiworld.random.sample(locations_to_place, 3)
+        world.multiworld.random.shuffle(triforce_locations)
+        for i, tri in enumerate(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"]):
+            triforce_locations[i].place_locked_item(world.create_item(tri))
+        placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
 
     return placed
 
