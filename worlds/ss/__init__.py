@@ -56,6 +56,15 @@ components.append(
     )
 )
 
+class SSWeb(WebWorld):
+    """
+    This class handles the web interface.
+
+    The web interface includes the setup guide and the options page for generating YAMLs.
+    """
+
+    theme = "ice"
+    rich_text_options_doc = True
 
 class SSWorld(World):
     """
@@ -298,6 +307,7 @@ class SSWorld(World):
         multiworld = self.multiworld
         player = self.player
         player_hash = self.multiworld.per_slot_randoms[player].sample(HASH_NAMES, 3)
+        mw_player_names = [self.multiworld.get_player_name(i + 1) for i in range(self.multiworld.players)]
 
         # Output seed name and slot number to seed RNG in randomizer client.
         output_data = {
@@ -310,6 +320,7 @@ class SSWorld(World):
             ),
             "Slot": player,
             "Name": self.player_name,
+            "All Players": mw_player_names,
             "Options": {},
             "Starting Items": self.starting_items,
             "Required Dungeons": self.dungeons.required_dungeons,
