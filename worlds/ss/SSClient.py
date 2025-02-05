@@ -354,7 +354,7 @@ async def give_items(ctx: SSContext) -> None:
             if expected_idx <= idx:
                 # Attempt to give the item and increment the expected index.
                 while not await _give_item(ctx, LOOKUP_ID_TO_NAME[item.item]):
-                    await asyncio.sleep(0.5)
+                    await asyncio.sleep(1)
 
                 # Increment the expected index.
                 dme_write_short(EXPECTED_INDEX_ADDR, idx + 1)
@@ -483,13 +483,13 @@ def check_on_title_screen() -> bool:
     
     :return: `True` if the player is on the title screen, otherwise `False`.
     """
-    return dolphin_memory_engine.read_byte(GLOBAL_TITLE_LOADER_ADDR) != 0x0
+    return dme_read_byte(GLOBAL_TITLE_LOADER_ADDR) != 0x0
 
 def get_link_state() -> bytes:
     return dolphin_memory_engine.read_bytes(CURR_STATE_ADDR, 3)
 
 def get_link_action() -> int:
-    return dolphin_memory_engine.read_byte(LINK_ACTION_ADDR)
+    return dme_read_byte(LINK_ACTION_ADDR)
 
 def validate_link_state() -> bool:
     """
@@ -508,8 +508,8 @@ def validate_link_action() -> bool:
 
     :return: True if Link is in a safe action, False if Link is not in a safe action.
     """
-    action = dolphin_memory_engine.read_byte(LINK_ACTION_ADDR)
-    return action <= MAX_SAFE_ACTION or action in SWIMMING_ACTIONS
+    action = dme_read_byte(LINK_ACTION_ADDR)
+    return action <= MAX_SAFE_ACTION or (action == ITEM_GET_ACTION)
 
 def check_on_file_1() -> bool:
     """
@@ -517,7 +517,7 @@ def check_on_file_1() -> bool:
 
     :return: True if File 1 last selected, False otherwise
     """
-    file = dolphin_memory_engine.read_byte(SELECTED_FILE_ADDR)
+    file = dme_read_byte(SELECTED_FILE_ADDR)
     return file == 0
 
 def can_receive_items() -> bool:

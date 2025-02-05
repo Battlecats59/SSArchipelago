@@ -8,7 +8,6 @@ CURR_STATE_ADDR = 0x80B76585
 LINK_ACTION_ADDR = 0x80B7689B
 
 MAX_SAFE_ACTION = 0xD
-SWIMMING_ACTIONS = [0x4F, 0x50, 0x51]
 ITEM_GET_ACTION = 0x78
 
 # The byte at this address stores which save file is currently selected (0 indexed)
@@ -16,7 +15,7 @@ SELECTED_FILE_ADDR = 0x8095FC98
 
 # The expected index for the following item that should be received. Array of 2 bytes right after the give item array
 # Uses an unused scene index which is 16 bytes wide
-EXPECTED_INDEX_ADDR = 0x80956F28 # 0x80678784  # HALFWORD
+EXPECTED_INDEX_ADDR = 0x80956F28 # HALFWORD
 # WILL BE UPDATED WHEN THE BUILD IS RELEASED
 
 # This address contains the current stage ID.
