@@ -484,8 +484,8 @@ class BiTPatches(Choice):
 
     display_name = "BiT Patches"
     option_disable = 0
-    # option_vanilla = 1
-    # option_fix_crashes = 2
+    option_vanilla = 1
+    option_fix_crashes = 2
     default = 0 # 1
 
 

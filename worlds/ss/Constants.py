@@ -4,8 +4,19 @@ CURR_HEALTH_ADDR = 0x8095A76A  # HALFWORD
 # Link's state- make sure he is not in a loading zone
 CURR_STATE_ADDR = 0x80B76585
 
+# Link's action - make sure he is in a "normal" action (i.e. idle, moving on the ground, etc.)
+LINK_ACTION_ADDR = 0x80B7689B
+
+MAX_SAFE_ACTION = 0xD
+SWIMMING_ACTIONS = [0x4F, 0x50, 0x51]
+ITEM_GET_ACTION = 0x78
+
+# The byte at this address stores which save file is currently selected (0 indexed)
+SELECTED_FILE_ADDR = 0x8095FC98
+
 # The expected index for the following item that should be received. Array of 2 bytes right after the give item array
-EXPECTED_INDEX_ADDR = 0x80678784  # HALFWORD
+# Uses an unused scene index which is 16 bytes wide
+EXPECTED_INDEX_ADDR = 0x80956F28 # 0x80678784  # HALFWORD
 # WILL BE UPDATED WHEN THE BUILD IS RELEASED
 
 # This address contains the current stage ID.
@@ -13,8 +24,8 @@ CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
 
 # This is an array of length 0x10 where each element is a byte and contains item IDs for items to give the player.
 # 0xFF represents no item. The array is read and cleared every frame.
-GIVE_ITEM_ARRAY_ADDR = 0x80678774  # ARRAY[16]
-# WILL BE UPDATED WHEN THE BUILD IS RELEASED
+GIVE_ITEM_ARRAY_ADDR = 0x8067877C  # ARRAY[16]
+# WILL BE UPDATED WHEN THE BUILD IS RELEASEDs
 
 # This is the address that holds the player's file name.
 FILE_NAME_ADDR = 0x80955D38  # ARRAY[16]
@@ -27,9 +38,10 @@ AP_VISITED_STAGE_NAMES_KEY_FORMAT = "ss_visited_stages_%i"
 LINK_INVALID_STATES = [
     b'\x00\x00\x00',
     b'\x5A\x2C\x88', # Loading zone
-    b'\x5A\x32\x8C', # Door
-    b'\x5A\x12\xA8', # Diving
+    b'\x5A\x32\x8C', # Door / talking to Bird Statue
+    # b'\x5A\x27\x20', # Calling Fi
     b'\xB4\xF4\x50', # Bird picking up link
+    # b'\xB7\xA6\x7C', # Bed dialogue option
     b'\x5A\x31\xAC', # Sleeping
     b'\x5A\x33\x6C', # Waking up
 ]
@@ -85,13 +97,13 @@ FORCED_OPTIONS = {
     # Options, for now, that must be a certain value
     # Also serves as a list for me for what needs to be implemented
     "map_mode": 4, # Anywhere
-    "small_key_mode": 3, # Anywhere
-    "boss_key_mode": 2, # Anywhere
+    # "small_key_mode": 3, # Anywhere
+    # "boss_key_mode": 2, # Anywhere
     "random_start_entrance": 0, # Vanilla, not logically implemented
     "random_start_statues": 0, # False
     "rupeesanity": 1, # True
     "gondo_upgrades": 1, # True
-    "bit_patches": 0, # Disable
+    # "bit_patches": 0, # Disable
     "song_hints": 0, # None
     "chest_dowsing": 0, # Vanilla
     "impa_sot_hint": 0, # False
