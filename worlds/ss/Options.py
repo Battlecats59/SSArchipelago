@@ -709,9 +709,9 @@ class SongHints(Choice):
 
     display_name = "Song Hints"
     option_none = 0
-    # option_basic = 1
-    # option_advanced = 2
-    # option_direct = 3
+    option_basic = 1
+    option_advanced = 2
+    option_direct = 3
     default = 0
 
 

@@ -102,10 +102,8 @@ FORCED_OPTIONS = {
     "random_start_statues": 0, # False
     "rupeesanity": 1, # True
     "gondo_upgrades": 1, # True
-    # "bit_patches": 0, # Disable
     "song_hints": 0, # None
     "chest_dowsing": 0, # Vanilla
-    "impa_sot_hint": 0, # False
 }
 
 OVERWORLD_REGIONS = {  # Region: Connected regions

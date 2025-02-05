@@ -30,7 +30,7 @@ from .Names import HASH_NAMES
 from .Rando.Dungeons import DungeonRando
 from .Rando.Entrances import EntranceRando
 from .Rando.ItemPlacement import handle_itempool, item_classification
-from .Rando.HintPlacement import handle_hints
+from .Rando.HintPlacement import handle_hints, handle_impa_sot_hint
 
 AP_VERSION = [0, 6, 0]
 WORLD_VERSION = [0, 1, 0]
@@ -326,6 +326,7 @@ class SSWorld(World):
             "Required Dungeons": self.dungeons.required_dungeons,
             "Locations": {},
             "Hints": handle_hints(self),
+            "SoT Location": handle_impa_sot_hint(self),
             "Dungeon Entrances": {},
             "Trial Entrances": {},
         }
