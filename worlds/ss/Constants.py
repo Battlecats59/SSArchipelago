@@ -23,7 +23,7 @@ CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
 
 # This is an array of length 0x10 where each element is a byte and contains item IDs for items to give the player.
 # 0xFF represents no item. The array is read and cleared every frame.
-GIVE_ITEM_ARRAY_ADDR = 0x8067877C  # ARRAY[16]
+GIVE_ITEM_ARRAY_ADDR = 0x80678770  # ARRAY[16]
 # WILL BE UPDATED WHEN THE BUILD IS RELEASEDs
 
 # This is the address that holds the player's file name.

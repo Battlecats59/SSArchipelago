@@ -203,7 +203,7 @@ def _handle_starting_items(world: "SSWorld") -> list[str]:
     if starting_hylian_option:
         starting_items.append("Hylian Shield")
 
-    starting_items.extend(world.options.starting_items)
+    # starting_items.extend(world.options.starting_items)
 
     return starting_items
 
