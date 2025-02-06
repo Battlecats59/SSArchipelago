@@ -727,8 +727,8 @@ class ChestDowsing(Choice):
 
     display_name = "Chest Dowsing"
     option_vanilla = 0
-    # option_all_chests = 1
-    # option_progress_items = 2
+    option_all_chests = 1
+    option_progress_items = 2
     default = 0
 
 
