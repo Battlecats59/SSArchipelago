@@ -326,6 +326,10 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
                 # logger.info(f"DEBUG: Player did not immediately receive item. Watching for a reload...")
                 while get_link_action() != ITEM_GET_ACTION:
                     await asyncio.sleep(0.1)
+                    # Stop trying if the player soft reset
+                    if check_on_title_screen():
+                        break
+                        
                     # If state is 0, that means a reload occurred, so we should resend the item.
                     if int.from_bytes(get_link_state()) == 0x0:
                         # logger.info(f"DEBUG: A reload occurred! Resending the item...")
@@ -459,7 +463,7 @@ async def check_death(ctx: SSContext) -> None:
 
     :return: `True` if the player is dead, otherwise `False`.
     """
-    if ctx.slot is not None and check_ingame():
+    if ctx.slot is not None and check_ingame() and not check_on_title_screen():
         cur_health = dme_read_short(CURR_HEALTH_ADDR)
         if cur_health <= 0:
             if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3:
