@@ -347,7 +347,6 @@ class SSWorld(World):
                         "name": location.item.name,
                         "game": location.item.game,
                         "classification": location.item.classification.name,
-                        "chest_dowsing": 8,
                     }
                 else:
                     print(
@@ -358,7 +357,6 @@ class SSWorld(World):
                         "name": "Red Rupee",
                         "game": "Skyward Sword",
                         "classification": "filler",
-                        "chest_dowsing": 8,
                     }
                 output_data["Locations"][location.name] = item_info
 

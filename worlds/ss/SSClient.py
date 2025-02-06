@@ -323,7 +323,7 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
             # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
             # or bed which could delete the item, so we should check for a reload
             if get_link_action() != ITEM_GET_ACTION:  
-                # logger.info(f"DEBUG: Player did not immediately receive item. Watching for a reload...")
+                logger.info(f"DEBUG: Player did not immediately receive item. Watching for a reload...")
                 while get_link_action() != ITEM_GET_ACTION:
                     await asyncio.sleep(0.1)
                     # Stop trying if the player soft reset
@@ -332,7 +332,7 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
                         
                     # If state is 0, that means a reload occurred, so we should resend the item.
                     if int.from_bytes(get_link_state()) == 0x0:
-                        # logger.info(f"DEBUG: A reload occurred! Resending the item...")
+                        logger.info(f"DEBUG: A reload occurred! Resending the item...")
                         dme_write_byte(GIVE_ITEM_ARRAY_ADDR + idx, item_id)
                         break
             
