@@ -7,7 +7,7 @@ from typing import Any, ClassVar
 import yaml
 
 from BaseClasses import MultiWorld, Region, Tutorial, LocationProgressType
-from Options import Toggle
+from Options import Toggle, OptionError
 from worlds.AutoWorld import WebWorld, World
 from worlds.generic.Rules import add_item_rule
 from worlds.LauncherComponents import (
@@ -183,6 +183,15 @@ class SSWorld(World):
                 progress_locations.add(loc)
             else:
                 nonprogress_locations.add(loc)
+
+        for loc in self.options.exclude_locations.value:
+            if loc in progress_locations:
+                progress_locations.remove(loc)
+                nonprogress_locations.add(loc)
+            elif loc in nonprogress_locations:
+                pass
+            else:
+                raise OptionError(f"Unknown location in option `excluded locations`: {loc}")
 
         return progress_locations, nonprogress_locations
 

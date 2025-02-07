@@ -2,6 +2,7 @@ from typing import TYPE_CHECKING
 
 from BaseClasses import ItemClassification as IC
 from Fill import FillError
+from Options import OptionError
 
 from ..Items import ITEM_TABLE, CONSUMABLE_ITEMS
 from ..Locations import LOCATION_TABLE, SSLocType
@@ -151,6 +152,19 @@ def _handle_starting_items(world: "SSWorld") -> list[str]:
     options = world.options
     starting_items: list[str] = []
 
+    # General Starting Items
+    starting_items_option = options.starting_items
+    for itm, q in starting_items_option.value.items():
+        if itm in ITEM_TABLE:
+            if q > ITEM_TABLE[itm].quantity:
+                raise OptionError(
+                    f"Too many starting items! Tried to give {q} {itm} but could only give {ITEM_TABLE[itm].quantity}"
+                )
+            else:
+                starting_items.extend([itm] * q)
+        else:
+            raise OptionError(f"Unknown item in option `starting items`: {itm}")
+
     # Starting Sword
     starting_sword_option = options.starting_sword.value
     for _ in range(int(starting_sword_option)):
@@ -195,7 +209,16 @@ def _handle_starting_items(world: "SSWorld") -> list[str]:
     # Random Starting Item
     random_starting_item_option = bool(options.random_starting_item)
     if random_starting_item_option:
-        rs_item = world.multiworld.random.choice(POSSIBLE_RANDOM_STARTING_ITEMS)
+        possible_items_to_give = []
+        for itm in POSSIBLE_RANDOM_STARTING_ITEMS:
+            possible_items_to_give.extend([itm] * ITEM_TABLE[itm].quantity)
+        for itm in starting_items:
+            if itm in possible_items_to_give:
+                # Here we make sure our starting items don't collide with the random starting item
+                possible_items_to_give.remove(itm)
+        if len(possible_items_to_give) == 0:
+            raise OptionError("Tried to give a random starting item, but couldn't find any items to give.")
+        rs_item = world.multiworld.random.choice(possible_items_to_give)
         starting_items.append(rs_item)
 
     # Start with Hylian Shield
@@ -299,7 +322,90 @@ def item_classification(world: "SSWorld", name: str) -> IC | None:
     :param name: Name of the item
     :return: New IC of the item or None
     """
+    adjusted_classification = None
+    item_type = ITEM_TABLE[name].type
 
-    adjusted_classification = None  # TODO
+    # Dungeon Entrance Access Items
+    if world.options.randomize_entrances == "none" and world.options.empty_unrequired_dungeons:
+        if "Earth Temple" not in world.dungeons.required_dungeons:
+            if name == "Key Piece":
+                adjusted_classification = IC.filler
+        if "Sandship" not in world.dungeons.required_dungeons:
+            if name == "Sea Chart":
+                adjusted_classification = IC.filler
+        if not world.options.triforce_required or world.options.triforce_shuffle == "anywhere":
+            if name == "Stone of Trials":
+                adjusted_classification = IC.filler
+    
+    # Dungeon Items
+    if world.options.empty_unrequired_dungeons and item_type in ["Map", "Small Key", "Boss Key"]:
+        if item_type == "Map":
+            item_dungeon = name[:-4]
+            if item_dungeon == "Sky Keep":
+                adjusted_classification = IC.filler if world.options.triforce_shuffle == "anywhere" else None
+            elif not item_dungeon in world.dungeons.required_dungeons:
+                adjusted_classification = IC.filler
+                # If map not a required dungeon, make it filler
+                # Otherwise, it will be useful
+        if item_type == "Small Key":
+            item_dungeon = name[:-10]
+            if item_dungeon == "Sky Keep":
+                adjusted_classification = IC.filler if world.options.triforce_shuffle == "anywhere" else None
+            elif item_dungeon == "Lanayru Caves":
+                pass
+                # Caves key will always stay progression
+            elif not item_dungeon in world.dungeons.required_dungeons:
+                adjusted_classification = IC.filler
+                # If small key not a required dungeon, make it filler
+                # Otherwise, it will be progression
+        if item_type == "Boss Key":
+            item_dungeon = name[:-9]
+            if not item_dungeon in world.dungeons.required_dungeons:
+                adjusted_classification = IC.filler
+                # If boss key not a required dungeon, make it filler
+                # Otherwise, it will be progression
+
+    # Swords
+    if world.options.starting_sword.value >= world.options.got_sword_requirement.value + 2:
+        if name == "Progressive Sword":
+            adjusted_classification = IC.useful
+            # If our starting sword is equal to or greater than the required sword, make
+            # progressive swords useful rather than progression
+
+    # Triforces
+    if not world.options.triforce_required:
+        if "Triforce" in name:
+            adjusted_classification = IC.filler
+            # If Triforce is not required, make it filler
+    
+    # Pouches
+    if "Progressive Pouch" in world.options.starting_items:
+        if name == "Progressive Pouch":
+            adjusted_classification = IC.useful
+            # If we start with a pouch, then further upgrades will be useful rather
+            # than progression
+
+    # Wallets
+    if not world.options.shopsanity:
+        if name in ["Progressive Wallet", "Extra Wallet"]:
+            adjusted_classification = IC.useful
+            # If shopsanity is off, wallets will be useful rather than progression
+
+    # Items for single checks
+    if "Upper Skyloft - Ghost/Pipit's Crystals" in world.options.exclude_locations:
+        if name == "Cawlin's Letter":
+            adjusted_classification = IC.filler
+    if "Skyloft Village - Bertie's Crystals" in world.options.exclude_locations:
+        if name == "Baby Rattle":
+            adjusted_classification = IC.filler
+    if "Sky - Beedle's Crystals" in world.options.exclude_locations:
+        if name == "Horned Colossus Beetle":
+            adjusted_classification = IC.filler
+    if "Lanayru Gorge - Thunder Dragon's Reward" in world.options.exclude_locations:
+        if name == "Life Tree Fruit":
+            adjusted_classification = IC.filler
+    if "Flooded Faron Woods - Water Dragon's Reward" in world.options.exclude_locations:
+        if name == "Group of Tadtones":
+            adjusted_classification = IC.filler
 
     return adjusted_classification
