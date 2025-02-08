@@ -7,8 +7,13 @@ CURR_STATE_ADDR = 0x80B76585
 # Link's action - make sure he is in a "normal" action (i.e. idle, moving on the ground, etc.)
 LINK_ACTION_ADDR = 0x80B7689B
 
+# Some memory addresses are offset by this value in FFW. I dunno why.
+FFW_MEMORY_OFFSET = 0x8960
+
 MAX_SAFE_ACTION = 0xD
 ITEM_GET_ACTION = 0x78
+DOOR_ACTIONS = [0x6E, 0x6F]
+SWIM_ACTIONS = [0x4F, 0x50, 0x51, 0x52]
 
 # The byte at this address stores which save file is currently selected (0 indexed)
 SELECTED_FILE_ADDR = 0x8095FC98
