@@ -30,7 +30,7 @@ from .Names import HASH_NAMES
 from .Rando.Dungeons import DungeonRando
 from .Rando.Entrances import EntranceRando
 from .Rando.ItemPlacement import handle_itempool, item_classification
-from .Rando.HintPlacement import handle_hints, handle_impa_sot_hint
+from .Rando.HintPlacement import Hints
 
 AP_VERSION = [0, 6, 0]
 WORLD_VERSION = [0, 1, 0]
@@ -56,6 +56,7 @@ components.append(
     )
 )
 
+
 class SSWeb(WebWorld):
     """
     This class handles the web interface.
@@ -65,6 +66,7 @@ class SSWeb(WebWorld):
 
     theme = "ice"
     rich_text_options_doc = True
+
 
 class SSWorld(World):
     """
@@ -191,7 +193,9 @@ class SSWorld(World):
             elif loc in nonprogress_locations:
                 pass
             else:
-                raise OptionError(f"Unknown location in option `excluded locations`: {loc}")
+                raise OptionError(
+                    f"Unknown location in option `excluded locations`: {loc}"
+                )
 
         return progress_locations, nonprogress_locations
 
@@ -284,7 +288,7 @@ class SSWorld(World):
             loc_region = self.get_region(loc_data.region)
             location = SSLocation(self.player, loc, loc_region, loc_data)
             loc_region.locations.append(location)
-        
+
         for loc in self.nonprogress_locations:
             loc_data = LOCATION_TABLE[loc]
 
@@ -315,8 +319,12 @@ class SSWorld(World):
         """
         multiworld = self.multiworld
         player = self.player
+        hints = Hints(self)
         player_hash = self.multiworld.per_slot_randoms[player].sample(HASH_NAMES, 3)
-        mw_player_names = [self.multiworld.get_player_name(i + 1) for i in range(self.multiworld.players)]
+        mw_player_names = [
+            self.multiworld.get_player_name(i + 1)
+            for i in range(self.multiworld.players)
+        ]
 
         # Output seed name and slot number to seed RNG in randomizer client.
         output_data = {
@@ -334,8 +342,8 @@ class SSWorld(World):
             "Starting Items": self.starting_items,
             "Required Dungeons": self.dungeons.required_dungeons,
             "Locations": {},
-            "Hints": handle_hints(self),
-            "SoT Location": handle_impa_sot_hint(self),
+            "Hints": hints.handle_hints(),
+            "SoT Location": hints.handle_impa_sot_hint(),
             "Dungeon Entrances": {},
             "Trial Entrances": {},
         }
@@ -347,7 +355,10 @@ class SSWorld(World):
             ).value
 
         # Output which item has been placed at each location.
-        locations = sorted(multiworld.get_locations(player), key=lambda loc: loc.code if loc.code is not None else 10000)
+        locations = sorted(
+            multiworld.get_locations(player),
+            key=lambda loc: loc.code if loc.code is not None else 10000,
+        )
         for location in locations:
             if location.name != "Hylia's Realm - Defeat Demise":
                 if location.item:

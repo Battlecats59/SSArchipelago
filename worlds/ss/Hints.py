@@ -11,6 +11,12 @@ class SSHintType(Enum):
     FI = auto()  # Max 64 hints
     SONG = auto()  # Song hints
 
+    ALWAYS = auto()
+    SOMETIMES = auto()
+    ITEM = auto()
+    BARREN = auto()
+    JUNK = auto()
+
 
 class SSHint(NamedTuple):
     """
@@ -20,6 +26,63 @@ class SSHint(NamedTuple):
     code: int
     region: str
     type: SSHintType
+
+
+class SSLocationHint:
+    """
+    Represents a location hint in Skyward Sword.
+    """
+
+    location: str = ""
+    region: str = ""
+    player_to_receive: str = ""
+    item: str = ""
+
+    def __init__(self, loc):
+        self.location = loc
+
+    def to_gossip_stone_text(self) -> str:
+        return f"They say that <r<{self.location}>> has <b+<{self.player_to_receive}'s>> <y<{self.item}>>."
+
+    def to_fi_text(self) -> str:
+        return f"My readings suggest that <r<{self.location}>> has <b+<{self.player_to_receive}'s>> <y<{self.item}>>."
+
+
+class SSItemHint:
+    """
+    Represents an item hint in Skyward Sword.
+    """
+
+    item: str = ""
+    player_to_find: str = ""
+    location: str = ""
+    region: str = ""
+
+    def __init__(self, itm):
+        self.item = itm
+
+    def to_gossip_stone_text(self) -> str:
+        return f"They say that your <y<{self.item}>> can be found by <b+<{self.player_to_find}>> at <r<{self.location}>>."
+
+    def to_fi_text(self) -> str:
+        return f"My readings suggest that your <y<{self.item}>> can be found by <b+<{self.player_to_find}>> at <r<{self.location}>>."
+
+
+class SSJunkHint:
+    """
+    Represents a junk (filler) hint in Skyward Sword
+    """
+
+    text: str = ""
+
+    def __init__(self, text):
+        self.text = text
+
+    def to_gossip_stone_text(self) -> str:
+        return self.text
+
+    def to_fi_text(self) -> str:
+        return self.text.replace("They say", "I conjecture")
 
 
 HINT_TABLE: dict[str, SSHint] = {
@@ -142,10 +205,24 @@ HINT_TABLE: dict[str, SSHint] = {
 
 HINT_DISTRIBUTIONS = {
     "Standard": {
-        "Fi": 0,
-        "Location": 10,
-        "Item": 5,
-    }
+        "fi": 0,
+        "hints_per_stone": 2,
+        "max_order": 3,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 1.0, "fixed": 6, "copies": 1},
+            "item": {"order": 2, "weight": 2.0, "fixed": 6, "copies": 1},
+            "junk": {"order": 3, "weight": 0.5, "fixed": 0, "copies": 1},
+        },
+    },
+    "Junk": {
+        "fi": 0,
+        "hints_per_stone": 2,
+        "max_order": 0,
+        "distribution": {
+            "junk": {"order": 0, "weight": 1.0, "fixed": 0, "copies": 1},
+        },
+    },
 }
 
 SONG_HINT_TO_TRIAL_GATE = {
