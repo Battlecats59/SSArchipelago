@@ -15,6 +15,8 @@ ITEM_GET_ACTION = 0x78
 DOOR_ACTIONS = [0x6E, 0x6F]
 SWIM_ACTIONS = [0x4F, 0x50, 0x51, 0x52]
 
+DEMISE_STAGE = "B400"
+
 # The byte at this address stores which save file is currently selected (0 indexed)
 SELECTED_FILE_ADDR = 0x8095FC98
 

@@ -308,7 +308,7 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
     :param item_name: Name of the item to give.
     :return: Whether the item was successfully given.
     """
-    if not can_receive_items(ctx.in_ffw):
+    if not can_receive_items(ctx):
         return False
 
     item_id = ITEM_TABLE[item_name].item_id  # In game item ID
@@ -323,7 +323,7 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
             await asyncio.sleep(0.25)
             # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
             # or bed which could delete the item, so we should check for a reload
-            while get_link_action(ctx.in_ffw) != ITEM_GET_ACTION:
+            while get_link_action(check_in_ffw(ctx)) != ITEM_GET_ACTION:
                 await asyncio.sleep(0.1)
                 # Stop trying if the player soft reset
                 # Also stop trying if the player is using a door, since doors don't actually delete items
@@ -332,13 +332,13 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
                 # momentarily be action 0x03.
                 # The patched game *will* still give them the item, but it won't give them the item action,
                 # so we shouldn't resend the item, or else it will be duplicated.
-                if check_on_title_screen() or get_link_action(ctx.in_ffw) in DOOR_ACTIONS + SWIM_ACTIONS:
+                if check_on_title_screen() or get_link_action(check_in_ffw(ctx)) in DOOR_ACTIONS + SWIM_ACTIONS:
                     break
                     
                 # If state is 0, that means a reload occurred, so we should resend the item.
                 # However, we shouldn't resend the item if the user immediately enters the item get action anyway
                 # (which can happen if this reload occurs due to a door, in which case the original item will still be received)
-                if not check_ingame(ctx.in_ffw):
+                if not check_ingame(check_in_ffw(ctx)):
                     logger.info(f"DEBUG: A reload deleted the item. Resending the item...")
                     return False
             
@@ -354,7 +354,7 @@ async def give_items(ctx: SSContext) -> None:
 
     :param ctx: The SS client context.
     """
-    if can_receive_items(ctx.in_ffw):
+    if can_receive_items(ctx):
         # Read the expected index of the player, which is the index of the latest item they've received.
         expected_idx = dme_read_short(EXPECTED_INDEX_ADDR)
 
@@ -430,7 +430,6 @@ async def check_current_stage_changed(ctx: SSContext) -> None:
     new_stage_name = dme_read_string(CURR_STAGE_ADDR, 16)
 
     current_stage_name = ctx.current_stage_name
-    ctx.in_ffw = "F103" in new_stage_name
 
     if new_stage_name != current_stage_name:
         ctx.current_stage_name = new_stage_name
@@ -480,6 +479,11 @@ async def check_death(ctx: SSContext) -> None:
         else:
             ctx.has_send_death = False
 
+def check_in_ffw(ctx: SSContext) -> bool:
+    """
+    Check if the player is in Flooded Faron Woods (as this offsets certain memory addresses)
+    """
+    return "F103" in ctx.current_stage_name
 
 def check_ingame(in_ffw: bool = False) -> bool:
     """
@@ -532,11 +536,11 @@ def check_on_file_1() -> bool:
     file = dme_read_byte(SELECTED_FILE_ADDR)
     return file == 0
 
-def can_receive_items(in_ffw: bool = False) -> bool:
+def can_receive_items(ctx: SSContext) -> bool:
     """
     Link must be on File 1 in a valid state and action and not on the title screen to receive items.
     """
-    return can_send_items() and check_alive() and validate_link_state(in_ffw) and validate_link_action(in_ffw)
+    return can_send_items() and check_alive() and validate_link_state(check_in_ffw(ctx)) and validate_link_action(check_in_ffw(ctx)) and ctx.current_stage_name != DEMISE_STAGE
 
 def can_send_items() -> bool:
     """
@@ -559,7 +563,7 @@ async def dolphin_sync_task(ctx: SSContext) -> None:
                 dolphin_memory_engine.is_hooked()
                 and ctx.dolphin_status == CONNECTION_CONNECTED_STATUS
             ):
-                if not check_ingame(ctx.in_ffw):
+                if not check_ingame(check_in_ffw(ctx)):
                     # Reset the give item array while not in the game.
                     # dolphin_memory_engine.write_bytes(GIVE_ITEM_ARRAY_ADDR, bytes([0xFF] * ctx.len_give_item_array))
                     await asyncio.sleep(0.1)
