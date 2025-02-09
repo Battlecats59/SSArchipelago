@@ -2895,9 +2895,9 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "Hylia's Realm",
         "F403",
         SSLocType.EVENT,
-        [SSLocCheckedFlag.STORY, 0x0, 0x40, 0x805A9B10],  # Flag 488
-        # Set during credits, make sure players go thru the credits at the end
-        # Flag 959 is put aside for defeating demise, will be implemented later TODO
+        [SSLocCheckedFlag.STORY, 0x3, 0x20, 0x805A9B40],  # Flag 959
+        # Set during demise final blow
+        # If skip demise option is on, it is set during the Fi text before the portal
     ),
     # HIGHEST_INDEX=334 (Eldin Silent Realm - Relic 10)
     # If you add checks to the list, begin 1 index above the HIGHEST_INDEX
