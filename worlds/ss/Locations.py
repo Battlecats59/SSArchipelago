@@ -1372,7 +1372,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "Mogma Turf",
         "F210",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0x4, 0x01, "Eldin Volcano"],
+        [SSLocCheckedFlag.SCENE, 0xF, 0x01, "Eldin Volcano"],
         SSHintType.SOMETIMES,
     ),
     # Volcano Summit
@@ -1614,7 +1614,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "Lanayru Desert",
         "F300",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0xE, 0x80, "Lanayru Desert"],  # CHECKTHIS
+        [SSLocCheckedFlag.SCENE, 0xC, 0x08, "Lanayru Desert"],  # CHECKTHIS
     ),
     "Lanayru Desert - Lightning Node - First Chest": SSLocData(
         180,
@@ -1622,7 +1622,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "Lanayru Desert",
         "F300_2",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0xC, 0x08, "Lanayru Desert"],  # CHECKTHIS
+        [SSLocCheckedFlag.SCENE, 0xB, 0x10, "Lanayru Desert"],  # CHECKTHIS
     ),
     "Lanayru Desert - Lightning Node - Second Chest": SSLocData(
         181,
