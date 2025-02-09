@@ -320,7 +320,7 @@ class SSWorld(World):
         multiworld = self.multiworld
         player = self.player
         hints = Hints(self)
-        player_hash = self.multiworld.per_slot_randoms[player].sample(HASH_NAMES, 3)
+        player_hash = self.random.sample(HASH_NAMES, 3)
         mw_player_names = [
             self.multiworld.get_player_name(i + 1)
             for i in range(self.multiworld.players)
@@ -332,7 +332,7 @@ class SSWorld(World):
             "World Version": list(WORLD_VERSION),
             "Hash": f"AP P{player} " + " ".join(player_hash),
             "AP Seed": multiworld.seed_name,
-            "Rando Seed": self.multiworld.per_slot_randoms[player].randint(
+            "Rando Seed": self.random.randint(
                 0, 2**32 - 1
             ),
             "Slot": player,
