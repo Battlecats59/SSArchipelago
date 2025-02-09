@@ -5,7 +5,7 @@ from Fill import FillError
 from Options import OptionError
 
 from ..Items import ITEM_TABLE, CONSUMABLE_ITEMS
-from ..Locations import LOCATION_TABLE, SSLocType
+from ..Locations import LOCATION_TABLE, SSLocType, SSLocFlag
 from ..Constants import *
 
 if TYPE_CHECKING:
@@ -53,6 +53,7 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
     progression_pool: list[str] = []
     useful_pool: list[str] = []
     filler_pool: list[str] = []
+    vanilla_pool: list[str] = []
     for item, data in ITEM_TABLE.items():
         if data.type == "Item":
             adjusted_classification = item_classification(world, item)
@@ -62,34 +63,69 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
                 else adjusted_classification
             )
 
-            if classification & IC.progression:
+            if classification == IC.progression:
                 progression_pool.extend([item] * data.quantity)
-            elif classification & IC.useful:
+            elif classification == IC.useful:
                 useful_pool.extend([item] * data.quantity)
             else:
                 filler_pool.extend([item] * data.quantity)
 
         # Handle dungeon items
-        if data.type == "Small Key":
-            item_dungeon = item[:-10]
-            if (
-                item_dungeon in world.dungeons.required_dungeons
-                or item_dungeon == "Lanayru Caves"
-                or not eud
-            ):
+        if data.type in ["Small Key", "Boss Key", "Map"]:
+            adjusted_classification = item_classification(world, item)
+            classification = (
+                data.classification
+                if adjusted_classification is None
+                else adjusted_classification
+            )
+
+            if classification == IC.progression:
                 progression_pool.extend([item] * data.quantity)
-            else:
+            elif classification == IC.useful:
                 useful_pool.extend([item] * data.quantity)
-
-        if data.type == "Boss Key":
-            item_dungeon = item[:-9]
-            if item_dungeon in world.dungeons.required_dungeons or not eud:
-                progression_pool.extend([item])
             else:
-                useful_pool.extend([item])
+                filler_pool.extend([item] * data.quantity)
 
-        if data.type == "Map":
-            filler_pool.extend([item])
+    if not world.options.rupeesanity:
+        vanilla_pool.extend([data.vanilla_item for loc, data in LOCATION_TABLE.items() if data.flags & SSLocFlag.RUPEE])
+            # Put in vanilla pool, so it bypasses rupoor filling
+            # All rupees are consumables, so they weren't added to pools before
+            # These will be removed from the pool and manually placed vanilla
+
+    if not world.options.shopsanity:
+        for loc, data in LOCATION_TABLE.items():
+            if data.type == SSLocType.SHOP:
+                itm = data.vanilla_item
+                if ITEM_TABLE[itm].classification == IC.progression:
+                    progression_pool.remove(itm)
+                    vanilla_pool.append(itm)
+                if ITEM_TABLE[itm].classification == IC.useful:
+                    useful_pool.remove(itm)
+                    vanilla_pool.append(itm)
+                if ITEM_TABLE[itm].classification == IC.filler:
+                    filler_pool.remove(itm)
+                    vanilla_pool.append(itm)
+
+    if not world.options.tadtonesanity:
+        for loc, data in LOCATION_TABLE.items():
+            if data.type == SSLocType.CLEF:
+                itm = "Group of Tadtones"
+                progression_pool.remove(itm)
+                vanilla_pool.append(itm)
+
+    if not world.options.treasuresanity_in_silent_realms:
+        for loc, data in LOCATION_TABLE.items():
+            if data.type == SSLocType.RELIC:
+                itm = "Dusk Relic"
+                filler_pool.remove(itm)
+                vanilla_pool.append(itm)
+    else:
+        num_vanilla_relics = 10 - world.options.trial_treasure_amount.value
+        for _ in range(num_vanilla_relics):
+            itm = "Dusk Relic"
+            filler_pool.remove(itm)
+            vanilla_pool.append(itm)
+        
 
     # Number of locations in the world (excluding Demise)
     num_items_left_to_place = len(world.multiworld.get_locations(world.player)) - 1
@@ -100,44 +136,55 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
             "There are insufficient locations to place progression items! "
             f"Trying to place {len(progression_pool)} items in only {num_items_left_to_place} locations."
         )
-    pool.extend(
-        progression_pool
-    )  # Should have more than enough locations available to place progression/useful items.
+    
+    # Should have more than enough locations available to place progression/useful/vanilla items.
+    pool.extend(progression_pool)
     pool.extend(useful_pool)
+    pool.extend(vanilla_pool)
     num_items_left_to_place -= len(progression_pool)
     num_items_left_to_place -= len(useful_pool)
+    num_items_left_to_place -= len(vanilla_pool)
 
     starting_items.extend(_handle_starting_items(world))
     num_items_left_to_place += len(
         starting_items
     )  # Since these items are removed from the pool, make sure they get filled.
     for itm in starting_items:
-        pool.remove(itm)
+        if itm in ["Heart Container", "Heart Piece"]:
+            filler_pool.remove(itm)
+        else:
+            pool.remove(itm)
 
-    # Place useful items, then filler items to fill out the remaining locations.
-    # Fill the remainder of the pool with weighted consumables
+    # Now fill the rest of the filler pool with consumables
     num_consumables_needed = num_items_left_to_place - len(filler_pool)
     consumable_pool = []
 
-    # Fill rupoors first
-    if world.options.rupoor_mode == "added":
-        if num_consumables_needed < 15:
-            consumable_pool.extend(["Rupoor"] * num_consumables_needed)
-        else:
-            consumable_pool.extend(["Rupoor"] * 15)
-    elif world.options.rupoor_mode == "rupoor_mayhem":
-        consumable_pool.extend(["Rupoor"] * (num_consumables_needed / 2))
-    elif world.options.rupoor_mode == "rupoor_insanity":
-        consumable_pool.extend(["Rupoor"] * num_consumables_needed)
-    num_consumables_needed -= len(consumable_pool)
-
-    # Now fill the rest with consumables
     consumable_pool.extend(world.multiworld.random.choices(
         list(CONSUMABLE_ITEMS.keys()),
         weights=list(CONSUMABLE_ITEMS.values()),
         k=num_consumables_needed,
     ))
     filler_pool.extend(consumable_pool)
+    world.multiworld.random.shuffle(filler_pool)
+
+    # Now fill rupoors
+    if world.options.rupoor_mode == "added":
+        if len(filler_pool) < 15:
+            filler_pool = ["Rupoor"] * len(filler_pool)
+            # Replace the entire filler pool with rupoors
+        else:
+            for i in range(15):
+                filler_pool[i] = "Rupoor"
+            # Replace the first 15 elements with rupoors
+    elif world.options.rupoor_mode == "rupoor_mayhem":
+        for i in range(round(len(filler_pool)/2)):
+            filler_pool[i] = "Rupoor"
+        # Replace the first half of the pool with rupoors
+    elif world.options.rupoor_mode == "rupoor_insanity":
+        filler_pool = ["Rupoor"] * len(filler_pool)
+        # Replace the entire filler pool with rupoors
+
+    world.multiworld.random.shuffle(filler_pool)
     pool.extend(filler_pool)
 
     return pool, starting_items
@@ -265,9 +312,12 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                 placed.append("Dusk Relic")
 
     if not options.shopsanity:
-        for loc, itm in BEEDLES_SHOP_VANILLA_ITEMS.items():
-            world.get_location(loc).place_locked_item(world.create_item(itm))
-            placed.append(itm)
+        for loc, data in LOCATION_TABLE.items():
+            if data.type == SSLocType.SHOP:
+                world.get_location(loc).place_locked_item(
+                    world.create_item(data.vanilla_item)
+                )
+                placed.append(data.vanilla_item)
 
     if not options.tadtonesanity:
         for loc, data in LOCATION_TABLE.items():
@@ -276,6 +326,14 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                     world.create_item("Group of Tadtones")
                 )
                 placed.append("Group of Tadtones")
+
+    if not options.rupeesanity:
+        for loc, data in LOCATION_TABLE.items():
+            if data.flags & SSLocFlag.RUPEE:
+                world.get_location(loc).place_locked_item(
+                    world.create_item(data.vanilla_item)
+                )
+                placed.append(data.vanilla_item)
 
     if options.sword_dungeon_reward != "none":
         num_swords_to_place = pool.count("Progressive Sword")
@@ -375,8 +433,8 @@ def item_classification(world: "SSWorld", name: str) -> IC | None:
     # Triforces
     if not world.options.triforce_required:
         if "Triforce" in name:
-            adjusted_classification = IC.filler
-            # If Triforce is not required, make it filler
+            adjusted_classification = IC.useful
+            # If Triforce is not required, make it useful
     
     # Pouches
     if "Progressive Pouch" in world.options.starting_items:
@@ -384,12 +442,6 @@ def item_classification(world: "SSWorld", name: str) -> IC | None:
             adjusted_classification = IC.useful
             # If we start with a pouch, then further upgrades will be useful rather
             # than progression
-
-    # Wallets
-    if not world.options.shopsanity:
-        if name in ["Progressive Wallet", "Extra Wallet"]:
-            adjusted_classification = IC.useful
-            # If shopsanity is off, wallets will be useful rather than progression
 
     # Items for single checks
     if "Upper Skyloft - Ghost/Pipit's Crystals" in world.options.exclude_locations:
