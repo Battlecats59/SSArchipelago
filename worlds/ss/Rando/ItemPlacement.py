@@ -110,8 +110,15 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
         for loc, data in LOCATION_TABLE.items():
             if data.type == SSLocType.CLEF:
                 itm = "Group of Tadtones"
-                progression_pool.remove(itm)
-                vanilla_pool.append(itm)
+                if itm in progression_pool:
+                    progression_pool.remove(itm)
+                    vanilla_pool.append(itm)
+                elif itm in useful_pool:
+                    useful_pool.remove(itm)
+                    vanilla_pool.append(itm)
+                elif itm in filler_pool:
+                    filler_pool.remove(itm)
+                    vanilla_pool.append(itm)
 
     if not world.options.treasuresanity_in_silent_realms:
         for loc, data in LOCATION_TABLE.items():

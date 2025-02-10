@@ -4,7 +4,7 @@ from BaseClasses import ItemClassification as IC
 
 from ..Hints import *
 from ..Items import ITEM_TABLE
-from ..Locations import SSLocType, LOCATION_TABLE
+from ..Locations import SSLocType, LOCATION_TABLE, SSLocation
 
 from .ItemPlacement import item_classification
 
@@ -22,6 +22,7 @@ class Hints:
         self.multiworld = world.multiworld
 
         self.placed_hints: dict[str, list] = {}
+        self.locations_for_hint: dict[str, list] = {}
         self.hinted_locations: list[str] = []
         self.hinted_item_locations: list = []
         self.distribution_option = self.world.options.hint_distribution
@@ -110,6 +111,7 @@ class Hints:
                 for _ in range(self.distribution["fi"]):
                     fi_hints.append(self.all_hints.pop())
                 self.placed_hints["Fi"] = [fh.to_fi_text() for fh in fi_hints]
+                self.locations_for_hint["Fi"] = [fh.location for fh in fi_hints if isinstance(fh, SSLocationHint)]
             elif data.type == SSHintType.STONE:
                 stone_hints = []
                 for _ in range(self.distribution["hints_per_stone"]):
@@ -117,6 +119,7 @@ class Hints:
                 self.placed_hints[hint] = [
                     sh.to_gossip_stone_text() for sh in stone_hints
                 ]
+                self.locations_for_hint[hint] = [sh.location for sh in stone_hints if isinstance(sh, SSLocationHint)]
             elif data.type == SSHintType.SONG:
                 self.placed_hints[hint] = self._handle_song_hints(hint)
 
@@ -286,6 +289,7 @@ class Hints:
             else:
                 return [useless_text]
         if self.world.options.song_hints == "direct":
+            self.locations_for_hint[hint] = [f"{trial_connection} - Trial Reward"]
             player_name = self.multiworld.get_player_name(trial_item.player)
             item_name = trial_item.name
             return [direct_text.format(plr=player_name, itm=item_name)]

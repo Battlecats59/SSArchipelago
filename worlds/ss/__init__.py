@@ -2,6 +2,7 @@ import os
 from base64 import b64encode
 from collections.abc import Mapping
 from dataclasses import fields
+import threading
 from typing import Any, ClassVar
 
 import yaml
@@ -109,6 +110,8 @@ class SSWorld(World):
 
         self.dungeons = DungeonRando(self)
         self.entrances = EntranceRando(self)
+        self.hint_data: Hints = None
+        self.hint_data_available = threading.Event()
 
     def determine_progress_and_nonprogress_locations(self) -> tuple[set[str], set[str]]:
         """
@@ -412,8 +415,12 @@ class SSWorld(World):
             f.write(
                 b64encode(bytes(yaml.safe_dump(output_data, sort_keys=False), "utf-8"))
             )
+        
+        self.hint_data = hints
+        self.hint_data_available.set()
 
     def fill_slot_data(self) -> Mapping[str, Any]:
+        self.hint_data_available.wait()
         """
         Return the `slot_data` field that will be in the `Connected` network package.
 
@@ -487,6 +494,7 @@ class SSWorld(World):
             "precise_item": self.options.precise_item.value,
             "starting_items": self.options.starting_items.value,
             "death_link": self.options.death_link.value,
+            "locations_for_hint": self.hint_data.locations_for_hint,
         }
 
         return slot_data
