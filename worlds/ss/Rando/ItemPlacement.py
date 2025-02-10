@@ -154,6 +154,11 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
             filler_pool.remove(itm)
         else:
             pool.remove(itm)
+            
+    # Gondo's upgrades will be removed from the pool if unrandomized, so in that case
+    # we want to add another 6 consumables
+    if not world.options.gondo_upgrades:
+        num_items_left_to_place += 6
 
     # Now fill the rest of the filler pool with consumables
     num_consumables_needed = num_items_left_to_place - len(filler_pool)
@@ -368,6 +373,11 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
         for i, tri in enumerate(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"]):
             triforce_locations[i].place_locked_item(world.create_item(tri))
         placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
+
+    if not options.gondo_upgrades:
+        placed.extend(GONDO_UPGRADES)
+        # We're not actually going to place these in the world, the rando will patch them in
+        # Still, remove them from the item pool
 
     return placed
 

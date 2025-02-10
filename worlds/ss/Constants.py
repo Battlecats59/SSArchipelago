@@ -107,7 +107,6 @@ FORCED_OPTIONS = {
     # "boss_key_mode": 2, # Anywhere
     "random_start_entrance": 0, # Vanilla, not logically implemented
     "random_start_statues": 0, # False
-    "gondo_upgrades": 1, # True
 }
 
 OVERWORLD_REGIONS = {  # Region: Connected regions
@@ -242,15 +241,11 @@ POSSIBLE_RANDOM_STARTING_ITEMS = [
     "Spiral Charge",
 ]
 
-BEEDLES_SHOP_VANILLA_ITEMS = {
-    "Beedle's Shop - 300 Rupee Item": "Progressive Pouch",
-    "Beedle's Shop - 600 Rupee Item": "Progressive Pouch",
-    "Beedle's Shop - 1200 Rupee Item": "Progressive Pouch",
-    "Beedle's Shop - 800 Rupee Item": "Life Medal",
-    "Beedle's Shop - 1600 Rupee Item": "Heart Piece",
-    "Beedle's Shop - First 100 Rupee Item": "Extra Wallet",
-    "Beedle's Shop - Second 100 Rupee Item": "Extra Wallet",
-    "Beedle's Shop - Third 100 Rupee Item": "Extra Wallet",
-    "Beedle's Shop - 50 Rupee Item": "Progressive Bug Net",
-    "Beedle's Shop - 1000 Rupee Item": "Bug Medal",
-}
+GONDO_UPGRADES = [
+    "Progressive Beetle",
+    "Progressive Beetle",
+    "Progressive Slingshot",
+    "Progressive Bow",
+    "Progressive Bow",
+    "Progressive Bug Net",
+]

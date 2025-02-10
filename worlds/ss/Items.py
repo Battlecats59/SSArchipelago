@@ -83,7 +83,7 @@ ITEM_TABLE: dict[str, SSItemData] = {
     "Gust Bellows":                 SSItemData("Item",         IC.progression,         49,     1,  0x31),
     "Map":                          SSItemData("Item",         IC.filler,              50,     0,  0x32), # unused
     "Progressive Slingshot":        SSItemData("Item",         IC.progression,         52,     2,  0x34),
-    "Progressive Beetle":           SSItemData("Item",         IC.progression,         53,     5,  0x35),
+    "Progressive Beetle":           SSItemData("Item",         IC.progression,         53,     4,  0x35),
     "Progressive Mitts":            SSItemData("Item",         IC.progression,         56,     2,  0x38),
     "10 Deku Seeds":                SSItemData("Item",         IC.filler,              60,     0,  0x3C), # Rupin
     "Semi Rare Treasure":           SSItemData("Consumable",   IC.filler,              63,     10, 0x3F),
