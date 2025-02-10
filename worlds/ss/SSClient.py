@@ -18,6 +18,7 @@ from NetUtils import ClientStatus, NetworkItem
 
 from .Items import ITEM_TABLE, LOOKUP_ID_TO_NAME
 from .Locations import LOCATION_TABLE, SSLocation, SSLocFlag, SSLocType, SSLocCheckedFlag
+from .Hints import HINT_TABLE, SSHint
 from .Constants import *
 
 if TYPE_CHECKING:
@@ -71,7 +72,7 @@ class SSContext(CommonContext):
         self.awaiting_rom: bool = False
         self.last_rcvd_index: int = -1
         self.has_send_death: bool = False
-        self.in_ffw: bool = False
+        self.locations_for_hint: dict[str, list] = {}
 
         # Name of the current stage as read from the game's memory. Sent to trackers whenever its value changes to
         # facilitate automatically switching to the map of the current stage.
@@ -126,6 +127,7 @@ class SSContext(CommonContext):
         if cmd == "Connected":
             self.items_rcvd = []
             self.last_rcvd_index = -1
+            self.locations_for_hint = args["slot_data"]["locations_for_hint"]
             if "death_link" in args["slot_data"]:
                 Utils.async_start(
                     self.update_death_link(bool(args["slot_data"]["death_link"]))
@@ -412,11 +414,25 @@ async def check_locations(ctx: SSContext) -> None:
                         ctx.finished_game = True
                 else:
                     ctx.locations_checked.add(SSLocation.get_apid(data.code))
+        
+        hints_checked = set()
+        for hint, data in HINT_TABLE.items():
+            [flag_bit, flag_value, addr] = data.checked_flag
+            # All hint flags are story flags
+            flag = dme_read_byte(addr + flag_bit)
+            checked = bool(flag & flag_value)
 
-        # Send the list of newly-checked locations to the server.
+            if checked:
+                for locname in ctx.locations_for_hint.get(hint, []):
+                    hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
+
+        # Send the list of newly-checked locations & hints to the server.
         locations_checked = ctx.locations_checked.difference(ctx.checked_locations)
+        hints_checked = hints_checked.difference(ctx.locations_scouted)
         if locations_checked:
             await ctx.send_msgs([{"cmd": "LocationChecks", "locations": locations_checked}]) 
+        if hints_checked:
+            await ctx.send_msgs([{"cmd": "LocationScouts", "locations": hints_checked, "create_as_hint": 2}]) 
 
 
 async def check_current_stage_changed(ctx: SSContext) -> None:
