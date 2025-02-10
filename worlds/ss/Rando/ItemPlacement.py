@@ -310,7 +310,7 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
     else:
         num_relics = options.trial_treasure_amount.value
         for trl in TRIAL_LIST:
-            all_relics = [loc for loc in world.get_locations() if loc.parent_region == world.get_region(trl) and loc.type == SSLocType.RELIC]
+            all_relics = [loc for loc in world.multiworld.get_locations(world.player) if loc.parent_region == world.get_region(trl) and loc.type == SSLocType.RELIC]
             relics_to_place = world.multiworld.random.sample(all_relics, 10 - num_relics)
             for rel in relics_to_place:
                 rel.place_locked_item(world.create_item("Dusk Relic"))
@@ -367,7 +367,7 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
         world.get_location("Sky Keep - Sacred Power of Farore").place_locked_item(world.create_item("Triforce of Courage"))
         placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
     elif options.triforce_shuffle == "sky_keep":
-        locations_to_place = [loc for loc in world.get_locations() if loc.parent_region == world.get_region("Sky Keep")]
+        locations_to_place = [loc for loc in world.multiworld.get_locations(world.player) if loc.parent_region == world.get_region("Sky Keep")]
         triforce_locations = world.multiworld.random.sample(locations_to_place, 3)
         world.multiworld.random.shuffle(triforce_locations)
         for i, tri in enumerate(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"]):
