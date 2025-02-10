@@ -51,6 +51,7 @@ From now on, Archipelago may be referred to as "AP". Skyward Sword may be referr
     - **NOTE: Make sure all 3 files in-game are EMPTY. AP reads locations based on scene flags, so if you are planning on doing the Back in Time glitch (BiT), you must not have any pre-made files or it will screw with AP.**
     - Also, make sure your filename in game is the exact same as your AP name that you set in your YAML.
 - Connect to the room in your client by running `/connect {address}`. The link to the room should be given to you by the multiworld host. The address will be in the form of `archipelago.gg:XXXXX`.
+- Make sure you are playing on file 1. Otherwise, the client will not recognize you as in game, to prevent issues with AP and BiT.
 - The client will not connect you if you have not started a new file with the same name as what is in your YAML. If you fail to connect, make sure that you have started a new file, you are in Link's room, and your filename is the same as your AP name.
 - Wait until everyone is in game and ready before you leave Link's room. See [Playing the Game](#playing-the-game).
 - Run `/help` in the client to see all commands.

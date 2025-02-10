@@ -547,7 +547,13 @@ def can_access_faron_woods(state: CollectionState, player: int) -> bool:
 
 
 def can_reach_most_of_faron_woods(state: CollectionState, player: int) -> bool:
-    return can_cut_trees(state, player) or state.has("Clawshots", player)
+    return (
+        can_access_faron_woods(state, player)
+        and (
+            can_cut_trees(state, player)
+            or state.has("Clawshots", player)
+        )
+    )
 
 
 def can_reach_oolo(state: CollectionState, player: int) -> bool:
