@@ -207,7 +207,7 @@ HINT_TABLE: dict[str, SSHint] = {
         19,
         None,
         SSHintType.SONG,
-        [0x4, 0x01, 0x805A9B00],  # Flag 978
+        [0x4, 0x01, 0x805A9B40],  # Flag 978
     ),
     "Farore's Courage - Trial Hint": SSHint(
         20,
