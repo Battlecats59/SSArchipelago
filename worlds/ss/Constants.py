@@ -17,6 +17,8 @@ SWIM_ACTIONS = [0x4F, 0x50, 0x51, 0x52]
 
 DEMISE_STAGE = "B400"
 
+MINIGAME_STATE_ADDR = 0x80572250
+
 # The byte at this address stores which save file is currently selected (0 indexed)
 SELECTED_FILE_ADDR = 0x8095FC98
 

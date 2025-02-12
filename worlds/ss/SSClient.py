@@ -517,6 +517,15 @@ def check_on_title_screen() -> bool:
     """
     return dme_read_byte(GLOBAL_TITLE_LOADER_ADDR) != 0x0
 
+def check_in_minigame(in_ffw: bool = False) -> bool:
+    """
+    Check if the player is in a minigame.
+    
+    :return: `True` if the player is in a minigame, false if not.
+    """
+    # Can't be playing minigames while in FFW so just return false in case the address is different
+    return (not in_ffw) or dme_read_byte(MINIGAME_STATE_ADDR) != 0x0
+
 def get_link_state(in_ffw: bool = False) -> bytes:
     return dolphin_memory_engine.read_bytes(CURR_STATE_ADDR - (FFW_MEMORY_OFFSET if in_ffw else 0), 3)
 
@@ -556,7 +565,8 @@ def can_receive_items(ctx: SSContext) -> bool:
     """
     Link must be on File 1 in a valid state and action and not on the title screen to receive items.
     """
-    return can_send_items() and check_alive() and validate_link_state(check_in_ffw(ctx)) and validate_link_action(check_in_ffw(ctx)) and ctx.current_stage_name != DEMISE_STAGE
+    in_ffw = check_in_ffw(ctx)
+    return can_send_items() and check_alive() and validate_link_state(in_ffw) and validate_link_action(in_ffw) and not check_in_minigame(in_ffw)and ctx.current_stage_name != DEMISE_STAGE
 
 def can_send_items() -> bool:
     """
