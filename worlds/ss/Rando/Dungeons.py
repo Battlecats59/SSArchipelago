@@ -119,7 +119,7 @@ class DungeonKeyHandler:
         elif self.world.options.map_mode == "own_dungeon_restricted":
             for dun in self.all_maps.keys():
                 locs_placeable[dun] = []
-                for loc in self.world.get_locations():
+                for loc in self.multiworld.get_locations(self.world.player):
                     if loc.parent_region.name == dun and loc.item is None:
                         if (
                             loc.name in DUNGEON_HC_CHECKS.values()
@@ -132,7 +132,7 @@ class DungeonKeyHandler:
         elif self.world.options.map_mode == "own_dungeon_unrestricted":
             for dun in self.all_maps.keys():
                 locs_placeable[dun] = []
-                for loc in self.world.get_locations():
+                for loc in self.multiworld.get_locations(self.world.player):
                     if loc.parent_region.name == dun and loc.item is None:
                         if loc.item:
                             continue
@@ -219,7 +219,7 @@ class DungeonKeyHandler:
         elif self.world.options.boss_key_mode == "own_dungeon":
             for dun in self.all_bkeys.keys():
                 locs_placeable[dun] = []
-                for loc in self.world.get_locations():
+                for loc in self.multiworld.get_locations(self.world.player):
                     if loc.parent_region.name == dun and loc.item is None:
                         if (
                             loc.name in DUNGEON_HC_CHECKS.values()
