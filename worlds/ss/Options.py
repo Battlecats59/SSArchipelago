@@ -175,8 +175,51 @@ class OpenLakeFloria(Choice):
     default = 0
 
 
+# Progression Groups for AP
+# These options only exist for AP
+class ProgressionGoddessChests(DefaultOnToggle):
+    """
+    If enabled, Goddess Chests can contain progression items.
+    If not enabled, all Goddess Chests will contain junk (filler) items.
+    """
+
+    display_name = "Progression in Goddess Chests"
+
+class ProgressionMinigames(DefaultOnToggle):
+    """
+    If enabled, Minigames can contain progression items.
+    If not enabled, all Minigames will contain junk (filler) items.
+    """
+
+    display_name = "Progression in Minigames"
+
+class ProgressionCrystals(DefaultOnToggle):
+    """
+    If enabled, Crystal Quests can contain progression items.
+    If not enabled, all Crystals Quests will contain junk (filler) items.
+    """
+
+    display_name = "Progression in Gratitude Crystal Quests"
+
+class ProgressionScrapper(DefaultOnToggle):
+    """
+    If enabled, Scrapper Quests can contain progression items.
+    If not enabled, all Scrapper Quests will contain junk (filler) items.
+    """
+
+    display_name = "Progression in Scrapper Quests"
+
+class ProgressionBatreaux(DefaultOnToggle):
+    """
+    If enabled, Batreaux's Rewards can contain progression items.
+    If not enabled, all Batreaux Rewards will contain junk (filler) items.
+    """
+
+    display_name = "Progression in Batreaux's Rewards"
+
+
 # Dungeons
-class EmptyUnrequiredDungeons(Toggle): # DefaultOnToggle
+class EmptyUnrequiredDungeons(DefaultOnToggle):
     """
     If enabled, only the required dungeons will contain progression items.
     If not enabled, all dungeons and Sky Keep can potentially contain progression items.
@@ -803,6 +846,11 @@ class SSOptions(PerGameCommonOptions):
     open_et: OpenEarthTemple
     open_lmf: OpenLanayruMiningFacility
     open_lake_floria: OpenLakeFloria
+    progression_goddess_chests: ProgressionGoddessChests
+    progression_minigames: ProgressionMinigames
+    progression_crystals: ProgressionCrystals
+    progression_scrapper: ProgressionScrapper
+    progression_batreaux: ProgressionBatreaux
     empty_unrequired_dungeons: EmptyUnrequiredDungeons
     map_mode: MapMode
     small_key_mode: SmallKeyMode
