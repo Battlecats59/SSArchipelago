@@ -359,6 +359,7 @@ class SSWorld(World):
         multiworld = self.multiworld
         player = self.player
         hints = Hints(self)
+        game_hints, log_hints = hints.handle_hints()
         player_hash = self.random.sample(HASH_NAMES, 3)
         mw_player_names = [
             self.multiworld.get_player_name(i + 1)
@@ -382,7 +383,8 @@ class SSWorld(World):
             "Starting Items": self.starting_items,
             "Required Dungeons": self.dungeons.required_dungeons,
             "Locations": {},
-            "Hints": hints.handle_hints(),
+            "Hints": game_hints,
+            "Log Hints": log_hints,
             "SoT Location": hints.handle_impa_sot_hint(),
             "Dungeon Entrances": {},
             "Trial Entrances": {},
