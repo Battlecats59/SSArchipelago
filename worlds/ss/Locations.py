@@ -397,7 +397,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "F000",
         "Heart Piece",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0xB, 0x01, "Skyloft"],
+        [SSLocCheckedFlag.SCENE, 0x7, 0x01, "Skyloft"],
         SSHintType.SOMETIMES,
     ),
     # Skyloft Village
