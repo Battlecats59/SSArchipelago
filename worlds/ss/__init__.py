@@ -208,6 +208,8 @@ class SSWorld(World):
                 if "Fire Sanctuary" in self.dungeons.required_dungeons
                 else SSLocFlag.ALWAYS
             )
+            if self.options.triforce_required and self.options.triforce_shuffle != "anywhere":
+                enabled_flags |= SSLocFlag.D_SK
         else:
             enabled_flags |= (
                 SSLocFlag.D_SV
