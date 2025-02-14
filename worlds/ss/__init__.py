@@ -301,7 +301,7 @@ class SSWorld(World):
                 apreg,
                 rule=lambda state, entrance=conn: getattr(
                     Macros, f"can_reach_{entrance}"
-                ),
+                )(state, self.player),
             )
 
         for trl, conn in self.entrances.trial_connections.items():
@@ -319,7 +319,10 @@ class SSWorld(World):
             self.multiworld.regions.append(apreg)
 
             self.get_region(trl_gate_region).connect(
-                apreg, rule=lambda state, gate=conn: getattr(Macros, f"can_open_{gate}")
+                apreg,
+                rule=lambda state, gate=conn: getattr(Macros, f"can_open_{gate}")(
+                    state, self.player
+                ),
             )
 
         # Place locations within the regions
