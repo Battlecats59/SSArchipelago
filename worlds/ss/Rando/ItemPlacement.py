@@ -426,7 +426,11 @@ def item_classification(world: "SSWorld", name: str) -> IC | None:
     item_type = ITEM_TABLE[name].type
 
     # Dungeon Entrance Access Items
-    if world.options.randomize_entrances == "none" and world.options.empty_unrequired_dungeons:
+    if (
+        world.options.randomize_entrances == "none"
+        and world.options.empty_unrequired_dungeons
+        and world.options.accessibility != "full"
+    ):
         if "Earth Temple" not in world.dungeons.required_dungeons:
             if name == "Key Piece":
                 adjusted_classification = IC.filler
