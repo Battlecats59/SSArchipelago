@@ -66,7 +66,7 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
                 else adjusted_classification
             )
 
-            if classification == IC.progression:
+            if classification == IC.progression or classification == IC.progression_skip_balancing:
                 progression_pool.extend([item] * data.quantity)
             elif classification == IC.useful:
                 useful_pool.extend([item] * data.quantity)
@@ -82,7 +82,7 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
                 else adjusted_classification
             )
 
-            if classification == IC.progression:
+            if classification == IC.progression or classification == IC.progression_skip_balancing:
                 progression_pool.extend([item] * data.quantity)
             elif classification == IC.useful:
                 useful_pool.extend([item] * data.quantity)
@@ -109,7 +109,7 @@ def _create_itempool(world: "SSWorld") -> tuple[list[str], list[str]]:
         for loc, data in LOCATION_TABLE.items():
             if data.type == SSLocType.SHOP:
                 itm = data.vanilla_item
-                if ITEM_TABLE[itm].classification == IC.progression:
+                if ITEM_TABLE[itm].classification == IC.progression or classification == IC.progression_skip_balancing:
                     progression_pool.remove(itm)
                     vanilla_pool.append(itm)
                 if ITEM_TABLE[itm].classification == IC.useful:
