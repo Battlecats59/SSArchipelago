@@ -271,18 +271,16 @@ def dme_read_string(console_address: int, strlen: int) -> str:
         .decode()
     )
 
-def dme_read_filename() -> str:
+def dme_read_slot() -> str:
     """
     Read the filename in dolphin memory.
 
     :return: The string containing the filename.
     """
-    filename_bytes = dolphin_memory_engine.read_bytes(FILE_NAME_ADDR, 0x10)
-    filename_bytes = filename_bytes.replace(b"\x00\x00", b"")
-    filename_bytes = filename_bytes.replace(b"\x7F\x7F", b"")
-    filename_bytes = filename_bytes.replace(b"\xFF\xFF", b"")
+    slot_bytes = dolphin_memory_engine.read_bytes(ARCHIPELAGO_ARRAY_ADDR + 0x14, 0x10)
+    slot_bytes = slot_bytes.replace(b"\xFF", b"")
 
-    return filename_bytes.decode("utf_16_be")
+    return slot_bytes.decode("utf-8")
 
 
 
@@ -317,11 +315,11 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
 
     # Loop through the item array, placing the item in an empty slot (0xFF).
     for idx in range(ctx.len_give_item_array):
-        slot = dme_read_byte(GIVE_ITEM_ARRAY_ADDR + idx)
+        slot = dme_read_byte(ARCHIPELAGO_ARRAY_ADDR + idx)
         if slot == 0xFF:
             await asyncio.sleep(0.25)
             logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
-            dme_write_byte(GIVE_ITEM_ARRAY_ADDR + idx, item_id)
+            dme_write_byte(ARCHIPELAGO_ARRAY_ADDR + idx, item_id)
             await asyncio.sleep(0.25)
             # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
             # or bed which could delete the item, so we should check for a reload
@@ -581,7 +579,7 @@ async def dolphin_sync_task(ctx: SSContext) -> None:
             ):
                 if not check_ingame(check_in_ffw(ctx)):
                     # Reset the give item array while not in the game.
-                    # dolphin_memory_engine.write_bytes(GIVE_ITEM_ARRAY_ADDR, bytes([0xFF] * ctx.len_give_item_array))
+                    # dolphin_memory_engine.write_bytes(ARCHIPELAGO_ARRAY_ADDR, bytes([0xFF] * ctx.len_give_item_array))
                     await asyncio.sleep(0.1)
                     continue
                 if ctx.slot is not None:
@@ -592,7 +590,7 @@ async def dolphin_sync_task(ctx: SSContext) -> None:
                     await check_current_stage_changed(ctx)
                 else:
                     if not ctx.auth:
-                        ctx.auth = dme_read_filename()
+                        ctx.auth = dme_read_slot()
                     if ctx.awaiting_rom:
                         await ctx.server_auth()
                 await asyncio.sleep(0.1)
