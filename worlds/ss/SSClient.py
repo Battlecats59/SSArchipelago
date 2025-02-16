@@ -73,6 +73,7 @@ class SSContext(CommonContext):
         self.last_rcvd_index: int = -1
         self.has_send_death: bool = False
         self.locations_for_hint: dict[str, list] = {}
+        self.beedle_items_purchased = [0, 0, 0, 0] # slots from left to right
 
         # Name of the current stage as read from the game's memory. Sent to trackers whenever its value changes to
         # facilitate automatically switching to the map of the current stage.
@@ -412,6 +413,10 @@ async def check_locations(ctx: SSContext) -> None:
                         ctx.finished_game = True
                 else:
                     ctx.locations_checked.add(SSLocation.get_apid(data.code))
+                    for slot, checks in enumerate(BEEDLE_CHECKS):
+                        if ctx.beedle_items_purchased[slot] < len(BEEDLE_CHECKS[slot]) - 1:
+                            ctx.beedle_items_purchased[slot] += (data.code == checks[ctx.beedle_items_purchased[slot]])
+                            
         
         hints_checked = set()
         for hint, data in HINT_TABLE.items():
@@ -446,6 +451,8 @@ async def check_current_stage_changed(ctx: SSContext) -> None:
     current_stage_name = ctx.current_stage_name
 
     if new_stage_name != current_stage_name:
+        if new_stage_name == BEEDLE_STAGE:
+            await scout_beedle_checks(ctx)
         ctx.current_stage_name = new_stage_name
         # Send a Bounced message containing the new stage name to all trackers connected to the current slot.
         data_to_send = {"ss_stage_name": new_stage_name}
@@ -466,6 +473,13 @@ async def check_current_stage_changed(ctx: SSContext) -> None:
             visited_stage_names.add(new_stage_name)
             await ctx.update_visited_stages(new_stage_name)
 
+async def scout_beedle_checks(ctx: SSContext) -> None:
+    locs_to_scout = set()
+    for slot, purchased_idx in enumerate(ctx.beedle_items_purchased):
+        if len(BEEDLE_CHECKS[slot]) > purchased_idx:
+            locs_to_scout.add(SSLocation.get_apid(BEEDLE_CHECKS[slot][purchased_idx]))
+    
+    await ctx.send_msgs([{"cmd": "LocationScouts", "locations": locs_to_scout, "create_as_hint": 2}]) 
 
 def check_alive() -> bool:
     """
