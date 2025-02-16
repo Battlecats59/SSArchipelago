@@ -197,7 +197,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Upper Skyloft - Owlan's Crystals": SSLocData(
         8,
-        SSLocFlag.SCRAPPR,
+        SSLocFlag.SCRAPPR | SSLocFlag.CRYSTAL,
         "Upper Skyloft",
         "F001r",
         "Gratitude Crystal Pack",
@@ -397,7 +397,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "F000",
         "Heart Piece",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0xB, 0x01, "Skyloft"],
+        [SSLocCheckedFlag.SCENE, 0x7, 0x01, "Skyloft"],
         SSHintType.SOMETIMES,
     ),
     # Skyloft Village
@@ -421,7 +421,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Skyloft Village - Sparrot's Crystals": SSLocData(
         31,
-        SSLocFlag.SCRAPPR,
+        SSLocFlag.SCRAPPR | SSLocFlag.CRYSTAL,
         "Skyloft Village",
         "F013r",
         "Gratitude Crystal Pack",
@@ -628,7 +628,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Sky - Kina's Crystals": SSLocData(
         53,
-        SSLocFlag.SCRAPPR,
+        SSLocFlag.SCRAPPR | SSLocFlag.CRYSTAL,
         "Sky",
         "F020",
         "Gratitude Crystal Pack",
@@ -656,7 +656,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Sky - Dodoh's Crystals": SSLocData(
         56,
-        SSLocFlag.SCRAPPR,
+        SSLocFlag.SCRAPPR | SSLocFlag.CRYSTAL,
         "Sky",
         "F020",
         "Gratitude Crystal Pack",
@@ -665,7 +665,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Sky - Fun Fun Island Minigame -- 500 Rupees": SSLocData(
         57,
-        SSLocFlag.MINIGME,
+        SSLocFlag.MINIGME | SSLocFlag.SCRAPPR | SSLocFlag.CRYSTAL,
         "Sky",
         "F020",
         "Heart Piece",
@@ -867,7 +867,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
     ),
     "Thunderhead - Song from Levias": SSLocData(
         79,
-        SSLocFlag.ALWAYS,
+        SSLocFlag.SCRAPPR,
         "Thunderhead",
         "F023",
         None,
@@ -1536,7 +1536,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "F201_4",
         "Silver Rupee",
         SSLocType.T_BOX,
-        [SSLocCheckedFlag.SCENE, 0xC, 0x01, "Boko Base/Volcano Summit"],
+        [SSLocCheckedFlag.SCENE, 0xE, 0x80, "Boko Base/Volcano Summit"],
     ),
     "Volcano Summit - Item behind Digging": SSLocData(
         152,
@@ -1545,7 +1545,7 @@ LOCATION_TABLE: dict[str, SSLocData] = {
         "F201_3",
         "Heart Piece",
         SSLocType.ITEM,
-        [SSLocCheckedFlag.SCENE, 0xE, 0x80, "Boko Base/Volcano Summit"],
+        [SSLocCheckedFlag.SCENE, 0xC, 0x01, "Boko Base/Volcano Summit"],
         SSHintType.SOMETIMES,
     ),
     # Bokoblin Base
