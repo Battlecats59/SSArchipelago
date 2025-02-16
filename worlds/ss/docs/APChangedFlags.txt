@@ -143,6 +143,9 @@ Raised chest in volcano summit
 First chest in volcano summit
 54 - 7x40
 
+Chest in alcove (added to VS, already in BB)
+62 - 6x40
+
 Chest behind bombable wall in waterfall area
 127 - Ex80
 
