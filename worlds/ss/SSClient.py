@@ -73,6 +73,7 @@ class SSContext(CommonContext):
         self.last_rcvd_index: int = -1
         self.has_send_death: bool = False
         self.locations_for_hint: dict[str, list] = {}
+        self.beedle_items_purchased = [0, 0, 0, 0] # slots from left to right
 
         # Name of the current stage as read from the game's memory. Sent to trackers whenever its value changes to
         # facilitate automatically switching to the map of the current stage.
@@ -414,6 +415,10 @@ async def check_locations(ctx: SSContext) -> None:
                         ctx.finished_game = True
                 else:
                     ctx.locations_checked.add(SSLocation.get_apid(data.code))
+                    for slot, checks in enumerate(BEEDLE_CHECKS):
+                        if ctx.beedle_items_purchased[slot] < len(BEEDLE_CHECKS[slot]) - 1:
+                            ctx.beedle_items_purchased[slot] += (data.code == checks[ctx.beedle_items_purchased[slot]])
+                            
         
         hints_checked = set()
         for hint, data in HINT_TABLE.items():
@@ -448,6 +453,8 @@ async def check_current_stage_changed(ctx: SSContext) -> None:
     current_stage_name = ctx.current_stage_name
 
     if new_stage_name != current_stage_name:
+        if new_stage_name == BEEDLE_STAGE:
+            await scout_beedle_checks(ctx)
         ctx.current_stage_name = new_stage_name
         # Send a Bounced message containing the new stage name to all trackers connected to the current slot.
         data_to_send = {"ss_stage_name": new_stage_name}
@@ -468,6 +475,13 @@ async def check_current_stage_changed(ctx: SSContext) -> None:
             visited_stage_names.add(new_stage_name)
             await ctx.update_visited_stages(new_stage_name)
 
+async def scout_beedle_checks(ctx: SSContext) -> None:
+    locs_to_scout = set()
+    for slot, purchased_idx in enumerate(ctx.beedle_items_purchased):
+        if len(BEEDLE_CHECKS[slot]) > purchased_idx:
+            locs_to_scout.add(SSLocation.get_apid(BEEDLE_CHECKS[slot][purchased_idx]))
+    
+    await ctx.send_msgs([{"cmd": "LocationScouts", "locations": locs_to_scout, "create_as_hint": 2}]) 
 
 def check_alive() -> bool:
     """
@@ -517,6 +531,15 @@ def check_on_title_screen() -> bool:
     """
     return dme_read_byte(GLOBAL_TITLE_LOADER_ADDR) != 0x0
 
+def check_in_minigame(in_ffw: bool = False) -> bool:
+    """
+    Check if the player is in a minigame.
+    
+    :return: `True` if the player is in a minigame, false if not.
+    """
+    # Can't be playing minigames while in FFW so just return false in case the address is different
+    return not in_ffw and dme_read_byte(MINIGAME_STATE_ADDR) == 0x0
+
 def get_link_state(in_ffw: bool = False) -> bytes:
     return dolphin_memory_engine.read_bytes(CURR_STATE_ADDR - (FFW_MEMORY_OFFSET if in_ffw else 0), 3)
 
@@ -556,7 +579,8 @@ def can_receive_items(ctx: SSContext) -> bool:
     """
     Link must be on File 1 in a valid state and action and not on the title screen to receive items.
     """
-    return can_send_items() and check_alive() and validate_link_state(check_in_ffw(ctx)) and validate_link_action(check_in_ffw(ctx)) and ctx.current_stage_name != DEMISE_STAGE
+    in_ffw = check_in_ffw(ctx)
+    return all((can_send_items(),check_alive(),validate_link_state(in_ffw),validate_link_action(in_ffw), not check_in_minigame(in_ffw), ctx.current_stage_name != DEMISE_STAGE))
 
 def can_send_items() -> bool:
     """
