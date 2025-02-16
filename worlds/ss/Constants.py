@@ -32,7 +32,7 @@ CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
 
 # This is an array of length 0x10 where each element is a byte and contains item IDs for items to give the player.
 # 0xFF represents no item. The array is read and cleared every frame.
-ARCHIPELAGO_ARRAY_ADDR = 0x80678770  # ARRAY[16]
+ARCHIPELAGO_ARRAY_ADDR = 0x80678770 # ARRAY[16]
 # WILL BE UPDATED WHEN THE BUILD IS RELEASED
 
 # This is the address that holds the player's file name.
@@ -52,6 +52,7 @@ LINK_INVALID_STATES = [
     # b'\xB7\xA6\x7C', # Bed dialogue option
     b'\x5A\x31\xAC', # Sleeping
     b'\x5A\x33\x6C', # Waking up
+    b'\x97\x96\xBC', # Load transition maybe?
 ]
 
 # Valid addresses for storyflags (ending in zero - final bit is added to this address)
