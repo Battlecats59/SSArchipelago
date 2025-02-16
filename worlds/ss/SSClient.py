@@ -273,9 +273,11 @@ def dme_read_string(console_address: int, strlen: int) -> str:
 
 def dme_read_slot() -> str:
     """
-    Read the filename in dolphin memory.
+    Read the slot name from dolphin memory.
+    Slot name is 16 bytes, offset 20 bytes from the AP array.
+    Slot name is encoded in UTF-8.
 
-    :return: The string containing the filename.
+    :return: The string containing the slot name.
     """
     slot_bytes = dolphin_memory_engine.read_bytes(ARCHIPELAGO_ARRAY_ADDR + 0x14, 0x10)
     slot_bytes = slot_bytes.replace(b"\xFF", b"")
