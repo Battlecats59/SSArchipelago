@@ -329,13 +329,14 @@ async def _give_item(ctx: SSContext, item_name: str) -> bool:
             while get_link_action(check_in_ffw(ctx)) != ITEM_GET_ACTION:
                 await asyncio.sleep(0.1)
                 # Stop trying if the player soft reset
-                # Also stop trying if the player is using a door, since doors don't actually delete items
+                # Also stop trying if the player is using a door or taking an updraft, since those events don't actually
+                # delete items, even if they cause a reload.
                 # And, while the client won't initiate an item send while the player is swimming, the player
                 # can still receive items when going through underwater loading zones, as their action will
                 # momentarily be action 0x03.
                 # The patched game *will* still give them the item, but it won't give them the item action,
                 # so we shouldn't resend the item, or else it will be duplicated.
-                if check_on_title_screen() or get_link_action(check_in_ffw(ctx)) in DOOR_ACTIONS + SWIM_ACTIONS:
+                if check_on_title_screen() or get_link_action(check_in_ffw(ctx)) in NON_ITEM_DELETING_ACTIONS:
                     break
                     
                 # If state is 0, that means a reload occurred, so we should resend the item.
@@ -432,8 +433,8 @@ async def check_locations(ctx: SSContext) -> None:
                     hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
 
         # Send the list of newly-checked locations & hints to the server.
+        # We can send every hint over because create_as_hint: 2 ensures only *new* hints get broadcast.
         locations_checked = ctx.locations_checked.difference(ctx.checked_locations)
-        hints_checked = hints_checked.difference(ctx.locations_scouted)
         if locations_checked:
             await ctx.send_msgs([{"cmd": "LocationChecks", "locations": locations_checked}]) 
         if hints_checked:
