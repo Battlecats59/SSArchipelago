@@ -3359,7 +3359,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F000", 0, 0, 0, 2,
-        "Entrance", "Beedle's Shop",
+        "Entrance", "Central Skyloft",
     ),
     SSEntranceData(
         "Skyloft - Knight Academy - Chimney",
