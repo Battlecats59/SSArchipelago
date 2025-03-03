@@ -30,13 +30,13 @@ from .Options import SSOptions
 from .Rules import set_rules
 from .Names import HASH_NAMES
 
-from .Rando.Dungeons import DungeonRando
-from .Rando.Entrances import EntranceRando
-from .Rando.ItemPlacement import handle_itempool, item_classification
-from .Rando.HintPlacement import Hints
+from .rando.DungeonRando import DungeonRando
+from .rando.EntranceRando import EntranceRando
+from .rando.ItemPlacement import handle_itempool, item_classification
+from .rando.HintPlacement import Hints
 
 AP_VERSION = [0, 6, 0]
-WORLD_VERSION = [0, 4, 0]
+WORLD_VERSION = [0, 4, 1]
 RANDO_VERSION = [2, 2, 0]
 
 
