@@ -140,6 +140,7 @@ Discussion regarding this APWorld is in the [Archipelago Main Discord](https://d
 - **robojumper**: Client and logic work
 - **Trez**: Archipelago web implementation
 - **Fireworkspinner**: Early Archipelago manual designs
+- **RayStormThunder**: Skyward Sword Archipelago logo design
 - **lepelog**: SS Rando creator, arc work for multiworld
 - **SS Rando Devs**: Creating the Skyward Sword Randomizer
 - **tanjo3 and TWW APWorld Devs**: Created the TWW APWorld, which provided a lot of code for the SS APWorld
