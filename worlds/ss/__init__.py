@@ -5,7 +5,6 @@ from base64 import b64encode
 from copy import deepcopy
 from collections.abc import Mapping
 from dataclasses import fields
-import threading
 from typing import Any, ClassVar
 
 import yaml
@@ -149,8 +148,6 @@ class SSWorld(World):
 
         self.dungeons = DungeonRando(self)
         self.entrances = EntranceRando(self)
-        self.hint_data: Hints = None
-        self.hint_data_available = threading.Event()
 
     def determine_progress_and_nonprogress_locations(self) -> tuple[set[str], set[str]]:
         """
@@ -406,13 +403,17 @@ class SSWorld(World):
             )
         raise KeyError(f"Invalid item name: {name}")
     
-    # def post_fill(self):
-    #     spheres = self.multiworld.get_spheres()
-    #     locs = {}
-    #     for i, sphere in enumerate(spheres):
-    #         locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
-    #     with open("./worlds/ss/Playthrough.json", "w") as f:
-    #         json.dump(locs, f, indent=2)
+    def post_fill(self):
+        # Fill hint data
+        self.hints = Hints(self)
+        self.hints.handle_hints()
+
+        # spheres = self.multiworld.get_spheres()
+        # locs = {}
+        # for i, sphere in enumerate(spheres):
+        #     locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
+        # with open("./worlds/ss/Playthrough.json", "w") as f:
+        #     json.dump(locs, f, indent=2)
 
     def region_to_hint_region(self, region: Region) -> str:
         """
@@ -432,8 +433,6 @@ class SSWorld(World):
         """
         multiworld = self.multiworld
         player = self.player
-        hints = Hints(self)
-        game_hints, log_hints = hints.handle_hints()
         player_hash = self.random.sample(HASH_NAMES, 3)
         mw_player_names = [
             self.multiworld.get_player_name(i + 1)
@@ -457,9 +456,9 @@ class SSWorld(World):
             "Starting Items": self.starting_items,
             "Required Dungeons": self.dungeons.required_dungeons,
             "Locations": {},
-            "Hints": game_hints,
-            "Log Hints": log_hints,
-            "SoT Location": hints.handle_impa_sot_hint(),
+            "Hints": self.hints.placed_hints,
+            "Log Hints": self.hints.placed_hints_log,
+            "SoT Location": self.hints.handle_impa_sot_hint(),
             "Dungeon Entrances": {},
             "Trial Entrances": {},
             "Starting Statues": self.entrances.starting_statues,
@@ -533,11 +532,7 @@ class SSWorld(World):
         )
         apssr.write()
 
-        self.hint_data = hints
-        self.hint_data_available.set()
-
     def fill_slot_data(self) -> Mapping[str, Any]:
-        self.hint_data_available.wait()
         """
         Return the `slot_data` field that will be in the `Connected` network package.
 
@@ -572,7 +567,7 @@ class SSWorld(World):
             "randomize_entrances": self.options.randomize_entrances.value,
             "randomize_trials": self.options.randomize_trials.value,
             "random_start_entrance": self.options.random_start_entrance.value,
-            #"limit_start_entrance": self.options.limit_start_entrance.value,
+            "limit_start_entrance": 0, # self.options.limit_start_entrance.value,
             "random_start_statues": self.options.random_start_statues.value,
             "shopsanity": self.options.shopsanity.value,
             "rupoor_mode": self.options.rupoor_mode.value,
@@ -612,7 +607,7 @@ class SSWorld(World):
             "precise_item": self.options.precise_item.value,
             "starting_items": self.options.starting_items.value,
             "death_link": self.options.death_link.value,
-            "locations_for_hint": self.hint_data.locations_for_hint,
+            "locations_for_hint": self.hints.locations_for_hint,
             "excluded_locations": self.nonprogress_locations,
             "required_dungeons": self.dungeons.required_dungeons,
         }
