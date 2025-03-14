@@ -37,6 +37,12 @@ def handle_itempool(world: "SSWorld") -> None:
     placed = _handle_placements(world, pool)
     placed.extend(world.starting_items)
 
+    # Handle start inventory now, as these items are not removed from the pool
+    start_inventory = []
+    for itm, q in world.options.start_inventory.value.items():
+        world.starting_items.extend([itm] * q)
+        # No need to push these as precollected, AP already does that c:
+
     for itm in placed:
         adjusted_classification = item_classification(world, item)
         classification = (

@@ -534,6 +534,11 @@ class SSWorld(World):
                 self.options, field.name
             ).value
 
+        # Unused options in AP must be filled for the patcher
+        output_data["Options"]["limit-start-entrance"] = 0
+        output_data["Options"]["cube-sots"] = 0
+        output_data["Options"]["precise-item"] = 1
+
         # Output which item has been placed at each location.
         locations = sorted(
             multiworld.get_locations(player),
@@ -670,8 +675,8 @@ class SSWorld(World):
             "chest_dowsing": self.options.chest_dowsing.value,
             "dungeon_dowsing": self.options.dungeon_dowsing.value,
             "impa_sot_hint": self.options.impa_sot_hint.value,
-            "cube_sots": self.options.cube_sots.value,
-            "precise_item": self.options.precise_item.value,
+            "cube_sots": 0, #self.options.cube_sots.value,
+            "precise_item": 1, #self.options.precise_item.value,
             "starting_items": self.options.starting_items.value,
             "death_link": self.options.death_link.value,
             "locations_for_hint": self.hints.locations_for_hint,
