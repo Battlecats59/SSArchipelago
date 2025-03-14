@@ -288,7 +288,7 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
 
     if not options.tadtonesanity:
         num_tadtones = 17 - options.starting_tadtones.value
-        all_tadtones = [loc for loc in world.multiworld.get_locations(world.player) if LOCATION_TABLE[loc.name].type == SSLocType.CLEF]
+        all_tadtones = [loc for loc in world.multiworld.get_locations(world.player) if loc.type == SSLocType.CLEF]
         for i, tad in enumerate(all_tadtones):
             if i < num_tadtones:
                 tad.place_locked_item(
