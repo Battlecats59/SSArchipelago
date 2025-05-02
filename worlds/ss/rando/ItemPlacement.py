@@ -293,10 +293,14 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
     if not options.shopsanity:
         for loc, data in LOCATION_TABLE.items():
             if data.type == SSLocType.SHOP:
-                world.get_location(loc).place_locked_item(
-                    world.create_item(data.vanilla_item)
-                )
-                placed.append(data.vanilla_item)
+                if loc == "Beedle's Shop - 1600 Rupee Item" and int(options.starting_heart_pieces.value) == 24:
+                    # Edge case where we cannot place the HP, just exclude the location
+                    world.get_location(loc).progress_type = LocationProgressType.EXCLUDED
+                else:
+                    world.get_location(loc).place_locked_item(
+                        world.create_item(data.vanilla_item)
+                    )
+                    placed.append(data.vanilla_item)
 
     if not options.tadtonesanity:
         num_tadtones = 17 - options.starting_tadtones.value
@@ -355,6 +359,13 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                 world.create_item("Progressive Sword")
             )
             placed.append("Progressive Sword")
+
+    # Vanilla Triforces
+    if options.triforce_shuffle == "vanilla":
+        world.get_location("Sky Keep - Sacred Power of Din").place_locked_item(world.create_item("Triforce of Power"))
+        world.get_location("Sky Keep - Sacred Power of Nayru").place_locked_item(world.create_item("Triforce of Wisdom"))
+        world.get_location("Sky Keep - Sacred Power of Farore").place_locked_item(world.create_item("Triforce of Courage"))
+        placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
     
     # Place non-vanilla keys now
     if options.small_key_mode != "vanilla":
@@ -364,13 +375,8 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
     if options.map_mode != "start_with" and options.map_mode != "vanilla":
         placed.extend(world.dungeons.key_handler.place_dungeon_maps())
 
-    # Triforces
-    if options.triforce_shuffle == "vanilla":
-        world.get_location("Sky Keep - Sacred Power of Din").place_locked_item(world.create_item("Triforce of Power"))
-        world.get_location("Sky Keep - Sacred Power of Nayru").place_locked_item(world.create_item("Triforce of Wisdom"))
-        world.get_location("Sky Keep - Sacred Power of Farore").place_locked_item(world.create_item("Triforce of Courage"))
-        placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
-    elif options.triforce_shuffle == "sky_keep":
+    # Non-vanilla Triforces
+    if options.triforce_shuffle == "sky_keep":
         locations_to_place = [loc for loc in world.multiworld.get_locations(world.player) if world.region_to_hint_region(loc.parent_region) == "Sky Keep" and not loc.item]
         triforce_locations = world.random.sample(locations_to_place, 3)
         world.random.shuffle(triforce_locations)
