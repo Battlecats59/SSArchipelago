@@ -26,16 +26,28 @@ def handle_itempool(world: "SSWorld") -> None:
     world.starting_items = _handle_starting_items(world)
 
     # Add starting items to the multiworld's `precollected_items` list.
-    for item in world.starting_items:
-        world.multiworld.push_precollected(world.create_item(item))
+    # Then remove starting items from the item pool
+    for itm in world.starting_items:
+        world.multiworld.push_precollected(world.create_item(itm))
 
-    # `placed` variable is simply a list of items to remove from the base pool, since they are
-    # either starting items or manually placed
+        adjusted_classification = item_classification(world, itm)
+        classification = (
+            ITEM_TABLE[itm].classification
+            if adjusted_classification is None
+            else adjusted_classification
+        )
+        if classification == IC.filler:
+            assert itm in filler_pool, f"Could not remove filler item from pool: {itm}"
+            filler_pool.remove(itm)
+        else:
+            assert itm in pool, f"Could not remove item from pool: {itm}"
+            pool.remove(itm)
+    
+    # Place items and remove from the item pool
     placed = _handle_placements(world, pool)
-    placed.extend(world.starting_items)
 
     for itm in placed:
-        adjusted_classification = item_classification(world, item)
+        adjusted_classification = item_classification(world, itm)
         classification = (
             ITEM_TABLE[itm].classification
             if adjusted_classification is None
