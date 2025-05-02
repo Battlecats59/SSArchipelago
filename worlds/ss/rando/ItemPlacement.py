@@ -319,6 +319,22 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                 )
                 placed.append(data.vanilla_item)
 
+    if not options.gondo_upgrades:
+        placed.extend(GONDO_UPGRADES)
+        # We're not actually going to place these in the world, the rando will patch them in
+        # Still, remove them from the item pool
+
+    ### DUNGEON PLACEMENTS
+
+    # Place vanilla keys first to prevent location overlap
+    if options.small_key_mode == "vanilla":
+        placed.extend(world.dungeons.key_handler.place_small_keys())
+    if options.boss_key_mode == "vanilla":
+        placed.extend(world.dungeons.key_handler.place_boss_keys())
+    if options.map_mode == "vanilla":
+        placed.extend(world.dungeons.key_handler.place_dungeon_maps())
+
+    # Sword Dungeon Reward
     if options.sword_dungeon_reward != "none":
         num_swords_to_place = pool.count("Progressive Sword")
         if num_swords_to_place < len(world.dungeons.required_dungeons):
@@ -339,7 +355,16 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
                 world.create_item("Progressive Sword")
             )
             placed.append("Progressive Sword")
+    
+    # Place non-vanilla keys now
+    if options.small_key_mode != "vanilla":
+        placed.extend(world.dungeons.key_handler.place_small_keys())
+    if options.boss_key_mode != "vanilla":
+        placed.extend(world.dungeons.key_handler.place_boss_keys())
+    if options.map_mode != "start_with" and options.map_mode != "vanilla":
+        placed.extend(world.dungeons.key_handler.place_dungeon_maps())
 
+    # Triforces
     if options.triforce_shuffle == "vanilla":
         world.get_location("Sky Keep - Sacred Power of Din").place_locked_item(world.create_item("Triforce of Power"))
         world.get_location("Sky Keep - Sacred Power of Nayru").place_locked_item(world.create_item("Triforce of Wisdom"))
@@ -352,16 +377,6 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
         for i, tri in enumerate(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"]):
             triforce_locations[i].place_locked_item(world.create_item(tri))
         placed.extend(["Triforce of Power", "Triforce of Wisdom", "Triforce of Courage"])
-
-    if not options.gondo_upgrades:
-        placed.extend(GONDO_UPGRADES)
-        # We're not actually going to place these in the world, the rando will patch them in
-        # Still, remove them from the item pool
-
-    placed.extend(world.dungeons.key_handler.place_small_keys())
-    placed.extend(world.dungeons.key_handler.place_boss_keys())
-    if options.map_mode != "start_with":
-        placed.extend(world.dungeons.key_handler.place_dungeon_maps())
 
     return placed
 
