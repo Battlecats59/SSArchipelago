@@ -27,7 +27,7 @@ def launch_client():
     launch_component(launch, name="FactorioClient")
 
 
-components.append(Component("Factorio Client", "FactorioClient", func=launch_client, component_type=Type.CLIENT))
+components.append(Component("Factorio Client", func=launch_client, component_type=Type.CLIENT))
 
 
 class FactorioSettings(settings.Group):
@@ -102,7 +102,7 @@ class Factorio(World):
     item_name_groups = {
         "Progressive": set(progressive_tech_table.keys()),
     }
-    required_client_version = (0, 5, 1)
+    required_client_version = (0, 6, 0)
     if Utils.version_tuple < required_client_version:
         raise Exception(f"Update Archipelago to use this world ({game}).")
     ordered_science_packs: typing.List[str] = MaxSciencePack.get_ordered_science_packs()
