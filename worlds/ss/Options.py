@@ -11,6 +11,7 @@ from Options import (
     StartInventoryPool,
     ProgressionBalancing,
     Toggle,
+    Removed,
 )
 
 
@@ -928,8 +929,8 @@ class SSOptions(PerGameCommonOptions):
     chest_dowsing: ChestDowsing
     dungeon_dowsing: AllowDowsingInDungeons
     impa_sot_hint: PastImpaStoneOfTrialsHint
-    cube_sots: SeparateCubeSotS
-    precise_item: PreciseItemHints
+    #cube_sots: SeparateCubeSotS
+    #precise_item: PreciseItemHints
     starting_items: StartInventoryPool
     death_link: DeathLink
     progression_balancing: SSProgressionBalancing
