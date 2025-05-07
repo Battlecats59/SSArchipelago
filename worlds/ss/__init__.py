@@ -42,8 +42,8 @@ from .logic.LogicParser import parse_expression
 from .logic.Logic import ALL_REQUIREMENTS
 
 AP_VERSION = [0, 6, 1]
-WORLD_VERSION = [0, 5, 0]
-RANDO_VERSION = [2, 2, 0]
+WORLD_VERSION = [0, 6, 0]
+RANDO_VERSION = [0, 6, 0]
 
 
 def run_client() -> None:

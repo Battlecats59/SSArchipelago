@@ -120,14 +120,14 @@ class Hints:
                     fi_hints.append(self.all_hints.pop())
                 self.placed_hints["Fi"] = [fh.to_fi_text() for fh in fi_hints]
                 self.placed_hints_log["Fi"] = [fh.to_log_text() for fh in fi_hints]
-                self.locations_for_hint["Fi"] = [fh.location for fh in fi_hints if isinstance(fh, SSLocationHint)]
+                self.locations_for_hint["Fi"] = [fh.aplocation for fh in fi_hints if isinstance(fh, SSLocationHint)]
             elif data.type == SSHintType.STONE:
                 stone_hints = []
                 for _ in range(self.distribution["hints_per_stone"]):
                     stone_hints.append(self.all_hints.pop())
                 self.placed_hints[hint] = [sh.to_stone_text() for sh in stone_hints]
                 self.placed_hints_log[hint] = [sh.to_log_text() for sh in stone_hints]
-                self.locations_for_hint[hint] = [sh.location for sh in stone_hints if isinstance(sh, SSLocationHint)]
+                self.locations_for_hint[hint] = [sh.aplocation for sh in stone_hints if isinstance(sh, SSLocationHint)]
             elif data.type == SSHintType.SONG:
                 song_hints = self._handle_song_hints(hint)
                 self.placed_hints[hint] = song_hints
@@ -168,7 +168,7 @@ class Hints:
         # Place always hints first
         if "always" in self.distribution["distribution"]:
             for loc in self.always_locations:
-                location_hints.append(SSLocationHint(loc))
+                location_hints.append(SSLocationHint(loc, self.world))
                 self.hinted_locations.append(loc)
 
         if len(location_hints) >= num_hints_to_place:
@@ -253,7 +253,7 @@ class Hints:
             hints.append(loc_to_hint)
             self.hinted_locations.append(loc_to_hint)
 
-        return [SSLocationHint(loc) for loc in hints]
+        return [SSLocationHint(loc, self.world) for loc in hints]
 
     def _create_item_hints(self, q) -> list[SSItemHint]:
         hints = []
