@@ -32,10 +32,10 @@ from .Names import HASH_NAMES
 from .Entrances import AP_ENTRANCE_TABLE
 from .Utils import restricted_safe_dump
 
-from .rando.DungeonRando import DungeonRando
-from .rando.EntranceRando import EntranceRando
-from .rando.ItemPlacement import handle_itempool, item_classification
-from .rando.HintPlacement import Hints
+from .Rando.DungeonRando import DungeonRando
+from .Rando.EntranceRando import EntranceRando
+from .Rando.ItemPlacement import handle_itempool, item_classification
+from .Rando.HintPlacement import Hints
 
 from .logic.LogicParser import parse_expression
 from .logic.Logic import ALL_REQUIREMENTS
