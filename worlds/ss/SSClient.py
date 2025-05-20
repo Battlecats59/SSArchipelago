@@ -81,6 +81,7 @@ class SSContext(CommonContext):
         self.beedle_items_purchased = [0, 0, 0, 0]  # slots from left to right
 
         self.ingame_client_messages: list[tuple[float, str]] = []
+        self.text_buffer_address: int = 0x0 # will be read from the dol when connected
 
         # Name of the current stage as read from the game's memory. Sent to trackers whenever its value changes to
         # facilitate automatically switching to the map of the current stage.
@@ -253,11 +254,11 @@ class SSContext(CommonContext):
         self.ingame_client_messages = filtered_msgs
 
         if len(line_list) == 0:
-            write_string_to_buffer("")
+            self.write_string_to_buffer("")
         else:
             # Want to cap it at 16 lines so the text doesn't get too obtrusive
             # (which could happen if each line is quite short)
-            write_string_to_buffer("\n".join(line_list[:16]))
+            self.write_string_to_buffer("\n".join(line_list[:16]))
 
     def on_print_json(self, args: dict):
         # Don't show messages in-game for item sends irrelevant to this slot
@@ -267,6 +268,14 @@ class SSContext(CommonContext):
             )
 
         super().on_print_json(args)
+    
+    def write_string_to_buffer(self, text: str):
+        if self.text_buffer_address != 0x0:
+            # Truncate text to fit in the buffer, then write to buffer
+            text_bytes = text.encode("utf-8")[: CLIENT_TEXT_BUFFER_SIZE - 1].ljust(
+                CLIENT_TEXT_BUFFER_SIZE, b"\x00"
+            )
+            dolphin_memory_engine.write_bytes(self.text_buffer_address, text_bytes)
 
 
 def dme_read_byte(console_address: int) -> int:
@@ -298,6 +307,17 @@ def dme_read_short(console_address: int) -> int:
     """
     return int.from_bytes(
         dolphin_memory_engine.read_bytes(console_address, 2), byteorder="big"
+    )
+
+def dme_read_long(console_address: int) -> int:
+    """
+    Read a 4-byte long from Dolphin memory.
+
+    :param console_address: Address to read from.
+    :return: The value read from memory.
+    """
+    return int.from_bytes(
+        dolphin_memory_engine.read_bytes(console_address, 4), byteorder="big"
     )
 
 
@@ -664,12 +684,6 @@ def can_send_items() -> bool:
     """
     return (not check_on_title_screen()) and check_on_file_1()
 
-def write_string_to_buffer(text: str):
-    # Truncate text to fit in the buffer, then write to buffer
-    text_bytes = text.encode("utf-8")[: CLIENT_TEXT_BUFFER_SIZE - 1].ljust(
-        CLIENT_TEXT_BUFFER_SIZE, b"\x00"
-    )
-    dolphin_memory_engine.write_bytes(CLIENT_TEXT_BUFFER_ADDR, text_bytes)
 
 async def dolphin_sync_task(ctx: SSContext) -> None:
     """
@@ -720,6 +734,7 @@ async def dolphin_sync_task(ctx: SSContext) -> None:
                         logger.info(CONNECTION_CONNECTED_STATUS)
                         ctx.dolphin_status = CONNECTION_CONNECTED_STATUS
                         ctx.locations_checked = set()
+                        ctx.text_buffer_address = dme_read_long(CLIENT_TEXT_BUFFER_PTR)
                 else:
                     logger.info(
                         "Connection to Dolphin failed, attempting again in 5 seconds..."
