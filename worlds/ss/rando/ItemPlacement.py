@@ -341,8 +341,8 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
     # Sword Dungeon Reward
     if options.sword_dungeon_reward != "none":
         num_swords_to_place = pool.count("Progressive Sword")
-        if num_swords_to_place in(5,6):
-            cap = 5 if "Lanayru Mining Facility" in world.dungeons.required_dungeons or options.sword_dungeon_reward == "heart_container" else 4
+        if num_swords_to_place == 5 or num_swords_to_place == 6:
+            cap = 4
             num_swords_to_place = min(num_swords_to_place, cap)
         if num_swords_to_place < len(world.dungeons.required_dungeons):
             # More dungeons than swords to place, place as many as possible
