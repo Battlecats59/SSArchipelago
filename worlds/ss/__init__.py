@@ -540,7 +540,7 @@ class SSWorld(World):
             "Name": self.player_name,
             "All Players": mw_player_names,
             "Options": {},
-            "Excluded Locations": self.nonprogress_locations,
+            "Excluded Locations": set(),
             "Starting Items": self.starting_items,
             "Required Dungeons": self.dungeons.required_dungeons,
             "Locations": {},
@@ -559,6 +559,13 @@ class SSWorld(World):
             output_data["Options"][field.name.replace("_", "-")] = getattr(
                 self.options, field.name
             ).value
+
+        # Excluded locations, and account for batreaux checks
+        for loc in self.nonprogress_locations:
+            if self.get_location(loc).ogname:
+                output_data["Excluded Locations"].add(self.get_location(loc).ogname)
+            else:
+                output_data["Excluded Locations"].add(loc)
 
         # Unused options in AP must be filled for the patcher
         output_data["Options"]["limit-start-entrance"] = 0
