@@ -121,13 +121,14 @@ class SSWorld(World):
 
     options_dataclass = SSOptions
     options: SSOptions
-
+       
     game: ClassVar[str] = "Skyward Sword"
     topology_present: bool = True
     web = SSWeb()
     required_client_version: tuple[int, int, int] = (0, 5, 1)
     origin_region_name: str = "" # This is set later
-
+    explicit_indirect_conditions = False 
+    
     item_name_to_id: ClassVar[dict[str, int]] = {
         name: SSItem.get_apid(data.code)
         for name, data in ITEM_TABLE.items()
