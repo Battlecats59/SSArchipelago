@@ -20,6 +20,7 @@ from worlds.LauncherComponents import (
     Type,
     components,
     launch_subprocess,
+    icon_paths,
 )
 
 from .Constants import *
@@ -62,8 +63,10 @@ components.append(
         func=run_client,
         component_type=Type.CLIENT,
         file_identifier=SuffixIdentifier(".apssr"),
+        icon="Skyward Sword"
     )
 )
+icon_paths["Skyward Sword"] = "ap:worlds.ss/assets/icon.png"
 
 
 class SSWeb(WebWorld):
