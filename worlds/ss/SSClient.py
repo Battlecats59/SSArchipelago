@@ -209,28 +209,6 @@ class AsyncWiiMemoryClient:
         else:
             raise Exception(f"Write failed at address 0x{address:08x}")
     
-    async def get_scene_flags(self, timeout=2) -> bytes:
-        """Get all scene flags at once"""
-        command = struct.pack('>B', 0x03)  # GET_SCENE_FLAGS - 0x03
-        
-        response = await self._send_command_queued(command, timeout)
-        
-        if len(response) > 0:
-            return response
-        else:
-            raise Exception(f"Sceneflag read failed.")
-    
-    async def get_story_flags(self, timeout=2) -> bytes:
-        """Get all storyflags at once"""
-        command = struct.pack('>B', 0x04)  # GET_STORY_FLAGS - 0x03
-        
-        response = await self._send_command_queued(command, timeout)
-        
-        if len(response) > 0:
-            return response
-        else:
-            raise Exception(f"Storyflag read failed")
-    
     async def signal_dc(self, timeout=2) -> bytes:
         """Send a signal to the Wii that a packet was lost"""
         command = struct.pack('>B', 0x05)  # DISCONNECT - 0x05
@@ -263,7 +241,7 @@ class WiiMemoryClient:
         self.wii_ip = wii_ip
         self.port = port
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.settimeout(5.0)  # 5 second timeout
+        self.sock.settimeout(2.0)  # 5 second timeout
         self.sock.connect((self.wii_ip, self.port))
         self.my_ip, self.my_port = self.sock.getsockname()
         self.established = False
@@ -272,19 +250,16 @@ class WiiMemoryClient:
         self.sock.close()
 
     def establish_connection(self):
-        """adfsdfa"""
-        # Command format: 0x00 - [4 addr bytes] - [4 bytes for num to read]
-        command = b'\x03' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
+        """Send a packet with IP and Port to establish connection to Wii server"""
+        command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
         
         try:
-            # Send command
             self.sock.send(command)
             
-            # Receive response
-            response, addr = self.sock.recvfrom(1024)
-            # print(f"Read {len(response)} bytes from address")
-            self.established = True
-            return response
+            response, addr = self.sock.recvfrom(1)
+            if len(response) == 1:
+                self.established = True
+                return True
             
         except socket.timeout:
             print(f"Timeout reading from address")
@@ -293,18 +268,18 @@ class WiiMemoryClient:
             print(f"Error reading memory: {e}")
             return None
         
-    def read_memory(self, address, num_bytes):
+    def read_bytes(self, address: int, num_bytes: int) -> bytes | None:
         """Read bytes from Wii memory at specified address"""
-        # Command format: 0x00 - [4 addr bytes] - [4 bytes for num to read]
-        command = struct.pack('>BII', 0, address, num_bytes)
+        # READ: 0x01 - [4 addr bytes] - [4 bytes for num to read] - [checksum]
+        command = struct.pack('>BII', 0x01, address, num_bytes)
+        # The wii will validate that this sum mod 256 is correct
+        checksum = sum(command) & 0xFF
+        command += checksum.to_bytes(1, 'big')
         
         try:
-            # Send command
             self.sock.send(command)
             
-            # Receive response
-            response, addr = self.sock.recvfrom(1024)
-            # print(f"Read {len(response)} bytes from address 0x{address:08x}")
+            response, addr = self.sock.recvfrom(num_bytes)
             return response
             
         except socket.timeout:
@@ -314,48 +289,20 @@ class WiiMemoryClient:
             print(f"Error reading memory: {e}")
             return None
     
-    def write_memory(self, address, data):
-        """Write bytes to Wii memory at specified address"""
-        if isinstance(data, str):
-            data = data.encode('utf-8')
-        elif isinstance(data, int):
-            data = struct.pack('>I', data)  # Convert int to 4 bytes
-            
-        # Command format: 0x01 - [4 addr bytes] - [4 bytes for num to write] - [contents]
-        command = struct.pack('>BII', 1, address, len(data)) + data
+    def write_bytes(self, address: int, data: bytes):
+        """Write bytes to Wii memory at specified address"""     
+        # WRITR: 0x02 - [4 addr bytes] - [4 bytes for num to write] - [contents] - [checksum]
+        command = struct.pack('>BII', 0x02, address, len(data)) + data
+        # The wii will validate that this sum mod 256 is correct
+        checksum = sum(command) & 0xFF
+        command += checksum.to_bytes(1, 'big')
         
         try:
-            # Send command
             self.sock.send(command)
             
-            # Receive acknowledgment
-            response, addr = self.sock.recvfrom(1024)
-            if len(response) == 1 and response[0] == 0:
-                print(f"Successfully wrote {len(data)} bytes to address 0x{address:08x}")
-                return True
-            else:
-                print(f"Unexpected response: {response}")
-                return False
-                
-        except socket.timeout:
-            print(f"Timeout writing to address 0x{address:08x}")
-            return False
-        except Exception as e:
-            print(f"Error writing memory: {e}")
-            return False
-    
-    def write_memory(self, address, bytes: bytes):
-        # Command format: 0x01 - [4 addr bytes] - [4 bytes for num to write] - [contents]
-        command = struct.pack('>BII', 1, address, len(bytes)) + bytes
-        
-        try:
-            # Send command
-            self.sock.send(command)
-            
-            # Receive acknowledgment
-            response, addr = self.sock.recvfrom(1024)
-            if len(response) == 1 and response[0] == 0:
-                # print(f"Successfully wrote {len(bytes)} bytes to address 0x{address:08x}")
+            response, addr = self.sock.recvfrom(1)
+            if len(response) == 1 and response[0] == 0x02:
+                # print(f"Successfully wrote {len(data)} bytes to address 0x{address:08x}")
                 return True
             else:
                 print(f"Unexpected response: {response}")
@@ -676,11 +623,6 @@ class SSContext(CommonContext):
         if self.on_console:
             await self.wii_memory_client.write_bytes(console_address, to_write)
             return
-            command = struct.pack('>BII', 0x01, console_address, len(to_write)) + to_write
-            self.client_socket.send(command)
-
-            self.client_socket.recv(1)
-            return
             
         dolphin_memory_engine.write_bytes(console_address, to_write)
 
@@ -772,7 +714,10 @@ class SSContext(CommonContext):
         :return: The value read from memory.
         """
         if self.on_console:
-            return await self.wii_memory_client.get_scene_flags()
+            res_bytes = bytes()
+            for i in range(13):
+                res_bytes += await self.wii_memory_client.read_bytes(SCENEFLAG_START_ADDR + 32 * i, 32)
+            return res_bytes
 
         return dolphin_memory_engine.read_bytes(SCENEFLAG_START_ADDR, 416)
 
@@ -784,7 +729,10 @@ class SSContext(CommonContext):
         :return: The value read from memory.
         """
         if self.on_console:
-            return await self.wii_memory_client.get_story_flags()
+            res_bytes = bytes()
+            for i in range(8):
+                res_bytes += await self.wii_memory_client.read_bytes(STORYFLAG_START_ADDR + 32 * i, 32)
+            return res_bytes
 
         return dolphin_memory_engine.read_bytes(STORYFLAG_START_ADDR, 256)
 
