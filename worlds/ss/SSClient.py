@@ -49,10 +49,9 @@ class CommandRequest:
         self.timestamp = time.time()
 
 class AsyncWiiMemoryClient:
-    def __init__(self, wii_ip, port=43673, min_delay_ms=5):
+    def __init__(self, wii_ip, port=43673):
         self.wii_ip = wii_ip
         self.port = port
-        self.min_delay_ms = min_delay_ms
         self.transport = None
         self.protocol = None
         self.established = False
@@ -60,7 +59,6 @@ class AsyncWiiMemoryClient:
         # Queue for UDP queries to the wii
         self.command_queue = asyncio.Queue()
         self.current_request: Optional[CommandRequest] = None
-        self.last_command_time = 0.0
         self.queue_processor_task = None
         
     async def connect(self):
@@ -105,7 +103,7 @@ class AsyncWiiMemoryClient:
         self.established = False
 
     async def establish_connection(self, timeout=1):
-        """Send a packet with IP and Port to establish connection to Wii server"""
+        """Try to send a packet with IP and Port to establish connection to Wii server"""
         command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
         
         response = await self._send_command_queued(command, timeout)
@@ -136,20 +134,10 @@ class AsyncWiiMemoryClient:
             try:
                 request = await self.command_queue.get()
                 
-                # Find out how long to wait before sending request to wii
-                current_time = time.time()
-                time_since_last = current_time - self.last_command_time
-                min_delay_seconds = self.min_delay_ms / 1000.0
-                
-                if time_since_last < min_delay_seconds:
-                    wait_time = min_delay_seconds - time_since_last
-                    await asyncio.sleep(wait_time)
-                
                 # Send command to wii
                 if self.transport and not request.future.cancelled():
                     self.current_request = request
                     self.transport.sendto(request.command)
-                    self.last_command_time = time.time()
                     
                     asyncio.create_task(self._handle_request_timeout(request))
                 elif request.future and not request.future.cancelled():
@@ -210,7 +198,7 @@ class AsyncWiiMemoryClient:
             raise Exception(f"Write failed at address 0x{address:08x}")
     
     async def signal_dc(self, timeout=2) -> bytes:
-        """Send a signal to the Wii that a packet was lost"""
+        """Send a signal to the Wii that the client lost connection"""
         command = struct.pack('>B', 0x05)  # DISCONNECT - 0x05
         
         response = await self._send_command_queued(command, timeout)
@@ -235,85 +223,6 @@ class BatchFlagHandler:
         offset = addr - self.base_addr
         assert(offset >= 0)
         return self.flags[offset]
-
-class WiiMemoryClient:
-    def __init__(self, wii_ip, port=43673):
-        self.wii_ip = wii_ip
-        self.port = port
-        self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.sock.settimeout(2.0)  # 5 second timeout
-        self.sock.connect((self.wii_ip, self.port))
-        self.my_ip, self.my_port = self.sock.getsockname()
-        self.established = False
-        
-    def close(self):
-        self.sock.close()
-
-    def establish_connection(self):
-        """Send a packet with IP and Port to establish connection to Wii server"""
-        command = b'\x00' + socket.inet_aton(self.my_ip) + struct.pack('>H', self.my_port)
-        
-        try:
-            self.sock.send(command)
-            
-            response, addr = self.sock.recvfrom(1)
-            if len(response) == 1:
-                self.established = True
-                return True
-            
-        except socket.timeout:
-            print(f"Timeout reading from address")
-            return None
-        except Exception as e:
-            print(f"Error reading memory: {e}")
-            return None
-        
-    def read_bytes(self, address: int, num_bytes: int) -> bytes | None:
-        """Read bytes from Wii memory at specified address"""
-        # READ: 0x01 - [4 addr bytes] - [4 bytes for num to read] - [checksum]
-        command = struct.pack('>BII', 0x01, address, num_bytes)
-        # The wii will validate that this sum mod 256 is correct
-        checksum = sum(command) & 0xFF
-        command += checksum.to_bytes(1, 'big')
-        
-        try:
-            self.sock.send(command)
-            
-            response, addr = self.sock.recvfrom(num_bytes)
-            return response
-            
-        except socket.timeout:
-            print(f"Timeout reading from address 0x{address:08x}")
-            return None
-        except Exception as e:
-            print(f"Error reading memory: {e}")
-            return None
-    
-    def write_bytes(self, address: int, data: bytes):
-        """Write bytes to Wii memory at specified address"""     
-        # WRITR: 0x02 - [4 addr bytes] - [4 bytes for num to write] - [contents] - [checksum]
-        command = struct.pack('>BII', 0x02, address, len(data)) + data
-        # The wii will validate that this sum mod 256 is correct
-        checksum = sum(command) & 0xFF
-        command += checksum.to_bytes(1, 'big')
-        
-        try:
-            self.sock.send(command)
-            
-            response, addr = self.sock.recvfrom(1)
-            if len(response) == 1 and response[0] == 0x02:
-                # print(f"Successfully wrote {len(data)} bytes to address 0x{address:08x}")
-                return True
-            else:
-                print(f"Unexpected response: {response}")
-                return False
-                
-        except socket.timeout:
-            print(f"Timeout writing to address 0x{address:08x}")
-            return False
-        except Exception as e:
-            print(f"Error writing memory: {e}")
-            return False
 
 class SSCommandProcessor(ClientCommandProcessor):
     """
@@ -592,6 +501,8 @@ class SSContext(CommonContext):
     def close_wii_client(self):
         """Close Wii client connection"""
         if self.wii_memory_client:
+            if self.wii_memory_client.established:
+                self.wii_memory_client.signal_dc()
             self.wii_memory_client.close()
             self.wii_memory_client = None
     
@@ -1114,18 +1025,15 @@ async def do_sync_task(ctx: SSContext) -> None:
                         await asyncio.sleep(5)
                         continue
             except TimeoutError:
-                logger.info(
-                    "Lost packet from console, attempting to reconnect..."
-                )
+                print("Lost packet from console, attempting to reconnect...")
                 ctx.close_wii_client()
                 ctx.start_wii_client(ctx.wii_ip)
                 if not await ctx.wii_memory_client.connect():
+                    logger.info("Lost packet from console and couldn't reconnect. Attempting again in 5 seconds...")
                     await ctx.disconnect()
                     await asyncio.sleep(5)
                 else:
-                    logger.info(
-                        "Reconnected successfully."
-                    )
+                    print("Reconnected successfully.")
                 continue
             except Exception:
                 ctx.close_wii_client()
