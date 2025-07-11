@@ -488,17 +488,8 @@ class SSWorld(World):
             )
         raise KeyError(f"Invalid item name: {name}")
     
-    def post_fill(self):
-        # Fill hint data
-        self.hints = Hints(self)
-        self.hints.handle_hints()
+ #   def post_fill(self):
 
-        # spheres = self.multiworld.get_spheres()
-        # locs = {}
-        # for i, sphere in enumerate(spheres):
-        #     locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
-        # with open("./worlds/ss/Playthrough.json", "w") as f:
-        #     json.dump(locs, f, indent=2)
 
     def region_to_hint_region(self, region: Region) -> str:
         """
@@ -516,6 +507,17 @@ class SSWorld(World):
 
         :param output_directory: The output directory for the .apssr file.
         """
+                # Fill hint data
+        self.hints = Hints(self)
+        self.hints.handle_hints()
+
+        # spheres = self.multiworld.get_spheres()
+        # locs = {}
+        # for i, sphere in enumerate(spheres):
+        #     locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
+        # with open("./worlds/ss/Playthrough.json", "w") as f:
+        #     json.dump(locs, f, indent=2)
+        
         multiworld = self.multiworld
         player = self.player
         player_hash = self.random.sample(HASH_NAMES, 3)
