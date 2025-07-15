@@ -42,7 +42,7 @@ From now on, Archipelago may be referred to as "AP". Skyward Sword may be referr
 - Open the AP release of the Skyward Sword Randomizer. Set your output folder to wherever you would like the randomized iso placed. Set the APSSR file in the randomizer window to the APSSR file that you just received from the host. **MAKE SURE that you put in the correct APSSR file.**
 - Set your cosmetic options in the randomizer window and select randomize.
     - NOTE: If you want to play on console, you **must** enable the `Use Wii UDP Socket` option before randomizing.
-- After randomization, open the randomized iso in Dolphin or a homebrewed Wii console. Next, see [Setting up your Client (Dolphin Emulator)](#setting-up-your-client-dolphin-emulator) or [Setting up your Client (Wii Console)](#setting-up-your-client-wii-console).
+- After randomization, see [Setting up your Client (Dolphin Emulator)](#setting-up-your-client-dolphin-emulator) or [Setting up your Client (Wii Console)](#setting-up-your-client-wii-console).
 
 ### Setting up your Client (Dolphin Emulator)
 - After opening the randomized iso in Dolphin, open the `Skyward Sword Client` in Archipelago.
@@ -60,6 +60,7 @@ From now on, Archipelago may be referred to as "AP". Skyward Sword may be referr
 - Though the client defaults to Dolphin Emulator connection, you may switch to console mode by running the `/console` command with the Wii's on-screen IP address, as described below. Likewise, while in console mode, you may run `/dolphin` to return to Dolphin mode.
 
 ### Setting up your Client (Wii Console)
+- Transfer your randomized iso to a USB drive (or generate directly onto it), and insert the USB drive into your console.
 - Before opening the randomized iso, make sure your Wii is connected to the Internet on the same network the computer running your client is on.
     - The Wii can only connect to the 2.4 GHz WiFi band, so you may need to ensure your computer is also on this band if you have two separate networks.
 - Use a USB loader such as USB Loader GX, Wiiflow, or CFG USB Loader to open the randomized iso.
