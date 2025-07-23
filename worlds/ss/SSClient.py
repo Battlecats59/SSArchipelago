@@ -243,6 +243,8 @@ class SSCommandProcessor(ClientCommandProcessor):
         """
         if isinstance(self.ctx, SSContext):
             logger.info(f"Dolphin Status: {self.ctx.dolphin_status}")
+            if self.ctx.is_hooked() and self.ctx.on_console:
+                self.ctx.wii_memory_client.close()
             self.ctx.on_console = False
     
     def _cmd_console(self, ip_addr: str) -> None:
@@ -252,6 +254,10 @@ class SSCommandProcessor(ClientCommandProcessor):
         if isinstance(self.ctx, SSContext):
             logger.info(f"Starting up a Wii client...")
             self.ctx.wii_ip = ip_addr
+            if self.ctx.is_hooked() and not self.ctx.on_console:
+                # Re-display network info again (for testing things on dolphin)
+                dolphin_memory_engine.write_bytes(NETWORK_USAGE_BOOL, b'\x01')
+                dolphin_memory_engine.un_hook()
             self.ctx.on_console = True
             self.ctx.start_wii_client(ip_addr)
 
@@ -1082,6 +1088,7 @@ async def do_sync_task(ctx: SSContext) -> None:
                             ctx.locations_checked = set()
                             ctx.text_buffer_address = await ctx.read_long(CLIENT_TEXT_BUFFER_PTR)
                             await ctx.cache_link_data()
+                            await ctx.write_byte(NETWORK_USAGE_BOOL, 0) # stop network messages
                     else:
                         logger.info(
                             "Connection to Dolphin failed, attempting again in 5 seconds..."
