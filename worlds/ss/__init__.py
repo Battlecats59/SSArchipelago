@@ -561,6 +561,8 @@ class SSWorld(World):
 
         # Output options to file.
         for field in fields(self.options):
+            if field.name =="plando_items":
+                continue # Skip adding plando_items to patchfile 
             output_data["Options"][field.name.replace("_", "-")] = getattr(
                 self.options, field.name
             ).value
@@ -723,3 +725,4 @@ class SSWorld(World):
         }
 
         return slot_data
+
