@@ -260,6 +260,17 @@ class SSCommandProcessor(ClientCommandProcessor):
                 dolphin_memory_engine.un_hook()
             self.ctx.on_console = True
             self.ctx.start_wii_client(ip_addr)
+            
+    def _cmd_deathlink(self) -> None:
+        """Toggle DeathLink."""
+        if isinstance(self.ctx, SSContext):
+            if "DeathLink" in self.ctx.tags:
+                Utils.async_start(self.ctx.update_death_link(False))
+                logger.info("Deathlink disabled.")
+            else:
+                Utils.async_start(self.ctx.update_death_link(True))
+                logger.info("Deathlink enabled.")
+
 
 class SSContext(CommonContext):
     """
@@ -1149,3 +1160,4 @@ if __name__ == "__main__":
     parser = get_base_parser()
     args = parser.parse_args()
     main(args.connect, args.password)
+
