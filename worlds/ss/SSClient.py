@@ -304,7 +304,7 @@ class SSContext(CommonContext):
         self.hints_checked = set()  # local variable
         self.checked_hints = set()  # server variable
         self.beedle_items_purchased = [0, 0, 0, 0]  # slots from left to right
-    	self.cubes_checked = set() #local variable
+        self.cubes_checked = set() #local variable
         
         self.ingame_client_messages: list[tuple[float, str]] = []
         self.text_buffer_address: int = 0x0 # will be read from the dol when connected
@@ -1178,6 +1178,3 @@ if __name__ == "__main__":
     parser = get_base_parser()
     args = parser.parse_args()
     main(args.connect, args.password)
-
-
-
