@@ -899,7 +899,7 @@ class SSContext(CommonContext):
 
         :return: `True` if the player is dead, otherwise `False`.
         """
-        if self.slot is not None and self.check_ingame() and not self.check_on_title_screen():
+        if self.slot is not None and self.check_ingame() and not await self.check_on_title_screen():
             cur_health = await self.read_short(CURR_HEALTH_ADDR)
             if cur_health <= 0:
                 if not self.has_send_death and time.time() >= self.last_death_link + 3:
@@ -1178,5 +1178,6 @@ if __name__ == "__main__":
     parser = get_base_parser()
     args = parser.parse_args()
     main(args.connect, args.password)
+
 
 
