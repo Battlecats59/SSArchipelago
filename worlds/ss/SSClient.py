@@ -409,14 +409,14 @@ class SSContext(CommonContext):
                         )
                     self.visited_stage_names = visited_stage_names
 
-    async def on_deathlink(self, data: dict[str, Any]) -> None:
+    def on_deathlink(self, data: dict[str, Any]) -> None:
         """
         Handle a DeathLink event.
 
         :param data: The data associated with the DeathLink event.
         """
         super().on_deathlink(data)
-        await self._give_death(self)
+        asyncio.create_task(self._give_death())
 
     def make_gui(self) -> type["kvui.GameManager"]:
         """
@@ -881,7 +881,7 @@ class SSContext(CommonContext):
 
         :return: `True` if the player is dead, otherwise `False`.
         """
-        if self.slot is not None and self.check_ingame() and not self.check_on_title_screen():
+        if self.slot is not None and self.check_ingame() and not await self.check_on_title_screen():
             cur_health = await self.read_short(CURR_HEALTH_ADDR)
             if cur_health <= 0:
                 if not self.has_send_death and time.time() >= self.last_death_link + 3:
