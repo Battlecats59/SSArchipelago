@@ -409,14 +409,14 @@ class SSContext(CommonContext):
                         )
                     self.visited_stage_names = visited_stage_names
 
-    async def on_deathlink(self, data: dict[str, Any]) -> None:
+    def on_deathlink(self, data: dict[str, Any]) -> None:
         """
         Handle a DeathLink event.
 
         :param data: The data associated with the DeathLink event.
         """
         super().on_deathlink(data)
-        await self._give_death(self)
+        asyncio.create_task(self._give_death())
 
     def make_gui(self) -> type["kvui.GameManager"]:
         """
