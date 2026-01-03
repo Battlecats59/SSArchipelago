@@ -824,7 +824,7 @@ class SSContext(CommonContext):
                         "cmd": "Set",
                         "key": f"skyward_sword_cubes_{self.team}_{self.slot}",
                         "default": 0,
-                        "want_reply": False,
+                        "want_reply": true,
                         "operations": [{"operation": "or", "value": bit}],
                     }])
 
@@ -1178,3 +1178,4 @@ if __name__ == "__main__":
     parser = get_base_parser()
     args = parser.parse_args()
     main(args.connect, args.password)
+
