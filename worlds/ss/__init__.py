@@ -42,9 +42,9 @@ from .rando.MiscRando import shuffle_batreaux_counts
 from .logic.LogicParser import parse_expression
 from .logic.Logic import ALL_REQUIREMENTS
 
-AP_VERSION = [0, 6, 2]
-WORLD_VERSION = [0, 5, 2]
-RANDO_VERSION = [0, 5, 2]
+AP_VERSION = [0, 6, 5]
+WORLD_VERSION = [0, 5, 4]
+RANDO_VERSION = [0, 5, 4]
 
 
 def run_client() -> None:
