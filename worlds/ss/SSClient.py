@@ -300,6 +300,7 @@ class SSContext(CommonContext):
         self.last_rcvd_index: int = -1
         self.has_send_death: bool = False
         self.locations_for_hint: dict[str, list] = {}
+        self.lost_client_connection: bool = False
 
         self.hints_checked = set()  # local variable
         self.checked_hints = set()  # server variable
@@ -1052,6 +1053,11 @@ async def do_sync_task(ctx: SSContext) -> None:
                         ctx.locations_checked = set()
                         ctx.text_buffer_address = await ctx.read_long(CLIENT_TEXT_BUFFER_PTR)
                         await ctx.cache_link_data()
+                        if ctx.lost_client_connection:
+                            logger.info("Attempting to reconnect to the server.")
+                            await ctx.connect()
+                        
+                        ctx.lost_client_connection = False
                     else:
                         logger.info(
                             "Connection to console failed, attempting again in 5 seconds..."
@@ -1064,6 +1070,7 @@ async def do_sync_task(ctx: SSContext) -> None:
                 ctx.close_wii_client()
                 ctx.start_wii_client(ctx.wii_ip)
                 if not await ctx.wii_memory_client.connect():
+                    ctx.lost_client_connection = True
                     logger.info("Lost packet from console and couldn't reconnect. Attempting again in 5 seconds...")
                     await ctx.disconnect()
                     await asyncio.sleep(5)
