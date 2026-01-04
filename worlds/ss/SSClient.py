@@ -25,6 +25,7 @@ from NetUtils import ClientStatus, NetworkItem
 from .Items import ITEM_TABLE, LOOKUP_ID_TO_NAME
 from .Locations import LOCATION_TABLE, SSLocation, SSLocFlag, SSLocType, SSLocCheckedFlag
 from .Hints import HINT_TABLE, SSHint
+from .Cubes import cubes_table
 from .SSClientUtils import *
 
 if TYPE_CHECKING:
@@ -303,7 +304,8 @@ class SSContext(CommonContext):
         self.hints_checked = set()  # local variable
         self.checked_hints = set()  # server variable
         self.beedle_items_purchased = [0, 0, 0, 0]  # slots from left to right
-
+        self.cubes_checked = set() #local variable
+        
         self.ingame_client_messages: list[tuple[float, str]] = []
         self.text_buffer_address: int = 0x0 # will be read from the dol when connected
         self.link_ptr: int = 0x0 # will be read from the dol when connected
@@ -810,6 +812,22 @@ class SSContext(CommonContext):
                     for locname in self.locations_for_hint.get(hint, []):
                         self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
 
+            for i, (name, (flag_bit, flag_value, addr)) in enumerate(cubes_table):
+                flag = storyflags.lookup_byte(addr + flag_bit)
+                checked = bool(flag & flag_value)
+
+                if checked and i not in self.cubes_checked:
+                    self.cubes_checked.add(i)
+
+                    bit = 1 << i
+                    await self.send_msgs([{
+                        "cmd": "Set",
+                        "key": f"skyward_sword_cubes_{self.team}_{self.slot}",
+                        "default": 0,
+                        "want_reply": True,
+                        "operations": [{"operation": "or", "value": bit}],
+                    }])
+
             # Send the list of newly-checked locations & hints to the server.
             locations_checked = self.locations_checked.difference(self.checked_locations)
             hints_checked = self.hints_checked.difference(self.checked_hints)
@@ -1160,4 +1178,5 @@ if __name__ == "__main__":
     parser = get_base_parser()
     args = parser.parse_args()
     main(args.connect, args.password)
+
 
