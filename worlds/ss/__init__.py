@@ -42,8 +42,8 @@ from .rando.MiscRando import shuffle_batreaux_counts
 from .logic.Requirements import location_requirements, exit_requirements, ALL_REQUIREMENTS
 
 AP_VERSION = [0, 6, 5]
-WORLD_VERSION = [0, 5, 4]
-RANDO_VERSION = [0, 5, 4]
+WORLD_VERSION = [0, 5, 5]
+RANDO_VERSION = [0, 5, 5]
 
 
 def run_client() -> None:
