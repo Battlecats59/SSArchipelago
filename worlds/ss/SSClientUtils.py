@@ -134,3 +134,20 @@ CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 
 CONSOLE_CONNECTED_STATUS = "Wii connected successfully."
+
+COLOR_CONTROL_SEQUENCES = {
+    # closest equivalents available in SS
+    "black": "\x0e\x00\x03\x02\x0c",
+    "red": "\x0e\x00\x03\x02\x09",
+    "green": "\x0e\x00\x03\x02\x04",
+    "yellow": "\x0e\x00\x03\x02\x0b",
+    "blue": "\x0e\x00\x03\x02\x03",
+    "magenta": "\x0e\x00\x03\x02\x29", # custom magenta added to the patcher
+    "cyan": "\x0e\x00\x03\x02\x08",
+    "slateblue": "\x0e\x00\x03\x02\x27", # custom slateblue added to the patcher
+    "plum": "\x0e\x00\x03\x02\x06",
+    "salmon": "\x0e\x00\x03\x02\x09",
+    # "white": "\x0e\x00\x03\x02\x0a", # just ignore since text is already white by default
+    "orange": "\x0e\x00\x03\x02\x02",
+    # ">>": "\x0e\x00\x03\x02\uffff",  # end color
+}
