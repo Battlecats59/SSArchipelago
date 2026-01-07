@@ -39,8 +39,7 @@ from .rando.ItemPlacement import handle_itempool, item_classification
 from .rando.HintPlacement import Hints
 from .rando.MiscRando import shuffle_batreaux_counts
 
-from .logic.LogicParser import parse_expression
-from .logic.Logic import ALL_REQUIREMENTS
+from .logic.Requirements import location_requirements, exit_requirements, ALL_REQUIREMENTS
 
 AP_VERSION = [0, 6, 5]
 WORLD_VERSION = [0, 5, 4]
@@ -452,7 +451,7 @@ class SSWorld(World):
                 else:
                     region.add_exits(
                         {entrance_region: exit_full_name},
-                        {entrance_region: eval(f"lambda state, player=self.player: {parse_expression(rule)}")}
+                        {entrance_region: exit_requirements(self, exit_full_name)}
                     )
 
                 # if entrance_full_name is None:
