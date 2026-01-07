@@ -519,10 +519,12 @@ class SSWorld(World):
         
         multiworld = self.multiworld
         player = self.player
+        worlds = self.multiworld.worlds
+        players = [int(item) for item in worlds]
         player_hash = self.random.sample(HASH_NAMES, 3)
         mw_player_names = [
-            self.multiworld.get_player_name(i + 1)
-            for i in range(self.multiworld.players)
+            self.multiworld.get_player_name(i)
+            for i in players
         ]
 
         # seed_name on web adds an additional 'W', making the seed 21 characters long.
