@@ -20,7 +20,7 @@ from CommonClient import (
     logger,
     server_loop,
 )
-from NetUtils import ClientStatus, NetworkItem
+from NetUtils import ClientStatus, NetworkItem, JSONtoTextParser
 
 from .Items import ITEM_TABLE, LOOKUP_ID_TO_NAME
 from .Locations import LOCATION_TABLE, SSLocation, SSLocFlag, SSLocType, SSLocCheckedFlag
@@ -225,6 +225,12 @@ class BatchFlagHandler:
         assert(offset >= 0)
         return self.flags[offset]
 
+class SSIngameJSONParser(JSONtoTextParser):
+    def _handle_color(self, node):
+        codes = node["color"].split(";")
+        buffer = "".join(COLOR_CONTROL_SEQUENCES[code] for code in codes if code in COLOR_CONTROL_SEQUENCES)
+        return buffer + self._handle_text(node) + "\x0e\x00\x03\x02\uffff"
+
 class SSCommandProcessor(ClientCommandProcessor):
     """
     Command Processor for SS client commands.
@@ -317,6 +323,8 @@ class SSContext(CommonContext):
         self.wii_ip: str = "0.0.0.0"
         self.socket = None # Server socket
         self.client_socket = None # Connection from Wii
+        self.ingame_json_parser = SSIngameJSONParser(self)
+        self.is_text_buffer_empty = True
 
         # Name of the current stage as read from the game's memory. Sent to trackers whenever its value changes to
         # facilitate automatically switching to the map of the current stage.
@@ -489,7 +497,7 @@ class SSContext(CommonContext):
         self.ingame_client_messages = filtered_msgs
 
         if len(line_list) == 0:
-            await self.write_string_to_buffer("")
+            await self.clear_buffer()
         else:
             # Want to cap it at 16 lines so the text doesn't get too obtrusive
             # (which could happen if each line is quite short)
@@ -499,18 +507,32 @@ class SSContext(CommonContext):
         # Don't show messages in-game for item sends irrelevant to this slot
         if not self.is_uninteresting_item_send(args):
             self.forward_client_message(
-                self.rawjsontotextparser(copy.deepcopy(args["data"]))
+                self.ingame_json_parser(copy.deepcopy(args["data"]))
             )
 
         super().on_print_json(args)
     
     async def write_string_to_buffer(self, text: str):
+        # Truncate text to fit in the buffer, then write to buffer
+        text_bytes = text.encode("utf-8")
+        if len(text_bytes) >= CLIENT_TEXT_BUFFER_SIZE:
+            for i in range(CLIENT_TEXT_BUFFER_SIZE - 7, CLIENT_TEXT_BUFFER_SIZE + 1):
+                if text_bytes[i] == 0x0e: # color control sequence, don't want to truncate!
+                    break
+            text_bytes = text_bytes[: i - 1]
+        
         if self.text_buffer_address != 0x0:
-            # Truncate text to fit in the buffer, then write to buffer
-            text_bytes = text.encode("utf-8")[: CLIENT_TEXT_BUFFER_SIZE - 1].ljust(
-                CLIENT_TEXT_BUFFER_SIZE, b"\x00"
-            )
-            await self.write_bytes(self.text_buffer_address, text_bytes)
+            await self.write_bytes(self.text_buffer_address, text_bytes.ljust(CLIENT_TEXT_BUFFER_SIZE, b'\x00'))
+            self.is_text_buffer_empty = False
+    
+    async def clear_buffer(self):
+        if self.is_text_buffer_empty:
+            return
+        
+        if self.text_buffer_address != 0x0:
+            await self.write_bytes(self.text_buffer_address, b"\x00")
+            self.is_text_buffer_empty = True
+
     
     def start_wii_client(self, ip):
         """Initialize the async Wii client"""
