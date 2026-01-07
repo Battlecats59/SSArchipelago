@@ -305,7 +305,7 @@ class SSWorld(World):
         for reg_name, data in ALL_REQUIREMENTS.items():
             region = Region(reg_name, self.player, self.multiworld)
             for short_loc_name, rule in data["locations"].items():
-                full_loc_name = f"{data["hint_region"]} - {short_loc_name}"
+                full_loc_name = f"{data['hint_region']} - {short_loc_name}"
                 og_full_loc_name = deepcopy(full_loc_name)
                 if LOCATION_TABLE[full_loc_name].flags & SSLocFlag.BTREAUX:
                     # Remove location from progress or nonprogress locations
@@ -324,17 +324,17 @@ class SSWorld(World):
                     if short_loc_name == "Chest":
                         crystal_count = self.batreaux_rewards["Third Reward"]
                         short_loc_name = f"{str(crystal_count)} Crystals Chest"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Chest"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals Chest"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
                     elif short_loc_name == "Seventh Reward":
                         crystal_count = self.batreaux_rewards["Sixth Reward"]
                         short_loc_name = f"{str(crystal_count)} Crystals Second Reward"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Second Reward"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals Second Reward"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
                     else:
                         crystal_count = self.batreaux_rewards[short_loc_name]
                         short_loc_name = f"{str(crystal_count)} Crystals"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
 
                     # Add new location back into progress or nonprogress locations
@@ -410,7 +410,7 @@ class SSWorld(World):
                     entrance_full_name = None
 
                 if entrance.group == 4 or entrance.group == 6:
-                    dungeon = ALL_REQUIREMENTS[region_name]["hint_region"]
+                    dungeon = ALL_REQUIREMENTS[region_name]['hint_region']
                     dungeon_entrance = self.entrances.dungeon_connections[dungeon]
                     entrance_region = DUNGEON_ENTRANCE_REGIONS[dungeon_entrance]
                     entrance_full_name = None
@@ -432,12 +432,12 @@ class SSWorld(World):
                 # Add exits- with logic if overworld or req dungeon, no logic if unreq dungeon
                 if (
                     (
-                        ALL_REQUIREMENTS[region_name]["hint_region"] in self.dungeons.banned_dungeons
-                        or ALL_REQUIREMENTS[entrance_region]["hint_region"] in self.dungeons.banned_dungeons
+                        ALL_REQUIREMENTS[region_name]['hint_region'] in self.dungeons.banned_dungeons
+                        or ALL_REQUIREMENTS[entrance_region]['hint_region'] in self.dungeons.banned_dungeons
                         or (
                             (
-                                ALL_REQUIREMENTS[region_name]["hint_region"] == "Sky Keep"
-                                or ALL_REQUIREMENTS[entrance_region]["hint_region"] == "Sky Keep"
+                                ALL_REQUIREMENTS[region_name]['hint_region'] == "Sky Keep"
+                                or ALL_REQUIREMENTS[entrance_region]['hint_region'] == "Sky Keep"
                             )
                             and not self.dungeons.sky_keep_required
                         )
@@ -498,7 +498,7 @@ class SSWorld(World):
         :return: A string of the hint region.
         """
 
-        return ALL_REQUIREMENTS[region.name]["hint_region"]
+        return ALL_REQUIREMENTS[region.name]['hint_region']
 
     def generate_output(self, output_directory: str) -> None:
         """
