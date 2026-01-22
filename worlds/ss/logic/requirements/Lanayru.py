@@ -345,7 +345,7 @@ LANAYRU_REQUIREMENTS = {
         "locations": {
             "Pirate Stronghold - Rupee on East Sea Pillar": "Has Quick Beetle",
             "Pirate Stronghold - Rupee on West Sea Pillar": "Has Quick Beetle",
-            "Pirate Stronghold - Rupee on Bird Statue Pillar or Nose": "Has Quick Beetle",
+            "Pirate Stronghold - Rupee on Bird Statue Pillar or Nose": "Has Beetle",
             "Pirate Stronghold - First Chest": "Nothing",
             "Pirate Stronghold - Second Chest": "Nothing",
             "Pirate Stronghold - Third Chest": "Nothing",
