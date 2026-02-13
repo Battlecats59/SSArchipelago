@@ -270,10 +270,10 @@ HINT_DISTRIBUTIONS = {
 }
 
 SONG_HINT_TO_TRIAL_GATE = {
-    "Song of the Hero - Trial Hint": "trial_gate_on_skyloft",
-    "Farore's Courage - Trial Hint": "trial_gate_in_faron_woods",
-    "Nayru's Wisdom - Trial Hint": "trial_gate_in_lanayru_desert",
-    "Din's Power - Trial Hint": "trial_gate_in_eldin_volcano",
+    "Song of the Hero - Trial Hint": "Trial Gate on Skyloft",
+    "Farore's Courage - Trial Hint": "Trial Gate in Faron Woods",
+    "Nayru's Wisdom - Trial Hint": "Trial Gate in Lanayru Desert",
+    "Din's Power - Trial Hint": "Trial Gate in Eldin Volcano",
 }
 
 JUNK_HINT_TEXT = [

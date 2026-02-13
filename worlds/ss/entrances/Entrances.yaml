@@ -1,0 +1,6233 @@
+Ancient Cistern - Basement - Statue:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Basement
+  connecting_region: Ancient Cistern - Statue
+  direction: 2
+  exit_name: Statue
+  exit_region: Ancient Cistern - Basement
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Boss Room - Flame Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Ancient Cistern - Flame Room
+  direction: 2
+  exit_name: Flame Room
+  exit_region: Ancient Cistern - Boss Room
+  group: 5
+  ss_entrance_name: Ancient Cistern - Flame Room - Entrance
+  ss_exit_name: Ancient Cistern - Boss Room - Exit to Flame Room
+Ancient Cistern - Boss Room - Statue:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Ancient Cistern - Statue
+  direction: 2
+  exit_name: Statue
+  exit_region: Ancient Cistern - Boss Room
+  group: 5
+  ss_entrance_name: Ancient Cistern - Boss Door Entrance
+  ss_exit_name: Ancient Cistern - Boss Room - Exit to Dungeon
+Ancient Cistern - East Room - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: East Room
+  connecting_region: Ancient Cistern - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Ancient Cistern - East Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Flame Room - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Flame Room
+  connecting_region: Ancient Cistern - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Ancient Cistern - Flame Room
+  group: 5
+  ss_entrance_name: Ancient Cistern - Boss Room - Entrance from Flame Room
+  ss_exit_name: Ancient Cistern - Flame Room - Exit
+Ancient Cistern - Flame Room - Strike Crest:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lake Floria - Ancient Cistern Ledge
+  direction: 1
+  exit_name: Strike Crest
+  exit_region: Ancient Cistern - Flame Room
+  group: 6
+  ss_entrance_name: Floria Waterfall - Entrance from Ancient Cistern
+  ss_exit_name: Ancient Cistern - Flame Room - Crest Hit Exit
+Ancient Cistern - Gutters - Past Gutters:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Ancient Cistern - Past Gutters
+  direction: 1
+  exit_name: Past Gutters
+  exit_region: Ancient Cistern - Gutters
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Main Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Lake Floria
+  connecting_region: Lake Floria - Ancient Cistern Ledge
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Ancient Cistern - Main Room
+  group: 3
+  ss_entrance_name: Floria Waterfall - Entrance from Ancient Cistern
+  ss_exit_name: Ancient Cistern - Main Exit
+Ancient Cistern - Main Room - East Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Ancient Cistern - East Room
+  direction: 2
+  exit_name: East Room
+  exit_region: Ancient Cistern - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Main Room - Past Waterfall:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Ancient Cistern - Past Waterfall
+  direction: 2
+  exit_name: Past Waterfall
+  exit_region: Ancient Cistern - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Main Room - Statue:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Ancient Cistern - Statue
+  direction: 2
+  exit_name: Statue
+  exit_region: Ancient Cistern - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Past Gutters - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lake Floria - Ancient Cistern Ledge
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Ancient Cistern - Past Gutters
+  group: 4
+  ss_entrance_name: Floria Waterfall - Entrance from Ancient Cistern
+  ss_exit_name: Ancient Cistern - Main Exit
+Ancient Cistern - Past Gutters - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Ancient Cistern - Main Room
+  direction: 1
+  exit_name: Main Room
+  exit_region: Ancient Cistern - Past Gutters
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Past Waterfall - Gutters:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Ancient Cistern - Gutters
+  direction: 1
+  exit_name: Gutters
+  exit_region: Ancient Cistern - Past Waterfall
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Past Waterfall - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Past Waterfall
+  connecting_region: Ancient Cistern - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Ancient Cistern - Past Waterfall
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Statue - Basement:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Statue
+  connecting_region: Ancient Cistern - Basement
+  direction: 2
+  exit_name: Basement
+  exit_region: Ancient Cistern - Statue
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Ancient Cistern - Statue - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Statue
+  connecting_region: Ancient Cistern - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Ancient Cistern - Statue
+  group: 5
+  ss_entrance_name: Ancient Cistern - Boss Room - Entrance from Dungeon
+  ss_exit_name: Ancient Cistern - Boss Door Exit
+Ancient Cistern - Statue - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Statue
+  connecting_region: Ancient Cistern - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Ancient Cistern - Statue
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Batreaux's House - Exit Shed Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Shed Door to Batreaux's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 29
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Exit Shed Door
+  exit_region: Batreaux's House
+  exit_room: 0
+  exit_stage: F012r
+  group: 1
+  ss_entrance_name: Batreaux's House Entrance
+  ss_exit_name: Batreaux's House - Exit
+Beedle's Shop - Shop Day Exit:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: Ring Beedle's Bell
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Shop Day Exit
+  exit_region: Beedle's Shop
+  exit_room: 0
+  exit_stage: F002r
+  group: 1
+  ss_entrance_name: Skyloft - Entrance from Beedle's Shop
+  ss_exit_name: Beedle's Shop - Day Exit
+Beedle's Shop - Shop Night Exit:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: Airship Door
+  connecting_region: Sky - Beedle's Island - Night
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 4
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F020
+  entrance_tod: 1
+  exit_index: 2
+  exit_name: Shop Night Exit
+  exit_region: Beedle's Shop
+  exit_room: 0
+  exit_stage: F002r
+  group: 1
+  ss_entrance_name: Sky - Beedle's Island - Beedle's Ship Entrance
+  ss_exit_name: Beedle's Shop - Night Exit
+Bokoblin Base - Dragon's Lair - Exit Bokoblin Base:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - Summit
+  direction: 1
+  exit_name: Exit Bokoblin Base
+  exit_region: Bokoblin Base - Dragon's Lair
+  group: 1
+  ss_entrance_name: None
+  ss_exit_name: None
+Bokoblin Base - Dragon's Lair - Exit Dragon's Lair:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dragon's Lair
+  connecting_region: Bokoblin Base - Summit
+  direction: 2
+  exit_name: Exit Dragon's Lair
+  exit_region: Bokoblin Base - Dragon's Lair
+  group: 1
+  ss_entrance_name: None
+  ss_exit_name: None
+Bokoblin Base - Fire Dragon Dummy Room 1 - Cave Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Lower Bokoblin Base Cave
+  connecting_region: Bokoblin Base - Volcano
+  direction: 2
+  entrance_index: 7
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 2
+  entrance_stage: F202
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Cave Exit
+  exit_region: Bokoblin Base - Fire Dragon Dummy Room 1
+  exit_room: 0
+  exit_stage: F202_1
+  group: 1
+  ss_entrance_name: Bokoblin Base - Fire Dragon Dummy Room 1 Entrance
+  ss_exit_name: Boko Base Fire Dragon Dummy Room 1 - Exit
+Bokoblin Base - Fire Dragon Dummy Room 2 - Cave Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Upper Bokoblin Base Cave
+  connecting_region: Bokoblin Base - Top of Volcano
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 4
+  entrance_stage: F202
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Cave Exit
+  exit_region: Bokoblin Base - Fire Dragon Dummy Room 2
+  exit_room: 0
+  exit_stage: F202_2
+  group: 1
+  ss_entrance_name: Bokoblin Base - Fire Dragon Dummy Room 2 Entrance
+  ss_exit_name: Boko Base Fire Dragon Dummy Room 2 - Exit
+Bokoblin Base - Prison - Dig to Volcano:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dig to Prison
+  connecting_region: Bokoblin Base - Volcano
+  direction: 2
+  exit_name: Dig to Volcano
+  exit_region: Bokoblin Base - Prison
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Bokoblin Base - Prison - Speak to Gossip Stone:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Speak to Gossip Stone
+  connecting_region: Eldin Volcano - Volcano Entry
+  direction: 2
+  entrance_index: 5
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 1
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Speak to Gossip Stone
+  exit_region: Bokoblin Base - Prison
+  exit_room: 1
+  exit_stage: F202
+  group: 1
+  ss_entrance_name: Eldin Volcano - Entrance from Bokoblin Base
+  ss_exit_name: Bokoblin Base - Prison - Exit
+Bokoblin Base - Summit - Dragon's Lair:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Exit Dragon's Lair
+  connecting_region: Bokoblin Base - Dragon's Lair
+  direction: 2
+  exit_name: Dragon's Lair
+  exit_region: Bokoblin Base - Summit
+  group: 1
+  ss_entrance_name: None
+  ss_exit_name: None
+Bokoblin Base - Top of Volcano - Path through Hot Cave:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Bokoblin Base - Summit
+  direction: 1
+  exit_name: Path through Hot Cave
+  exit_region: Bokoblin Base - Top of Volcano
+  group: 1
+  ss_entrance_name: None
+  ss_exit_name: None
+Bokoblin Base - Top of Volcano - Upper Bokoblin Base Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Cave Exit
+  connecting_region: Bokoblin Base - Fire Dragon Dummy Room 2
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F202_2
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Upper Bokoblin Base Cave
+  exit_region: Bokoblin Base - Top of Volcano
+  exit_room: 4
+  exit_stage: F202
+  group: 1
+  ss_entrance_name: Boko Base Fire Dragon Dummy Room 2 - Entrance
+  ss_exit_name: Bokoblin Base - Fire Dragon Dummy Room 2 Exit
+Bokoblin Base - Volcano - Dig to Prison:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dig to Volcano
+  connecting_region: Bokoblin Base - Prison
+  direction: 2
+  exit_name: Dig to Prison
+  exit_region: Bokoblin Base - Volcano
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Bokoblin Base - Volcano - Lower Bokoblin Base Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Cave Exit
+  connecting_region: Bokoblin Base - Fire Dragon Dummy Room 1
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F202_1
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Lower Bokoblin Base Cave
+  exit_region: Bokoblin Base - Volcano
+  exit_room: 2
+  exit_stage: F202
+  group: 1
+  ss_entrance_name: Boko Base Fire Dragon Dummy Room 1 - Entrance
+  ss_exit_name: Bokoblin Base - Fire Dragon Dummy Room 1 Exit
+Bokoblin Base - Volcano - Use Air Vent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Bokoblin Base - Top of Volcano
+  direction: 1
+  exit_name: Use Air Vent
+  exit_region: Bokoblin Base - Volcano
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Central Skyloft - Bazaar - North Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Bazaar North Entrance
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: North Exit
+  exit_region: Central Skyloft - Bazaar
+  exit_room: 0
+  exit_stage: F004r
+  group: 1
+  ss_entrance_name: Bazaar North Entrance
+  ss_exit_name: Bazaar - North Exit
+Central Skyloft - Bazaar - South Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Bazaar South Entrance
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: South Exit
+  exit_region: Central Skyloft - Bazaar
+  exit_room: 0
+  exit_stage: F004r
+  group: 1
+  ss_entrance_name: Bazaar South Entrance
+  ss_exit_name: Bazaar - South Exit
+Central Skyloft - Bazaar - West Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Bazaar West Entrance
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 20
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: West Exit
+  exit_region: Central Skyloft - Bazaar
+  exit_room: 0
+  exit_stage: F004r
+  group: 1
+  ss_entrance_name: Bazaar West Entrance
+  ss_exit_name: Bazaar - West Exit
+Central Skyloft - Bazaar North Entrance:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: North Exit
+  connecting_region: Central Skyloft - Bazaar
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F004r
+  entrance_tod: 2
+  exit_index: 1
+  exit_name: Bazaar North Entrance
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Bazaar - North Entrance
+  ss_exit_name: Bazaar North Exit
+Central Skyloft - Bazaar South Entrance:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: South Exit
+  connecting_region: Central Skyloft - Bazaar
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F004r
+  entrance_tod: 2
+  exit_index: 2
+  exit_name: Bazaar South Entrance
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Bazaar - South Entrance
+  ss_exit_name: Bazaar South Exit
+Central Skyloft - Bazaar West Entrance:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: West Exit
+  connecting_region: Central Skyloft - Bazaar
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F004r
+  entrance_tod: 2
+  exit_index: 19
+  exit_name: Bazaar West Entrance
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Bazaar - West Entrance
+  ss_exit_name: Bazaar West Exit
+Central Skyloft - Bridge to Skyloft Village:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Bridge to Central Skyloft
+  connecting_region: Skyloft Village
+  direction: 2
+  exit_name: Bridge to Skyloft Village
+  exit_region: Central Skyloft
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Central Skyloft - Dungeon Entrance on Skyloft:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Sky Keep - First Room
+  direction: 2
+  exit_name: Dungeon Entrance on Skyloft
+  exit_region: Central Skyloft
+  group: 3
+  ss_entrance_name: Sky Keep - First Room - Bottom Entrance
+  ss_exit_name: Skyloft - Exit to Sky Keep
+Central Skyloft - Kukiel's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Central Skyloft - Kukiel's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F006r
+  entrance_tod: 2
+  exit_index: 10
+  exit_name: Kukiel's House
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Wryna's House - Entrance
+  ss_exit_name: Wryna's House Exit
+Central Skyloft - Kukiel's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Kukiel's House
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 31
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Central Skyloft - Kukiel's House
+  exit_room: 0
+  exit_stage: F006r
+  group: 1
+  ss_entrance_name: Wryna's House Entrance
+  ss_exit_name: Wryna's House - Exit
+Central Skyloft - Loftwing Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dive to Central Skyloft
+  connecting_region: Sky
+  direction: 2
+  exit_name: Loftwing Platforms
+  exit_region: Central Skyloft
+  group: 8
+  ss_entrance_name: Sky - Entrance from Skyloft
+  ss_exit_name: Skyloft - Exit to Sky
+Central Skyloft - Orielle and Parrow's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Central Skyloft - Orielle and Parrow's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F005r
+  entrance_tod: 2
+  exit_index: 31
+  exit_name: Orielle and Parrow's House
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Orielle and Parrow's House - Entrance
+  ss_exit_name: Orielle and Parrow's House Exit
+Central Skyloft - Orielle and Parrow's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Orielle and Parrow's House
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 30
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Central Skyloft - Orielle and Parrow's House
+  exit_room: 0
+  exit_stage: F005r
+  group: 1
+  ss_entrance_name: Orielle and Parrow's House Entrance
+  ss_exit_name: Orielle and Parrow's House - Exit
+Central Skyloft - Peatrice's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Central Skyloft - Peatrice's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F018r
+  entrance_tod: 2
+  exit_index: 38
+  exit_name: Peatrice's House
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Peatrice's House - Entrance
+  ss_exit_name: Peatrice's House Exit
+Central Skyloft - Peatrice's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Peatrice's House
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 38
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Central Skyloft - Peatrice's House
+  exit_room: 0
+  exit_stage: F018r
+  group: 1
+  ss_entrance_name: Peatrice's House Entrance
+  ss_exit_name: Peatrice's House - Exit
+Central Skyloft - Piper's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Central Skyloft - Piper's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F007r
+  entrance_tod: 2
+  exit_index: 32
+  exit_name: Piper's House
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Piper's House - Entrance
+  ss_exit_name: Piper's House Exit
+Central Skyloft - Piper's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Piper's House
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 32
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Central Skyloft - Piper's House
+  exit_room: 0
+  exit_stage: F007r
+  group: 1
+  ss_entrance_name: Piper's House Entrance
+  ss_exit_name: Piper's House - Exit
+Central Skyloft - Ring Beedle's Bell:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: Shop Day Exit
+  connecting_region: Beedle's Shop
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F002r
+  entrance_tod: 0
+  exit_index: 26
+  exit_name: Ring Beedle's Bell
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Beedle's Shop - Day Entrance
+  ss_exit_name: Skyloft - Exit to Beedle's Shop
+Central Skyloft - Stairs to Upper Skyloft:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Stairs to Central Skyloft
+  connecting_region: Upper Skyloft
+  direction: 2
+  exit_name: Stairs to Upper Skyloft
+  exit_region: Central Skyloft
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Central Skyloft - Trial Gate on Skyloft:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate
+  connecting_region: Skyloft Silent Realm
+  direction: 2
+  exit_name: Trial Gate on Skyloft
+  exit_region: Central Skyloft
+  group: 7
+  ss_entrance_name: Skyloft Silent Realm - Entrance
+  ss_exit_name: Skyloft - Trial Gate Exit
+Central Skyloft - Under Waterfall - Cave Entrance:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Lower Cave Exit
+  connecting_region: Central Skyloft - Waterfall Cave
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: D000
+  entrance_tod: 2
+  exit_index: 7
+  exit_name: Cave Entrance
+  exit_region: Central Skyloft - Under Waterfall
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Waterfall Cave - Lower Entrance
+  ss_exit_name: Waterfall Cave Lower Exit
+Central Skyloft - Under Waterfall - Loftwing Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Loftwing Platforms
+  exit_region: Central Skyloft - Under Waterfall
+  group: 8
+  ss_entrance_name: Sky - Entrance from Skyloft
+  ss_exit_name: Skyloft - Exit to Sky
+Central Skyloft - Waterfall Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Upper Cave Exit
+  connecting_region: Central Skyloft - Waterfall Cave
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: D000
+  entrance_tod: 2
+  exit_index: 6
+  exit_name: Waterfall Cave
+  exit_region: Central Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Waterfall Cave - Upper Entrance
+  ss_exit_name: Waterfall Cave Upper Exit
+Central Skyloft - Waterfall Cave - Lower Cave Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Cave Entrance
+  connecting_region: Central Skyloft - Under Waterfall
+  direction: 2
+  entrance_index: 8
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 1
+  exit_name: Lower Cave Exit
+  exit_region: Central Skyloft - Waterfall Cave
+  exit_room: 0
+  exit_stage: D000
+  group: 1
+  ss_entrance_name: Waterfall Cave Lower Entrance
+  ss_exit_name: Waterfall Cave - Lower Exit
+Central Skyloft - Waterfall Cave - Upper Cave Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Waterfall Cave
+  connecting_region: Central Skyloft
+  direction: 2
+  entrance_index: 7
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Upper Cave Exit
+  exit_region: Central Skyloft - Waterfall Cave
+  exit_room: 0
+  exit_stage: D000
+  group: 1
+  ss_entrance_name: Waterfall Cave Upper Entrance
+  ss_exit_name: Waterfall Cave - Upper Exit
+Earth Temple - Boss Door Area - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Earth Temple - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Earth Temple - Boss Door Area
+  group: 5
+  ss_entrance_name: Earth Temple - Boss Room - Entrance from Dungeon
+  ss_exit_name: Earth Temple - Boss Door Exit
+Earth Temple - Boss Door Area - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Earth Temple - Boss Door Area
+  group: 4
+  ss_entrance_name: Eldin Volcano - Entrance from Earth Temple
+  ss_exit_name: Earth Temple - Main Exit
+Earth Temple - Boss Door Area - Room with Slopes:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Earth Temple - Room with Slopes
+  direction: 2
+  exit_name: Room with Slopes
+  exit_region: Earth Temple - Boss Door Area
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Earth Temple - Boss Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Earth Temple - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Earth Temple - Boss Room
+  group: 5
+  ss_entrance_name: Earth Temple - Boss Door Entrance
+  ss_exit_name: Earth Temple - Boss Room - Exit to Dungeon
+Earth Temple - Boss Room - Earth Spring:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Earth Temple - Earth Spring
+  direction: 2
+  exit_name: Earth Spring
+  exit_region: Earth Temple - Boss Room
+  group: 5
+  ss_entrance_name: Earth Temple - Spring - Entrance
+  ss_exit_name: Earth Temple - Boss Room - Exit to Spring
+Earth Temple - Earth Spring - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Earth Spring
+  connecting_region: Earth Temple - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Earth Temple - Earth Spring
+  group: 5
+  ss_entrance_name: Earth Temple - Boss Room - Entrance from Spring
+  ss_exit_name: Earth Temple - Spring - Exit
+Earth Temple - Earth Spring - Strike Crest:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 1
+  exit_name: Strike Crest
+  exit_region: Earth Temple - Earth Spring
+  group: 6
+  ss_entrance_name: Eldin Volcano - Entrance from Earth Temple
+  ss_exit_name: Earth Temple - Main Exit
+Earth Temple - First Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Eldin Volcano
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Earth Temple - First Room
+  group: 3
+  ss_entrance_name: Eldin Volcano - Entrance from Earth Temple
+  ss_exit_name: Earth Temple - Main Exit
+Earth Temple - First Room - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Room
+  connecting_region: Earth Temple - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Earth Temple - First Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Earth Temple - Main Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Earth Temple - Main Room
+  group: 4
+  ss_entrance_name: Eldin Volcano - Entrance from Earth Temple
+  ss_exit_name: Earth Temple - Main Exit
+Earth Temple - Main Room - First Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Earth Temple - First Room
+  direction: 2
+  exit_name: First Room
+  exit_region: Earth Temple - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Earth Temple - Main Room - Room with Slopes:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Earth Temple - Room with Slopes
+  direction: 2
+  exit_name: Room with Slopes
+  exit_region: Earth Temple - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Earth Temple - Room with Slopes - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Room with Slopes
+  connecting_region: Earth Temple - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Earth Temple - Room with Slopes
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Earth Temple - Room with Slopes - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Room with Slopes
+  connecting_region: Earth Temple - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Earth Temple - Room with Slopes
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Silent Realm - Trial Gate:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate in Eldin Volcano
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 2
+  exit_name: Trial Gate
+  exit_region: Eldin Silent Realm
+  group: 7
+  ss_entrance_name: Eldin Volcano - Trial Gate Entrance
+  ss_exit_name: Eldin Silent Realm - Exit
+Eldin Volcano - Bottom of Sand Slide - Hot Cave:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Hot Cave
+  direction: 1
+  exit_name: Hot Cave
+  exit_region: Eldin Volcano - Bottom of Sand Slide
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Bottom of Sand Slide - Lower Eldin Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Cave Exit
+  connecting_region: Eldin Volcano - Fire Dragon Dummy Room 1
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F202_3
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Lower Eldin Cave
+  exit_region: Eldin Volcano - Bottom of Sand Slide
+  exit_room: 2
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Eldin Fire Dragon Dummy Room 1 - Entrance
+  ss_exit_name: Eldin Volcano - Fire Dragon Dummy Room 1 Exit
+Eldin Volcano - Bottom of Sand Slide - Volcano Ascent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Bottom of Sand Slide
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 2
+  exit_name: Volcano Ascent
+  exit_region: Eldin Volcano - Bottom of Sand Slide
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Fire Dragon Dummy Room 1 - Cave Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Lower Eldin Cave
+  connecting_region: Eldin Volcano - Bottom of Sand Slide
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 2
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Cave Exit
+  exit_region: Eldin Volcano - Fire Dragon Dummy Room 1
+  exit_room: 0
+  exit_stage: F202_3
+  group: 1
+  ss_entrance_name: Eldin Volcano - Fire Dragon Dummy Room 1 Entrance
+  ss_exit_name: Eldin Fire Dragon Dummy Room 1 - Exit
+Eldin Volcano - Fire Dragon Dummy Room 2 - Cave Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Upper Eldin Cave
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 2
+  entrance_index: 5
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 4
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Cave Exit
+  exit_region: Eldin Volcano - Fire Dragon Dummy Room 2
+  exit_room: 0
+  exit_stage: F202_4
+  group: 1
+  ss_entrance_name: Eldin Volcano - Fire Dragon Dummy Room 2 Entrance
+  ss_exit_name: Eldin Fire Dragon Dummy Room 2 - Exit
+Eldin Volcano - Hot Cave - Near Temple Entrance:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Hot Cave
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 2
+  exit_name: Near Temple Entrance
+  exit_region: Eldin Volcano - Hot Cave
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Hot Cave - Sand Slide:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Sand Slide
+  direction: 1
+  exit_name: Sand Slide
+  exit_region: Eldin Volcano - Hot Cave
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Hot Cave - Upper Path out of Hot Cave:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path out of Summit before Sandy Slope
+  connecting_region: Volcano Summit - Summit
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F201_1
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Upper Path out of Hot Cave
+  exit_region: Eldin Volcano - Hot Cave
+  exit_room: 5
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Volcano Summit - Entrance from Eldin Volcano
+  ss_exit_name: Eldin Volcano - Exit to Summit
+Eldin Volcano - Near Temple Entrance - Dungeon Entrance in Eldin Volcano:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Earth Temple - First Room
+  direction: 2
+  exit_name: Dungeon Entrance in Eldin Volcano
+  exit_region: Eldin Volcano - Near Temple Entrance
+  group: 3
+  ss_entrance_name: Earth Temple - Main Entrance
+  ss_exit_name: Eldin Volcano - Exit to Earth Temple
+Eldin Volcano - Near Temple Entrance - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Eldin Volcano - Near Temple Entrance
+  group: 9
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Eldin Volcano - Temple Entrance Statue Exit
+Eldin Volcano - Near Temple Entrance - Hot Cave:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Near Temple Entrance
+  connecting_region: Eldin Volcano - Hot Cave
+  direction: 2
+  exit_name: Hot Cave
+  exit_region: Eldin Volcano - Near Temple Entrance
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Near Temple Entrance - Thrill Digger Cliff:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Near Temple Entrance
+  connecting_region: Eldin Volcano - Thrill Digger Cliff
+  direction: 2
+  exit_name: Thrill Digger Cliff
+  exit_region: Eldin Volcano - Near Temple Entrance
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Near Temple Entrance - Upper Eldin Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Cave Exit
+  connecting_region: Eldin Volcano - Fire Dragon Dummy Room 2
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F202_4
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Upper Eldin Cave
+  exit_region: Eldin Volcano - Near Temple Entrance
+  exit_room: 4
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Eldin Fire Dragon Dummy Room 2 - Entrance
+  ss_exit_name: Eldin Volcano - Fire Dragon Dummy Room 2 Exit
+Eldin Volcano - Sand Slide - Bottom of Sand Slide:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Bottom of Sand Slide
+  direction: 1
+  exit_name: Bottom of Sand Slide
+  exit_region: Eldin Volcano - Sand Slide
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Thrill Digger Cave - Exit Thrill Digger Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Thrill Digger Cave
+  connecting_region: Eldin Volcano - Thrill Digger Cliff
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 4
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Exit Thrill Digger Cave
+  exit_region: Eldin Volcano - Thrill Digger Cave
+  exit_room: 0
+  exit_stage: F211
+  group: 1
+  ss_entrance_name: Eldin Volcano - Thrill Digger Cave Entrance
+  ss_exit_name: Thrill Digger Cave - Exit
+Eldin Volcano - Thrill Digger Cliff - Near Temple Entrance:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Thrill Digger Cliff
+  connecting_region: Eldin Volcano - Near Temple Entrance
+  direction: 2
+  exit_name: Near Temple Entrance
+  exit_region: Eldin Volcano - Thrill Digger Cliff
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Thrill Digger Cliff - Thrill Digger Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Exit Thrill Digger Cave
+  connecting_region: Eldin Volcano - Thrill Digger Cave
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F211
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Thrill Digger Cave
+  exit_region: Eldin Volcano - Thrill Digger Cliff
+  exit_room: 4
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Thrill Digger Cave - Entrance
+  ss_exit_name: Eldin Volcano - Thrill Digger Cave Exit
+Eldin Volcano - Thrill Digger Cliff - Volcano Ascent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Thrill Digger Cliff
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 2
+  exit_name: Volcano Ascent
+  exit_region: Eldin Volcano - Thrill Digger Cliff
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Ascent - Bottom of Sand Slide:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Ascent
+  connecting_region: Eldin Volcano - Bottom of Sand Slide
+  direction: 2
+  exit_name: Bottom of Sand Slide
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Ascent - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 9
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Eldin Volcano - Volcano East / Volcano Ascent Statue Exit
+Eldin Volcano - Volcano Ascent - Thrill Digger Cliff:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Ascent
+  connecting_region: Eldin Volcano - Thrill Digger Cliff
+  direction: 2
+  exit_name: Thrill Digger Cliff
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Ascent - Trial Gate in Eldin Volcano:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate
+  connecting_region: Eldin Silent Realm
+  direction: 2
+  exit_name: Trial Gate in Eldin Volcano
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 7
+  ss_entrance_name: Eldin Silent Realm - Entrance
+  ss_exit_name: Eldin Volcano - Trial Gate Exit
+Eldin Volcano - Volcano Ascent - Volcano East:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Ascent
+  connecting_region: Eldin Volcano - Volcano East
+  direction: 2
+  exit_name: Volcano East
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Ascent - Volcano Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Ascent
+  connecting_region: Eldin Volcano - Volcano Entry
+  direction: 2
+  exit_name: Volcano Entry
+  exit_region: Eldin Volcano - Volcano Ascent
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano East - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Eldin Volcano - Volcano East
+  group: 9
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Eldin Volcano - Volcano East / Volcano Ascent Statue Exit
+Eldin Volcano - Volcano East - Mogma Cave:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Use First Air Vent
+  connecting_region: Mogma Turf - Entry
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F210
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Mogma Cave
+  exit_region: Eldin Volcano - Volcano East
+  exit_room: 2
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Mogma Turf - Entrance
+  ss_exit_name: Eldin Volcano - Dive to Mogma Turf
+Eldin Volcano - Volcano East - Volcano Ascent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano East
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 2
+  exit_name: Volcano Ascent
+  exit_region: Eldin Volcano - Volcano East
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano East - Volcano Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano East
+  connecting_region: Eldin Volcano - Volcano Entry
+  direction: 2
+  exit_name: Volcano Entry
+  exit_region: Eldin Volcano - Volcano East
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Entry - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Ruby Pillar
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Eldin Volcano - Volcano Entry
+  group: 9
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Eldin Volcano - Volcano Entrance Statue Exit
+Eldin Volcano - Volcano Entry - Speak to Gossip Stone:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Speak to Gossip Stone
+  connecting_region: Bokoblin Base - Prison
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 1
+  entrance_province: Eldin Province
+  entrance_room: 1
+  entrance_stage: F202
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Speak to Gossip Stone
+  exit_region: Eldin Volcano - Volcano Entry
+  exit_room: 1
+  exit_stage: F200
+  group: 1
+  ss_entrance_name: Bokoblin Base - Prison - Entrance
+  ss_exit_name: Eldin Volcano - Exit to Bokoblin Base
+Eldin Volcano - Volcano Entry - Volcano Ascent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Entry
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 2
+  exit_name: Volcano Ascent
+  exit_region: Eldin Volcano - Volcano Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Eldin Volcano - Volcano Entry - Volcano East:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Volcano Entry
+  connecting_region: Eldin Volcano - Volcano East
+  direction: 2
+  exit_name: Volcano East
+  exit_region: Eldin Volcano - Volcano Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Silent Realm - Trial Gate:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate in Faron Woods
+  connecting_region: Faron Woods - Viewing Platform
+  direction: 2
+  exit_name: Trial Gate
+  exit_region: Faron Silent Realm
+  group: 7
+  ss_entrance_name: Faron Woods - Trial Gate Entrance
+  ss_exit_name: Faron Silent Realm - Exit
+Faron Woods - Deep Woods Entry - Deep Woods after Beehive:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Deep Woods Entry
+  connecting_region: Faron Woods - Deep Woods after Beehive
+  direction: 2
+  exit_name: Deep Woods after Beehive
+  exit_region: Faron Woods - Deep Woods Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Deep Woods Entry - Viewing Platform:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Deep Woods Entry
+  connecting_region: Faron Woods - Viewing Platform
+  direction: 2
+  entrance_index: 45
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Viewing Platform
+  exit_region: Faron Woods - Deep Woods Entry
+  exit_room: 0
+  exit_stage: F101
+  group: 1
+  ss_entrance_name: Faron Woods - Entrance from Deep Woods
+  ss_exit_name: Deep Woods - Exit to Faron Woods
+Faron Woods - Deep Woods after Beehive - Deep Woods Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Deep Woods after Beehive
+  connecting_region: Faron Woods - Deep Woods Entry
+  direction: 2
+  exit_name: Deep Woods Entry
+  exit_region: Faron Woods - Deep Woods after Beehive
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Deep Woods after Beehive - Dungeon Entrance in Deep Woods:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Skyview - First Room
+  direction: 2
+  exit_name: Dungeon Entrance in Deep Woods
+  exit_region: Faron Woods - Deep Woods after Beehive
+  group: 3
+  ss_entrance_name: Skyview Temple - Main Entrance
+  ss_exit_name: Deep Woods - Exit to Skyview Temple
+Faron Woods - Deep Woods after Beehive - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Faron Woods - Deep Woods after Beehive
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Deep Woods - Shared Statue Exit
+Faron Woods - Forest Entry - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Faron Woods - Forest Entry
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Faron Woods - Shared Statue Exit
+Faron Woods - Forest Entry - In the Woods:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Forest Entry
+  connecting_region: Faron Woods - In the Woods
+  direction: 2
+  exit_name: In the Woods
+  exit_region: Faron Woods - Forest Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Forest Entry - Path out of Forest:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Forest
+  connecting_region: Sealed Grounds - Behind the Temple
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F400
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path out of Forest
+  exit_region: Faron Woods - Forest Entry
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Behind the Temple - Entrance from Faron Woods
+  ss_exit_name: Faron Woods - Exit to Behind the Temple
+Faron Woods - Great Tree Platforms - In the Woods:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Great Tree Platforms
+  connecting_region: Faron Woods - In the Woods
+  direction: 2
+  exit_name: In the Woods
+  exit_region: Faron Woods - Great Tree Platforms
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Great Tree Platforms - Lower Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Great Tree Platforms
+  connecting_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Lower Exit
+  exit_region: Faron Woods - Great Tree Platforms
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Great Tree - Lower Entrance from Platforms
+  ss_exit_name: Great Tree - Platforms - Lower Exit to Great Tree
+Faron Woods - Great Tree Platforms - Upper Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Lower Exit
+  connecting_region: Faron Woods - Inside Upper Great Tree
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 4
+  exit_name: Upper Exit
+  exit_region: Faron Woods - Great Tree Platforms
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Great Tree - Upper Entrance from Platforms
+  ss_exit_name: Great Tree - Platforms - Upper Exit to Great Tree
+Faron Woods - Great Tree Platforms - Viewing Platform:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Viewing Platform
+  direction: 1
+  exit_name: Viewing Platform
+  exit_region: Faron Woods - Great Tree Platforms
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - In the Woods - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Faron Woods - In the Woods
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Faron Woods - Shared Statue Exit
+Faron Woods - In the Woods - Forest Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: In the Woods
+  connecting_region: Faron Woods - Forest Entry
+  direction: 2
+  exit_name: Forest Entry
+  exit_region: Faron Woods - In the Woods
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - In the Woods - Great Tree Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: In the Woods
+  connecting_region: Faron Woods - Great Tree Platforms
+  direction: 2
+  exit_name: Great Tree Platforms
+  exit_region: Faron Woods - In the Woods
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - In the Woods - Inside Lower Great Tree:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: In the Woods
+  connecting_region: Faron Woods - Inside Lower Great Tree - Water
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 6
+  exit_name: Inside Lower Great Tree
+  exit_region: Faron Woods - In the Woods
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Great Tree - Underwater Tunnel Entrance
+  ss_exit_name: Great Tree - Underwater Hole Exit
+Faron Woods - In the Woods - Jump into Lake:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: One-Way Entrance from Faron Woods
+  connecting_region: Lake Floria - Lake
+  direction: 1
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F102
+  entrance_tod: 0
+  exit_index: 9
+  exit_name: Jump into Lake
+  exit_region: Faron Woods - In the Woods
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Lake Floria - Dive from Faron Woods
+  ss_exit_name: Faron Woods - Lake Floria Dive
+Faron Woods - In the Woods - Shortcut to Floria Waterfall:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path into Forest
+  connecting_region: Lake Floria - Waterfall
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F102_1
+  entrance_tod: 0
+  exit_index: 11
+  exit_name: Shortcut to Floria Waterfall
+  exit_region: Faron Woods - In the Woods
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Floria Waterfall - Entrance from Faron Woods
+  ss_exit_name: Faron Woods - Shortcut Exit to Floria Waterfall
+Faron Woods - In the Woods - Viewing Platform:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: In the Woods
+  connecting_region: Faron Woods - Viewing Platform
+  direction: 2
+  exit_name: Viewing Platform
+  exit_region: Faron Woods - In the Woods
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - After Swinging Platforms - Great Tree Platforms:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Lower Exit
+  connecting_region: Faron Woods - Great Tree Platforms
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Great Tree Platforms
+  exit_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  exit_room: 0
+  exit_stage: F100_1
+  group: 1
+  ss_entrance_name: Great Tree - Platforms - Lower Entrance from Great Tree
+  ss_exit_name: Great Tree - Lower Exit to Platforms
+Faron Woods - Inside Lower Great Tree - After Swinging Platforms - Upper Ledge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: After Swinging Platforms
+  connecting_region: Faron Woods - Inside Lower Great Tree - Upper Ledge
+  direction: 2
+  exit_name: Upper Ledge
+  exit_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - After Swinging Platforms - Water:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: After Swinging Platforms
+  connecting_region: Faron Woods - Inside Lower Great Tree - Water
+  direction: 2
+  exit_name: Water
+  exit_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - Upper Ledge - After Swinging Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Upper Ledge
+  connecting_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  direction: 2
+  exit_name: After Swinging Platforms
+  exit_region: Faron Woods - Inside Lower Great Tree - Upper Ledge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - Upper Ledge - Water:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Upper Ledge
+  connecting_region: Faron Woods - Inside Lower Great Tree - Water
+  direction: 2
+  exit_name: Water
+  exit_region: Faron Woods - Inside Lower Great Tree - Upper Ledge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - Water - After Swinging Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Water
+  connecting_region: Faron Woods - Inside Lower Great Tree - After Swinging Platforms
+  direction: 2
+  exit_name: After Swinging Platforms
+  exit_region: Faron Woods - Inside Lower Great Tree - Water
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Lower Great Tree - Water - In the Woods:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Inside Lower Great Tree
+  connecting_region: Faron Woods - In the Woods
+  direction: 2
+  entrance_index: 7
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 4
+  exit_name: In the Woods
+  exit_region: Faron Woods - Inside Lower Great Tree - Water
+  exit_room: 0
+  exit_stage: F100_1
+  group: 1
+  ss_entrance_name: Great Tree - Underwater Hole Entrance
+  ss_exit_name: Great Tree - Underwater Tunnel Exit
+Faron Woods - Inside Lower Great Tree - Water - Upper Ledge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Water
+  connecting_region: Faron Woods - Inside Lower Great Tree - Upper Ledge
+  direction: 2
+  exit_name: Upper Ledge
+  exit_region: Faron Woods - Inside Lower Great Tree - Water
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Upper Great Tree - Jump Down to Lower Great Tree:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Inside Lower Great Tree - Upper Ledge
+  direction: 1
+  exit_name: Jump Down to Lower Great Tree
+  exit_region: Faron Woods - Inside Upper Great Tree
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Inside Upper Great Tree - Lower Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Upper Exit
+  connecting_region: Faron Woods - Great Tree Platforms
+  direction: 2
+  entrance_index: 5
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Lower Exit
+  exit_region: Faron Woods - Inside Upper Great Tree
+  exit_room: 0
+  exit_stage: F100_1
+  group: 1
+  ss_entrance_name: Great Tree - Platforms - Upper Entrance from Great Tree
+  ss_exit_name: Great Tree - Upper Exit to Platforms
+Faron Woods - Inside Upper Great Tree - Speak to Water Dragon:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Speak to Water Dragon
+  connecting_region: Flooded Faron Woods - Great Tree
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 1
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 5
+  exit_name: Speak to Water Dragon
+  exit_region: Faron Woods - Inside Upper Great Tree
+  exit_room: 0
+  exit_stage: F100_1
+  group: 1
+  ss_entrance_name: Great Tree - Entrance from Flooded Great Tree
+  ss_exit_name: Great Tree - Exit to Flooded Great Tree
+Faron Woods - Inside Upper Great Tree - Upper Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Inside Upper Great Tree
+  connecting_region: Faron Woods - Outside Top of Great Tree
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Upper Exit
+  exit_region: Faron Woods - Inside Upper Great Tree
+  exit_room: 0
+  exit_stage: F100_1
+  group: 1
+  ss_entrance_name: Great Tree - Top Entrance from Great Tree
+  ss_exit_name: Great Tree - Exit to Top
+Faron Woods - Outside Top of Great Tree - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Faron Woods - Outside Top of Great Tree
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Faron Woods - Shared Statue Exit
+Faron Woods - Outside Top of Great Tree - In the Woods:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - In the Woods
+  direction: 1
+  exit_name: In the Woods
+  exit_region: Faron Woods - Outside Top of Great Tree
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Outside Top of Great Tree - Inside Upper Great Tree:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Upper Exit
+  connecting_region: Faron Woods - Inside Upper Great Tree
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 5
+  exit_name: Inside Upper Great Tree
+  exit_region: Faron Woods - Outside Top of Great Tree
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Great Tree - Entrance from Top
+  ss_exit_name: Great Tree - Top Exit to Great Tree
+Faron Woods - Outside Top of Great Tree - Viewing Platform:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Viewing Platform
+  direction: 1
+  exit_name: Viewing Platform
+  exit_region: Faron Woods - Outside Top of Great Tree
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Viewing Platform - Deep Woods Entry:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Viewing Platform
+  connecting_region: Faron Woods - Deep Woods Entry
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F101
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Deep Woods Entry
+  exit_region: Faron Woods - Viewing Platform
+  exit_room: 0
+  exit_stage: F100
+  group: 1
+  ss_entrance_name: Deep Woods - Entrance from Faron Woods
+  ss_exit_name: Faron Woods - Exit to Deep Woods
+Faron Woods - Viewing Platform - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Faron Woods - Viewing Platform
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Faron Woods - Shared Statue Exit
+Faron Woods - Viewing Platform - In the Woods:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Viewing Platform
+  connecting_region: Faron Woods - In the Woods
+  direction: 2
+  exit_name: In the Woods
+  exit_region: Faron Woods - Viewing Platform
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Faron Woods - Viewing Platform - Trial Gate in Faron Woods:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate
+  connecting_region: Faron Silent Realm
+  direction: 2
+  exit_name: Trial Gate in Faron Woods
+  exit_region: Faron Woods - Viewing Platform
+  group: 7
+  ss_entrance_name: Faron Silent Realm - Entrance
+  ss_exit_name: Faron Woods - Trial Gate Entrance
+Fire Sanctuary - Boss Door Area - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Fire Sanctuary - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Fire Sanctuary - Boss Door Area
+  group: 5
+  ss_entrance_name: Fire Sanctuary - Boss Room - Exit to Dungeon
+  ss_exit_name: Fire Sanctuary - Boss Door Exit
+Fire Sanctuary - Boss Door Area - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Fire Sanctuary - Boss Door Area
+  group: 4
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Fire Sanctuary - Statue Exit
+Fire Sanctuary - Boss Door Area - Staircase Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Fire Sanctuary - Staircase Room
+  direction: 1
+  exit_name: Staircase Room
+  exit_region: Fire Sanctuary - Boss Door Area
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Boss Door Area - Under Double Magmanos Fight:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Fire Sanctuary - Under Double Magmanos Fight
+  direction: 2
+  exit_name: Under Double Magmanos Fight
+  exit_region: Fire Sanctuary - Boss Door Area
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Boss Key Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Fire Sanctuary - Boss Door Area
+  direction: 1
+  exit_name: Boss Door Area
+  exit_region: Fire Sanctuary - Boss Key Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Boss Key Room - Staircase Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Key Room
+  connecting_region: Fire Sanctuary - Staircase Room
+  direction: 2
+  exit_name: Staircase Room
+  exit_region: Fire Sanctuary - Boss Key Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Boss Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Fire Sanctuary - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Fire Sanctuary - Boss Room
+  group: 5
+  ss_entrance_name: Fire Sanctuary - Boss Door Entrance
+  ss_exit_name: Fire Sanctuary - Boss Door Entrance
+Fire Sanctuary - Boss Room - Flame Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Fire Sanctuary - Flame Room
+  direction: 2
+  exit_name: Flame Room
+  exit_region: Fire Sanctuary - Boss Room
+  group: 5
+  ss_entrance_name: Fire Sanctuary - Flame Room - Entrance
+  ss_exit_name: Fire Sanctuary - Boss Room - Exit to Flame Room
+Fire Sanctuary - First Bridge - Flowing Lava Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Bridge
+  connecting_region: Fire Sanctuary - Flowing Lava Room
+  direction: 2
+  exit_name: Flowing Lava Room
+  exit_region: Fire Sanctuary - First Bridge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - First Bridge - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Bridge
+  connecting_region: Fire Sanctuary - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Fire Sanctuary - First Bridge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - First Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Volcano Summit
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Fire Sanctuary - First Room
+  group: 3
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Fire Sanctuary
+  ss_exit_name: Fire Sanctuary - Main Exit
+Fire Sanctuary - First Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Fire Sanctuary - Second Room
+  direction: 1
+  exit_name: Second Room
+  exit_region: Fire Sanctuary - First Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Flame Room - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Flame Room
+  connecting_region: Fire Sanctuary - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Fire Sanctuary - Flame Room
+  group: 5
+  ss_entrance_name: Fire Sanctuary - Boss Room - Entrance from Flame Room
+  ss_exit_name: Fire Sanctuary - Flame Room - Exit
+Fire Sanctuary - Flame Room - Strike Crest:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 1
+  exit_name: Strike Crest
+  exit_region: Fire Sanctuary - Flame Room
+  group: 6
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Fire Sanctuary
+  ss_exit_name: Din's Flame - Crest Hit Exit
+Fire Sanctuary - Flowing Lava Room - First Bridge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Flowing Lava Room
+  connecting_region: Fire Sanctuary - First Bridge
+  direction: 2
+  exit_name: First Bridge
+  exit_region: Fire Sanctuary - Flowing Lava Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Flowing Lava Room - Upper First Trapped Mogma Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Flowing Lava Room
+  connecting_region: Fire Sanctuary - Upper First Trapped Mogma Room
+  direction: 2
+  exit_name: Upper First Trapped Mogma Room
+  exit_region: Fire Sanctuary - Flowing Lava Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Flowing Lava Room - Water Fruit Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Flowing Lava Room
+  connecting_region: Fire Sanctuary - Water Fruit Room
+  direction: 2
+  exit_name: Water Fruit Room
+  exit_region: Fire Sanctuary - Flowing Lava Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Lower First Trapped Mogma Room - Under Double Magmanos Fight:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lower First Trapped Mogma Room
+  connecting_region: Fire Sanctuary - Under Double Magmanos Fight
+  direction: 2
+  exit_name: Under Double Magmanos Fight
+  exit_region: Fire Sanctuary - Lower First Trapped Mogma Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Lower First Trapped Mogma Room - Water Fruit Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lower First Trapped Mogma Room
+  connecting_region: Fire Sanctuary - Water Fruit Room
+  direction: 2
+  exit_name: Water Fruit Room
+  exit_region: Fire Sanctuary - Lower First Trapped Mogma Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Second Bridge - Second Trapped Mogma Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Bridge
+  connecting_region: Fire Sanctuary - Second Trapped Mogma Room
+  direction: 2
+  exit_name: Second Trapped Mogma Room
+  exit_region: Fire Sanctuary - Second Bridge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Second Bridge - Under Double Magmanos Fight:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Bridge
+  connecting_region: Fire Sanctuary - Under Double Magmanos Fight
+  direction: 2
+  exit_name: Under Double Magmanos Fight
+  exit_region: Fire Sanctuary - Second Bridge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Second Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Fire Sanctuary - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Second Room - First Bridge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Fire Sanctuary - First Bridge
+  direction: 2
+  exit_name: First Bridge
+  exit_region: Fire Sanctuary - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Second Trapped Mogma Room - Second Bridge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Trapped Mogma Room
+  connecting_region: Fire Sanctuary - Second Bridge
+  direction: 2
+  exit_name: Second Bridge
+  exit_region: Fire Sanctuary - Second Trapped Mogma Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Staircase Room - Boss Key Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Staircase Room
+  connecting_region: Fire Sanctuary - Boss Key Room
+  direction: 2
+  exit_name: Boss Key Room
+  exit_region: Fire Sanctuary - Staircase Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Under Double Magmanos Fight - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Under Double Magmanos Fight
+  connecting_region: Fire Sanctuary - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Fire Sanctuary - Under Double Magmanos Fight
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Under Double Magmanos Fight - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Fire Sanctuary - Under Double Magmanos Fight
+  group: 4
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Fire Sanctuary
+  ss_exit_name: Fire Sanctuary - Main Exit
+Fire Sanctuary - Under Double Magmanos Fight - Lower First Trapped Mogma Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Under Double Magmanos Fight
+  connecting_region: Fire Sanctuary - Lower First Trapped Mogma Room
+  direction: 2
+  exit_name: Lower First Trapped Mogma Room
+  exit_region: Fire Sanctuary - Under Double Magmanos Fight
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Under Double Magmanos Fight - Second Bridge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Under Double Magmanos Fight
+  connecting_region: Fire Sanctuary - Second Bridge
+  direction: 2
+  exit_name: Second Bridge
+  exit_region: Fire Sanctuary - Under Double Magmanos Fight
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Upper First Trapped Mogma Room - Flowing Lava Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Upper First Trapped Mogma Room
+  connecting_region: Fire Sanctuary - Flowing Lava Room
+  direction: 2
+  exit_name: Flowing Lava Room
+  exit_region: Fire Sanctuary - Upper First Trapped Mogma Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Water Fruit Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Fire Sanctuary - Water Fruit Room
+  group: 4
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Fire Sanctuary
+  ss_exit_name: Fire Sanctuary - Main Exit
+Fire Sanctuary - Water Fruit Room - Flowing Lava Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Water Fruit Room
+  connecting_region: Fire Sanctuary - Flowing Lava Room
+  direction: 2
+  exit_name: Flowing Lava Room
+  exit_region: Fire Sanctuary - Water Fruit Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Fire Sanctuary - Water Fruit Room - Lower First Trapped Mogma Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Water Fruit Room
+  connecting_region: Fire Sanctuary - Lower First Trapped Mogma Room
+  direction: 2
+  exit_name: Lower First Trapped Mogma Room
+  exit_region: Fire Sanctuary - Water Fruit Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Flooded Faron Woods - Great Tree:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Exit Great Tree
+  connecting_region: Flooded Faron Woods - Great Tree
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 1
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 11
+  exit_name: Great Tree
+  exit_region: Flooded Faron Woods
+  exit_room: 0
+  exit_stage: F103_1
+  group: 1
+  ss_entrance_name: Great Tree - Entrance from Flooded Great Tree
+  ss_exit_name: Flooded Great Tree - Exit to Great Tree
+Flooded Faron Woods - Great Tree - Exit Great Tree:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: Great Tree
+  connecting_region: Flooded Faron Woods
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F103
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Exit Great Tree
+  exit_region: Flooded Faron Woods - Great Tree
+  exit_room: 0
+  exit_stage: F103_1
+  group: 1
+  ss_entrance_name: Flooded Faron Woods - Entrance from Upper Flooded Great Tree
+  ss_exit_name: Flooded Great Tree - Exit to Upper Flooded Faron Woods
+Flooded Faron Woods - Great Tree - Speak to Water Dragon:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Speak to Water Dragon
+  connecting_region: Faron Woods - Inside Upper Great Tree
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 1
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100_1
+  entrance_tod: 0
+  exit_index: 11
+  exit_name: Speak to Water Dragon
+  exit_region: Flooded Faron Woods - Great Tree
+  exit_room: 0
+  exit_stage: F103_1
+  group: 1
+  ss_entrance_name: Great Tree - Entrance from Flooded Great Tree
+  ss_exit_name: Flooded Great Tree - Exit to Great Tree
+Hylia's Realm - Door to Temple:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Hylia's Realm
+  connecting_region: Sealed Grounds - Sealed Temple
+  direction: 2
+  entrance_index: 11
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 2
+  entrance_stage: F402
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Door to Temple
+  exit_region: Hylia's Realm
+  exit_room: 2
+  exit_stage: F404
+  group: 1
+  ss_entrance_name: Sealed Temple - Gate of Time Entrance
+  ss_exit_name: Hylia's Temple - Gate of Time Exit
+Lake Floria - Ancient Cistern Ledge - Dungeon Entrance in Lake Floria:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Ancient Cistern - Main Room
+  direction: 2
+  exit_name: Dungeon Entrance in Lake Floria
+  exit_region: Lake Floria - Ancient Cistern Ledge
+  group: 3
+  ss_entrance_name: Ancient Cistern - Main Entrance
+  ss_exit_name: Floria Waterfall - Exit to Ancient Cistern
+Lake Floria - Ancient Cistern Ledge - Waterfall:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Ancient Cistern Ledge
+  connecting_region: Lake Floria - Waterfall
+  direction: 2
+  exit_name: Waterfall
+  exit_region: Lake Floria - Ancient Cistern Ledge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lake Floria - Dragon's Lair - Lake:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dragon's Lair
+  connecting_region: Lake Floria - Lake
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 4
+  entrance_stage: F102
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Lake
+  exit_region: Lake Floria - Dragon's Lair
+  exit_room: 0
+  exit_stage: F102_2
+  group: 1
+  ss_entrance_name: Lake Floria - Below Rock - Entrance from Farore's Lair
+  ss_exit_name: Farore's Lair - Exit to Lake Floria
+Lake Floria - Dragon's Lair - Waterfall:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Dragon's Lair
+  connecting_region: Lake Floria - Waterfall
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F102_1
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Waterfall
+  exit_region: Lake Floria - Dragon's Lair
+  exit_room: 0
+  exit_stage: F102_2
+  group: 1
+  ss_entrance_name: Floria Waterfall - Entrance from Farore's Lair
+  ss_exit_name: Farore's Lair - Exit to Waterfall
+Lake Floria - Higher Ledge in Lake - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lake Floria - Higher Ledge in Lake
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Lake Floria - Below Rock - Statue Exit
+Lake Floria - Higher Ledge in Lake - Lake:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Higher Ledge in Lake
+  connecting_region: Lake Floria - Lake
+  direction: 2
+  exit_name: Lake
+  exit_region: Lake Floria - Higher Ledge in Lake
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lake Floria - Lake - Dragon's Lair:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lake
+  connecting_region: Lake Floria - Dragon's Lair
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F102_2
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Dragon's Lair
+  exit_region: Lake Floria - Lake
+  exit_room: 4
+  exit_stage: F102
+  group: 1
+  ss_entrance_name: Farore's Lair - Entrance from Lake Floria
+  ss_exit_name: Lake Floria - Below Rock - Exit to Farore's Lair
+Lake Floria - Lake - Higher Ledge in Lake:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lake
+  connecting_region: Lake Floria - Higher Ledge in Lake
+  direction: 2
+  exit_name: Higher Ledge in Lake
+  exit_region: Lake Floria - Lake
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lake Floria - Waterfall - Ancient Cistern Ledge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Waterfall
+  connecting_region: Lake Floria - Ancient Cistern Ledge
+  direction: 2
+  exit_name: Ancient Cistern Ledge
+  exit_region: Lake Floria - Waterfall
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lake Floria - Waterfall - Dragon's Lair:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Waterfall
+  connecting_region: Lake Floria - Dragon's Lair
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F102_2
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Dragon's Lair
+  exit_region: Lake Floria - Waterfall
+  exit_room: 0
+  exit_stage: F102_1
+  group: 1
+  ss_entrance_name: Farore's Lair - Entrance from Waterfall
+  ss_exit_name: Floria Waterfall - Exit to Farore's Lair
+Lake Floria - Waterfall - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lake Floria - Waterfall
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Floria Waterfall - Statue Exit
+Lake Floria - Waterfall - Path into Forest:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Shortcut to Floria Waterfall
+  connecting_region: Faron Woods - In the Woods
+  direction: 2
+  entrance_index: 17
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Path into Forest
+  exit_region: Lake Floria - Waterfall
+  exit_room: 0
+  exit_stage: F102_1
+  group: 1
+  ss_entrance_name: Faron Woods - Shortcut Entrance from Floria Waterfall
+  ss_exit_name: Floria Waterfall - Exit to Faron Woods
+Lanayru Caves - Caves - East Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door to Caves
+  connecting_region: Lanayru Mine - Door to Caves
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300_1
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: East Exit
+  exit_region: Lanayru Caves - Caves
+  exit_room: 0
+  exit_stage: F303
+  group: 1
+  ss_entrance_name: Lanayru Mine - Entrance from Caves
+  ss_exit_name: Lanayru Caves - Exit to Mine
+Lanayru Caves - Caves - North Exit:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Caves
+  connecting_region: Lanayru Desert - Higher Ledge in Sand Oasis
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: North Exit
+  exit_region: Lanayru Caves - Caves
+  exit_room: 0
+  exit_stage: F303
+  group: 1
+  ss_entrance_name: Lanayru Desert - Entrance from Caves
+  ss_exit_name: Lanayru Caves - Exit to Desert
+Lanayru Caves - Caves - South Exit past Crawlspace:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Through Crawlspace
+  connecting_region: Lanayru Caves - Past Crawlspace
+  direction: 2
+  exit_name: South Exit past Crawlspace
+  exit_region: Lanayru Caves - Caves
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Caves - Caves - West Exit by Clawshot Target:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Through Door
+  connecting_region: Lanayru Caves - Past Locked Door
+  direction: 2
+  exit_name: West Exit by Clawshot Target
+  exit_region: Lanayru Caves - Caves
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Caves - Past Crawlspace - Path away from Crawlspace:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Caves
+  connecting_region: Lanayru Gorge - Gorge
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 2
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F302
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Path away from Crawlspace
+  exit_region: Lanayru Caves - Past Crawlspace
+  exit_room: 0
+  exit_stage: F303
+  group: 1
+  ss_entrance_name: Lanayru Gorge - Entrance
+  ss_exit_name: Lanayru Caves - Exit to Gorge
+Lanayru Caves - Past Crawlspace - Through Crawlspace:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: South Exit past Crawlspace
+  connecting_region: Lanayru Caves - Caves
+  direction: 2
+  exit_name: Through Crawlspace
+  exit_region: Lanayru Caves - Past Crawlspace
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Caves - Past Locked Door - Path away from Door:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Door to Caves
+  connecting_region: Lanayru Sand Sea - Door to Caves
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Path away from Door
+  exit_region: Lanayru Caves - Past Locked Door
+  exit_room: 0
+  exit_stage: F303
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea Docks - Entrance from Caves
+  ss_exit_name: Lanayru Caves - Exit to Lanayru Sand Sea
+Lanayru Caves - Past Locked Door - Through Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: West Exit by Clawshot Target
+  connecting_region: Lanayru Caves - Caves
+  direction: 2
+  exit_name: Through Door
+  exit_region: Lanayru Caves - Past Locked Door
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Desert Entry - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - Desert Entry
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Desert - Shared Statue Exit
+Lanayru Desert - Desert Entry - Minecart Ride out of Desert:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Minecart Ride out of Mine
+  connecting_region: Lanayru Mine - Ending
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 2
+  entrance_stage: F300_1
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Minecart Ride out of Desert
+  exit_region: Lanayru Desert - Desert Entry
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Lanayru Mine - Entrance from Desert
+  ss_exit_name: Lanayru Desert - Exit to Mine
+Lanayru Desert - Desert Entry - Sand Oasis:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Desert Entry
+  connecting_region: Lanayru Desert - Sand Oasis
+  direction: 2
+  exit_name: Sand Oasis
+  exit_region: Lanayru Desert - Desert Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Desert Entry - Stone Cache:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Desert Entry
+  connecting_region: Lanayru Desert - Stone Cache
+  direction: 2
+  exit_name: Stone Cache
+  exit_region: Lanayru Desert - Desert Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Fire Node - Exit Fire Node:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door to Fire Node
+  connecting_region: Lanayru Desert - Stone Cache
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Exit Fire Node
+  exit_region: Lanayru Desert - Fire Node
+  exit_room: 0
+  exit_stage: F300_3
+  group: 1
+  ss_entrance_name: Lanayru Desert - Fire Node Entrance
+  ss_exit_name: Fire Node - Exit
+Lanayru Desert - Higher Ledge in Sand Oasis - Path to Caves:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: North Exit
+  connecting_region: Lanayru Caves - Caves
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F303
+  entrance_tod: 0
+  exit_index: 8
+  exit_name: Path to Caves
+  exit_region: Lanayru Desert - Higher Ledge in Sand Oasis
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Lanayru Caves - Entrance from Desert
+  ss_exit_name: Lanayru Desert - Exit to Caves
+Lanayru Desert - Higher Ledge in Sand Oasis - Sand Oasis:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Raised Entrance to Caves
+  connecting_region: Lanayru Desert - Sand Oasis
+  direction: 2
+  exit_name: Sand Oasis
+  exit_region: Lanayru Desert - Higher Ledge in Sand Oasis
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Lightning Node - Exit Lightning Node:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door to Lightning Node
+  connecting_region: Lanayru Desert - North Desert
+  direction: 2
+  entrance_index: 7
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Exit Lightning Node
+  exit_region: Lanayru Desert - Lightning Node
+  exit_room: 0
+  exit_stage: F300_2
+  group: 1
+  ss_entrance_name: Lanayru Desert - Lightning Node Entrance
+  ss_exit_name: Lightning Node - Exit
+Lanayru Desert - North Desert - Door to Lightning Node:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Exit Lightning Node
+  connecting_region: Lanayru Desert - Lightning Node
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300_2
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Door to Lightning Node
+  exit_region: Lanayru Desert - North Desert
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Lightning Node - Entrance
+  ss_exit_name: Lanayru Desert - Lightning Node Exit
+Lanayru Desert - North Desert - Dungeon Entrance in Lanayru Desert:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Lanayru Mining Facility - First Room
+  direction: 2
+  exit_name: Dungeon Entrance in Lanayru Desert
+  exit_region: Lanayru Desert - North Desert
+  group: 3
+  ss_entrance_name: Lanayru Mining Facility - Main Entrance
+  ss_exit_name: Lanayru Desert - Exit to Lanayru Mining Facility
+Lanayru Desert - North Desert - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - North Desert
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Desert - Shared Statue Exit
+Lanayru Desert - North Desert - Path to Temple of Time:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to North Desert
+  connecting_region: Lanayru Desert - Temple of Time - Temple
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300_4
+  entrance_tod: 0
+  exit_index: 4
+  exit_name: Path to Temple of Time
+  exit_region: Lanayru Desert - North Desert
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Temple of Time - North Entrance from Desert
+  ss_exit_name: Lanayru Desert - North Exit to Temple of Time
+Lanayru Desert - North Desert - Stone Cache:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: North Desert
+  connecting_region: Lanayru Desert - Stone Cache
+  direction: 2
+  exit_name: Stone Cache
+  exit_region: Lanayru Desert - North Desert
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - North Desert - Trial Gate in Lanayru Desert:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate
+  connecting_region: Lanayru Silent Realm
+  direction: 2
+  exit_name: Trial Gate in Lanayru Desert
+  exit_region: Lanayru Desert - North Desert
+  group: 7
+  ss_entrance_name: Lanayru Silent Realm - Entrance
+  ss_exit_name: Lanayru Desert - Trial Gate Exit
+Lanayru Desert - Sand Oasis - Desert Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Sand Oasis
+  connecting_region: Lanayru Desert - Desert Entry
+  direction: 2
+  exit_name: Desert Entry
+  exit_region: Lanayru Desert - Sand Oasis
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Sand Oasis - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - Sand Oasis
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Desert - Shared Statue Exit
+Lanayru Desert - Sand Oasis - Path to Temple of Time:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Sand Oasis
+  connecting_region: Lanayru Desert - Temple of Time - Desert Gorge
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300_4
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Path to Temple of Time
+  exit_region: Lanayru Desert - Sand Oasis
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Temple of Time - South Entrance from Desert
+  ss_exit_name: Lanayru Desert - South Exit to Temple of Time
+Lanayru Desert - Sand Oasis - Raised Entrance to Caves:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Sand Oasis
+  connecting_region: Lanayru Desert - Higher Ledge in Sand Oasis
+  direction: 2
+  exit_name: Raised Entrance to Caves
+  exit_region: Lanayru Desert - Sand Oasis
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Stone Cache - Desert Entry:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Stone Cache
+  connecting_region: Lanayru Desert - Desert Entry
+  direction: 2
+  exit_name: Desert Entry
+  exit_region: Lanayru Desert - Stone Cache
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Stone Cache - Door to Fire Node:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Exit Fire Node
+  connecting_region: Lanayru Desert - Fire Node
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300_3
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Door to Fire Node
+  exit_region: Lanayru Desert - Stone Cache
+  exit_room: 0
+  exit_stage: F300
+  group: 1
+  ss_entrance_name: Fire Node - Entrance
+  ss_exit_name: Lanayru Desert - Fire Node Exit
+Lanayru Desert - Stone Cache - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - Stone Cache
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Desert - Shared Statue Exit
+Lanayru Desert - Stone Cache - North Desert:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Stone Cache
+  connecting_region: Lanayru Desert - North Desert
+  direction: 2
+  exit_name: North Desert
+  exit_region: Lanayru Desert - Stone Cache
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Temple of Time - Desert Gorge - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - Temple of Time - Desert Gorge
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Temple of Time - Shared Statue Exit
+Lanayru Desert - Temple of Time - Desert Gorge - Minecart through Tree Root:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Minecart to Desert Gorge
+  connecting_region: Lanayru Desert - Temple of Time - Temple
+  direction: 2
+  exit_name: Minecart through Tree Root
+  exit_region: Lanayru Desert - Temple of Time - Desert Gorge
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Temple of Time - Desert Gorge - Path to Sand Oasis:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Temple of Time
+  connecting_region: Lanayru Desert - Sand Oasis
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path to Sand Oasis
+  exit_region: Lanayru Desert - Temple of Time - Desert Gorge
+  exit_room: 0
+  exit_stage: F300_4
+  group: 1
+  ss_entrance_name: Lanayru Desert - South Entrance from Temple of Time
+  ss_exit_name: Temple of Time - South Exit to Desert
+Lanayru Desert - Temple of Time - Temple - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Desert - Temple of Time - Temple
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Temple of Time - Shared Statue Exit
+Lanayru Desert - Temple of Time - Temple - Minecart to Desert Gorge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Minecart through Tree Root
+  connecting_region: Lanayru Desert - Temple of Time - Desert Gorge
+  direction: 2
+  exit_name: Minecart to Desert Gorge
+  exit_region: Lanayru Desert - Temple of Time - Temple
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Desert - Temple of Time - Temple - Path to North Desert:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path to Temple of Time
+  connecting_region: Lanayru Desert - North Desert
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Path to North Desert
+  exit_region: Lanayru Desert - Temple of Time - Temple
+  exit_room: 0
+  exit_stage: F300_4
+  group: 1
+  ss_entrance_name: Lanayru Desert - North Entrance from Temple of Time
+  ss_exit_name: Temple of Time - North Exit to Desert
+Lanayru Gorge - Gorge - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Gorge - Gorge
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Gorge - Statue Exit
+Lanayru Gorge - Gorge - Path to Caves:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path away from Crawlspace
+  connecting_region: Lanayru Caves - Past Crawlspace
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F303
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path to Caves
+  exit_region: Lanayru Gorge - Gorge
+  exit_room: 0
+  exit_stage: F302
+  group: 1
+  ss_entrance_name: Lanayru Caves - Entrance from Gorge
+  ss_exit_name: Lanayru Gorge - Exit
+Lanayru Mine - Door to Caves - Clawshot Path to Mine:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Clawshot Path to Caves
+  connecting_region: Lanayru Mine - Landing
+  direction: 2
+  exit_name: Clawshot Path to Mine
+  exit_region: Lanayru Mine - Door to Caves
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mine - Door to Caves - Door to Caves:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: East Exit
+  connecting_region: Lanayru Caves - Caves
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F303
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Door to Caves
+  exit_region: Lanayru Mine - Door to Caves
+  exit_room: 0
+  exit_stage: F300_1
+  group: 1
+  ss_entrance_name: Lanayru Caves - Entrance from Mine
+  ss_exit_name: Lanayru Mine - Exit to Caves
+Lanayru Mine - Ending - Minecart Ride out of Mine:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Minecart Ride out of Desert
+  connecting_region: Lanayru Desert - Desert Entry
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F300
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Minecart Ride out of Mine
+  exit_region: Lanayru Mine - Ending
+  exit_room: 2
+  exit_stage: F300_1
+  group: 1
+  ss_entrance_name: Lanayru Desert - Entrance from Mine
+  ss_exit_name: Lanayru Mine - Exit to Desert
+Lanayru Mine - Ending - Pass Statues in Mine:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass Statues in Mine
+  connecting_region: Lanayru Mine - Landing
+  direction: 2
+  exit_name: Pass Statues in Mine
+  exit_region: Lanayru Mine - Ending
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mine - Landing - Clawshot Path to Caves:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Clawshot Path to Mine
+  connecting_region: Lanayru Mine - Door to Caves
+  direction: 2
+  exit_name: Clawshot Path to Caves
+  exit_region: Lanayru Mine - Landing
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mine - Landing - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Amber Pillar
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Lanayru Mine - Landing
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Mine - Statue Exit
+Lanayru Mine - Landing - Pass Statues in Mine:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass Statues in Mine
+  connecting_region: Lanayru Mine - Ending
+  direction: 2
+  exit_name: Pass Statues in Mine
+  exit_region: Lanayru Mine - Landing
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Boss Door Area - Boss Key Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Lanayru Mining Facility - Boss Key Room
+  direction: 2
+  exit_name: Boss Key Room
+  exit_region: Lanayru Mining Facility - Boss Door Area
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Boss Door Area - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Lanayru Mining Facility - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Lanayru Mining Facility - Boss Door Area
+  group: 5
+  ss_entrance_name: Lanayru Mining Facility - Boss Room - Entrance from Dungeon
+  ss_exit_name: Lanayru Mining Facility - Boss Door Exit
+Lanayru Mining Facility - Boss Door Area - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Desert - North Desert
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Lanayru Mining Facility - Boss Door Area
+  group: 4
+  ss_entrance_name: Lanayru Desert - Entrance from Lanayru Mining Facility
+  ss_exit_name: Lanayru Mining Facility - Main Exit
+Lanayru Mining Facility - Boss Key Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Key Room
+  connecting_region: Lanayru Mining Facility - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Lanayru Mining Facility - Boss Key Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Boss Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Lanayru Mining Facility - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Lanayru Mining Facility - Boss Room
+  group: 5
+  ss_entrance_name: Lanayru Mining Facility - Boss Door Entrance
+  ss_exit_name: Lanayru Mining Facility - Boss Room - Exit to Dungeon
+Lanayru Mining Facility - Boss Room - Hall of Ancient Robots:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Lanayru Mining Facility - Hall of Ancient Robots
+  direction: 2
+  exit_name: Hall of Ancient Robots
+  exit_region: Lanayru Mining Facility - Boss Room
+  group: 5
+  ss_entrance_name: Lanayru Mining Facility - Hall of Ancient Robots - Entrance from
+    Boss Room
+  ss_exit_name: Lanayru Mining Facility - Boss Room - Exit to Hall of Ancient Robots
+Lanayru Mining Facility - First Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Lanayru Desert
+  connecting_region: Lanayru Desert - North Desert
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Lanayru Mining Facility - First Room
+  group: 3
+  ss_entrance_name: Lanayru Desert - Entrance from Lanayru Mining Facility
+  ss_exit_name: Lanayru Mining Facility - Main Exit
+Lanayru Mining Facility - First Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Room
+  connecting_region: Lanayru Mining Facility - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Lanayru Mining Facility - First Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Front Main Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Desert - North Desert
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Lanayru Mining Facility - Front Main Room
+  group: 4
+  ss_entrance_name: Lanayru Desert - Entrance from Lanayru Mining Facility
+  ss_exit_name: Lanayru Mining Facility - Main Exit
+Lanayru Mining Facility - Front Main Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Front Main Room
+  connecting_region: Lanayru Mining Facility - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Lanayru Mining Facility - Front Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Hall of Ancient Robots - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Hall of Ancient Robots
+  connecting_region: Lanayru Mining Facility - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Lanayru Mining Facility - Hall of Ancient Robots
+  group: 5
+  ss_entrance_name: Lanayru Mining Facility - Boss Room - Entrance from Hall of Ancient
+    Robots
+  ss_exit_name: Lanayru Mining Facility - Hall of Ancient Robots - Exit to Boss Room
+Lanayru Mining Facility - Hall of Ancient Robots - Exit Hall of Ancient Robots:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Desert - Temple of Time - Temple
+  direction: 1
+  exit_name: Exit Hall of Ancient Robots
+  exit_region: Lanayru Mining Facility - Hall of Ancient Robots
+  group: 6
+  ss_entrance_name: Temple of Time - Entrance from Lanayru Mining Facility
+  ss_exit_name: Lanayru Mining Facility - Hall of Ancient Robots - Exit to Temple
+    of Time
+Lanayru Mining Facility - Key Locked Room - Front Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Mining Facility - Front Main Room
+  direction: 1
+  exit_name: Front Main Room
+  exit_region: Lanayru Mining Facility - Key Locked Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Key Locked Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Key Locked Room
+  connecting_region: Lanayru Mining Facility - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Lanayru Mining Facility - Key Locked Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Second Room - First Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Lanayru Mining Facility - First Room
+  direction: 2
+  exit_name: First Room
+  exit_region: Lanayru Mining Facility - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Second Room - Front Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Lanayru Mining Facility - Front Main Room
+  direction: 2
+  exit_name: Front Main Room
+  exit_region: Lanayru Mining Facility - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Second Room - Key Locked Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Lanayru Mining Facility - Key Locked Room
+  direction: 2
+  exit_name: Key Locked Room
+  exit_region: Lanayru Mining Facility - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Second Room - West Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Lanayru Mining Facility - West Room
+  direction: 2
+  exit_name: West Room
+  exit_region: Lanayru Mining Facility - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - Spike Maze - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Mining Facility - Boss Door Area
+  direction: 1
+  exit_name: Boss Door Area
+  exit_region: Lanayru Mining Facility - Spike Maze
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - West Main Room - Front Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Mining Facility - Front Main Room
+  direction: 1
+  exit_name: Front Main Room
+  exit_region: Lanayru Mining Facility - West Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - West Main Room - Spike Maze:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Mining Facility - Spike Maze
+  direction: 1
+  exit_name: Spike Maze
+  exit_region: Lanayru Mining Facility - West Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - West Main Room - West Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: West Main Room
+  connecting_region: Lanayru Mining Facility - West Room
+  direction: 2
+  exit_name: West Room
+  exit_region: Lanayru Mining Facility - West Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - West Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: West Room
+  connecting_region: Lanayru Mining Facility - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Lanayru Mining Facility - West Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Mining Facility - West Room - West Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: West Room
+  connecting_region: Lanayru Mining Facility - West Main Room
+  direction: 2
+  exit_name: West Main Room
+  exit_region: Lanayru Mining Facility - West Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Ancient Harbor - Boat to Sea:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Dock at Ancient Harbor
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_1
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Boat to Sea
+  exit_region: Lanayru Sand Sea - Ancient Harbor
+  exit_room: 0
+  exit_stage: F301
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea - Ancient Harbour Dock Entrance
+  ss_exit_name: Lanayru Sand Sea Docks - Dock Exit
+Lanayru Sand Sea - Ancient Harbor - Clawshot Path to Caves:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Clawshot Path to Harbor
+  connecting_region: Lanayru Sand Sea - Door to Caves
+  direction: 2
+  exit_name: Clawshot Path to Caves
+  exit_region: Lanayru Sand Sea - Ancient Harbor
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Ancient Harbor - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Sand Sea - Ancient Harbor
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Lanayru Sand Sea Docks - Statue Exit
+Lanayru Sand Sea - Door to Caves - Clawshot Path to Harbor:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Clawshot Path to Caves
+  connecting_region: Lanayru Sand Sea - Ancient Harbor
+  direction: 2
+  exit_name: Clawshot Path to Harbor
+  exit_region: Lanayru Sand Sea - Door to Caves
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Door to Caves - Door to Caves:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path away from Door
+  connecting_region: Lanayru Caves - Past Locked Door
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F303
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Door to Caves
+  exit_region: Lanayru Sand Sea - Door to Caves
+  exit_room: 0
+  exit_stage: F301
+  group: 1
+  ss_entrance_name: Lanayru Caves - Entrance from Lanayru Sand Sea
+  ss_exit_name: Lanayru Sand Sea Docks - Exit to Caves
+Lanayru Sand Sea - Pirate Stronghold - Inside - Lower Door:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Door under Jaw
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Under Jaw
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_6
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Lower Door
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Inside
+  exit_room: 1
+  exit_stage: F301_2
+  group: 1
+  ss_entrance_name: Pirate Stronghold - Top Entrance
+  ss_exit_name: Pirate Stronghold - Inside - Second Door Exit
+Lanayru Sand Sea - Pirate Stronghold - Inside - Upper Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Side Door
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_6
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Upper Door
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Inside
+  exit_room: 1
+  exit_stage: F301_2
+  group: 1
+  ss_entrance_name: Pirate Stronghold - Side Entrance
+  ss_exit_name: Pirate Stronghold - Inside - First Door Exit
+Lanayru Sand Sea - Pirate Stronghold - Outside - Boat to Sea:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Dock at Pirate Stronghold
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_1
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Boat to Sea
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  exit_room: 0
+  exit_stage: F301_6
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea - Pirate Stronghold Dock Entrance
+  ss_exit_name: Pirate Stronghold - Dock Exit
+Lanayru Sand Sea - Pirate Stronghold - Outside - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Pirate Stronghold - Statue Exit
+Lanayru Sand Sea - Pirate Stronghold - Outside - Open Jaw:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Open Jaw
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Under Jaw
+  direction: 2
+  exit_name: Open Jaw
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Pirate Stronghold - Outside - Side Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Upper Door
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Inside
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 1
+  entrance_stage: F301_2
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Side Door
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  exit_room: 0
+  exit_stage: F301_6
+  group: 1
+  ss_entrance_name: Pirate Stronghold - Inside - First Door Entrance
+  ss_exit_name: Pirate Stronghold - Side Exit
+Lanayru Sand Sea - Pirate Stronghold - Under Jaw - Door under Jaw:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Lower Door
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Inside
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 1
+  entrance_stage: F301_2
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Door under Jaw
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Under Jaw
+  exit_room: 0
+  exit_stage: F301_6
+  group: 1
+  ss_entrance_name: Pirate Stronghold - Inside - Second Door Entrance
+  ss_exit_name: Pirate Stronghold - Top Exit
+Lanayru Sand Sea - Pirate Stronghold - Under Jaw - Open Jaw:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Open Jaw
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  direction: 2
+  exit_name: Open Jaw
+  exit_region: Lanayru Sand Sea - Pirate Stronghold - Under Jaw
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Sea - Dock at Ancient Harbor:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Boat to Sea
+  connecting_region: Lanayru Sand Sea - Ancient Harbor
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Dock at Ancient Harbor
+  exit_region: Lanayru Sand Sea - Sea
+  exit_room: 0
+  exit_stage: F301_1
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea Docks - Dock Entrance
+  ss_exit_name: Lanayru Sand Sea - Ancient Harbour Dock Exit
+Lanayru Sand Sea - Sea - Dock at Pirate Stronghold:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Boat to Sea
+  connecting_region: Lanayru Sand Sea - Pirate Stronghold - Outside
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_6
+  entrance_tod: 0
+  exit_index: 4
+  exit_name: Dock at Pirate Stronghold
+  exit_region: Lanayru Sand Sea - Sea
+  exit_room: 0
+  exit_stage: F301_1
+  group: 1
+  ss_entrance_name: Pirate Stronghold - Dock Entrance
+  ss_exit_name: Lanayru Sand Sea - Pirate Stronghold Dock Exit
+Lanayru Sand Sea - Sea - Dock at Shipyard:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Boat to Sea
+  connecting_region: Lanayru Sand Sea - Shipyard - Outside
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_4
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Dock at Shipyard
+  exit_region: Lanayru Sand Sea - Sea
+  exit_room: 0
+  exit_stage: F301_1
+  group: 1
+  ss_entrance_name: Shipyard - Dock Entrance
+  ss_exit_name: Lanayru Sand Sea - Shipyard Dock Exit
+Lanayru Sand Sea - Sea - Dock at Skipper's Retreat:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Boat to Sea
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_3
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Dock at Skipper's Retreat
+  exit_region: Lanayru Sand Sea - Sea
+  exit_room: 0
+  exit_stage: F301_1
+  group: 1
+  ss_entrance_name: Skipper's Retreat - Dock Entrance
+  ss_exit_name: Lanayru Sand Sea - Skipper's Retreat Dock Exit
+Lanayru Sand Sea - Sea - Dungeon Entrance in Lanayru Sand Sea:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Sandship - Deck
+  direction: 2
+  exit_name: Dungeon Entrance in Lanayru Sand Sea
+  exit_region: Lanayru Sand Sea - Sea
+  group: 3
+  ss_entrance_name: Sandship - Main Entrance
+  ss_exit_name: Lanayru Sand Sea - Sandship Dock Exit
+Lanayru Sand Sea - Shipyard - Construction Bay - Lower Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Door
+  connecting_region: Lanayru Sand Sea - Shipyard - Outside
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_4
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Lower Door
+  exit_region: Lanayru Sand Sea - Shipyard - Construction Bay
+  exit_room: 0
+  exit_stage: F301_7
+  group: 1
+  ss_entrance_name: Shipyard - Construction Bay Lower Entrance
+  ss_exit_name: Shipyard - Construction Bay - Lower Exit
+Lanayru Sand Sea - Shipyard - Construction Bay - Upper Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Door
+  connecting_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_4
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Upper Door
+  exit_region: Lanayru Sand Sea - Shipyard - Construction Bay
+  exit_room: 0
+  exit_stage: F301_7
+  group: 1
+  ss_entrance_name: Shipyard - Construction Bay Upper Entrance
+  ss_exit_name: Shipyard - Construction Bay - Upper Exit
+Lanayru Sand Sea - Shipyard - Outside - Boat to Sea:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Dock at Shipyard
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_1
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Boat to Sea
+  exit_region: Lanayru Sand Sea - Shipyard - Outside
+  exit_room: 0
+  exit_stage: F301_4
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea - Shipyard Dock Entrance
+  ss_exit_name: Shipyard - Dock Exit
+Lanayru Sand Sea - Shipyard - Outside - Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lower Door
+  connecting_region: Lanayru Sand Sea - Shipyard - Construction Bay
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_7
+  entrance_tod: 0
+  exit_index: 4
+  exit_name: Door
+  exit_region: Lanayru Sand Sea - Shipyard - Outside
+  exit_room: 0
+  exit_stage: F301_4
+  group: 1
+  ss_entrance_name: Shipyard - Construction Bay - Lower Entrance
+  ss_exit_name: Shipyard - Construction Bay Lower Exit
+Lanayru Sand Sea - Shipyard - Outside - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Sand Sea - Shipyard - Outside
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Shipyard - Statue Exit
+Lanayru Sand Sea - Shipyard - Outside - Roller Coaster:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
+  direction: 1
+  exit_name: Roller Coaster
+  exit_region: Lanayru Sand Sea - Shipyard - Outside
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Shipyard - Past Roller Coaster - Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Upper Door
+  connecting_region: Lanayru Sand Sea - Shipyard - Construction Bay
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_7
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Door
+  exit_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
+  exit_room: 0
+  exit_stage: F301_4
+  group: 1
+  ss_entrance_name: Shipyard - Construction Bay - Upper Entrance
+  ss_exit_name: Shipyard - Construction Bay Upper Exit
+Lanayru Sand Sea - Skipper's Retreat - After Rock - Dock:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: After Rock
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  direction: 2
+  exit_name: Dock
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - After Rock
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - After Rock - Top of Skipper's Retreat:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Top of Skipper's Retreat
+  direction: 1
+  exit_name: Top of Skipper's Retreat
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - After Rock
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Dock - After Rock:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dock
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - After Rock
+  direction: 2
+  exit_name: After Rock
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Dock - Boat to Sea:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Dock at Skipper's Retreat
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_1
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Boat to Sea
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  exit_room: 0
+  exit_stage: F301_3
+  group: 1
+  ss_entrance_name: Lanayru Sand Sea - Skipper's Retreat Dock Entrance
+  ss_exit_name: Skipper's Retreat - Dock Exit
+Lanayru Sand Sea - Skipper's Retreat - Dock - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  group: 9
+  ss_entrance_name: Sky - Lanayru Pillar - Entrance
+  ss_exit_name: Skipper's Retreat - Statue Exit
+Lanayru Sand Sea - Skipper's Retreat - Inside Shack - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Shack Door
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_3
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Door
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Inside Shack
+  exit_room: 0
+  exit_stage: F301_5
+  group: 1
+  ss_entrance_name: Skipper's Retreat - Shack Entrance
+  ss_exit_name: Skipper's Retreat - Shack - Exit
+Lanayru Sand Sea - Skipper's Retreat - Outside Shack - After Rock:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - After Rock
+  direction: 1
+  exit_name: After Rock
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Outside Shack - Shack Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Inside Shack
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Lanayru Province
+  entrance_room: 0
+  entrance_stage: F301_5
+  entrance_tod: 0
+  exit_index: 3
+  exit_name: Shack Door
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  exit_room: 0
+  exit_stage: F301_3
+  group: 1
+  ss_entrance_name: Skipper's Retreat - Shack - Entrance
+  ss_exit_name: Skipper's Retreat - Shack Exit
+Lanayru Sand Sea - Skipper's Retreat - Outside Shack - Skydive:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Skydive
+  direction: 1
+  exit_name: Skydive
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Outside Shack - Top of Skipper's Retreat:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Outside Shack
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Top of Skipper's Retreat
+  direction: 2
+  exit_name: Top of Skipper's Retreat
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Skydive - Dock:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Dock
+  direction: 1
+  exit_name: Dock
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Skydive
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Sand Sea - Skipper's Retreat - Top of Skipper's Retreat - Outside Shack:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Top of Skipper's Retreat
+  connecting_region: Lanayru Sand Sea - Skipper's Retreat - Outside Shack
+  direction: 2
+  exit_name: Outside Shack
+  exit_region: Lanayru Sand Sea - Skipper's Retreat - Top of Skipper's Retreat
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Lanayru Silent Realm - Trial Gate:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate in Lanayru Desert
+  connecting_region: Lanayru Desert - North Desert
+  direction: 2
+  exit_name: Trial Gate
+  exit_region: Lanayru Silent Realm
+  group: 7
+  ss_entrance_name: Lanayru Desert - Trial Gate Entrance
+  ss_exit_name: Lanayru Silent Realm - Exit
+Mogma Turf - After Digging Air Vent - Jump off Ledge:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Use Digging Air Vent
+  connecting_region: Mogma Turf - Entry
+  direction: 2
+  exit_name: Jump off Ledge
+  exit_region: Mogma Turf - After Digging Air Vent
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Mogma Turf - After Digging Air Vent - Use Last Air Vent:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: null
+  connecting_region: Eldin Volcano - Volcano Ascent
+  direction: 1
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 2
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Use Last Air Vent
+  exit_region: Mogma Turf - After Digging Air Vent
+  exit_room: 0
+  exit_stage: F210
+  group: 1
+  ss_entrance_name: Eldin Volcano - Second Vent from Mogma Turf
+  ss_exit_name: Mogma Turf - Second Vent
+Mogma Turf - Entry - Use Digging Air Vent:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Jump off Ledge
+  connecting_region: Mogma Turf - After Digging Air Vent
+  direction: 2
+  exit_name: Use Digging Air Vent
+  exit_region: Mogma Turf - Entry
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Mogma Turf - Entry - Use First Air Vent:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Mogma Cave
+  connecting_region: Eldin Volcano - Volcano East
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 2
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Use First Air Vent
+  exit_region: Mogma Turf - Entry
+  exit_room: 0
+  exit_stage: F210
+  group: 1
+  ss_entrance_name: Eldin Volcano - First Vent from Mogma Turf
+  ss_exit_name: Mogma Turf - First Vent
+Sandship - Basement - Corridor:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Basement
+  connecting_region: Sandship - Corridor
+  direction: 2
+  exit_name: Corridor
+  exit_region: Sandship - Basement
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Boss Key Room - Deck:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Key Room
+  connecting_region: Sandship - Deck
+  direction: 2
+  exit_name: Deck
+  exit_region: Sandship - Boss Key Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Boss Room - Near Boss Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Sandship - Near Boss Door
+  direction: 2
+  exit_name: Near Boss Door
+  exit_region: Sandship - Boss Room
+  group: 5
+  ss_entrance_name: None
+  ss_exit_name: None
+Sandship - Boss Room - Strike Crest:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Ancient Harbor
+  direction: 1
+  exit_name: Strike Crest
+  exit_region: Sandship - Boss Room
+  group: 6
+  ss_entrance_name: Lanayru Sand Sea - Sandship Dock Entrance
+  ss_exit_name: Sandship - Boss Room - <<Crest Hit>> Exit
+Sandship - Bow - Corridor:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Bow
+  connecting_region: Sandship - Corridor
+  direction: 2
+  exit_name: Corridor
+  exit_region: Sandship - Bow
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Corridor - Basement:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Corridor
+  connecting_region: Sandship - Basement
+  direction: 2
+  exit_name: Basement
+  exit_region: Sandship - Corridor
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Corridor - Bow:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Corridor
+  connecting_region: Sandship - Bow
+  direction: 2
+  exit_name: Bow
+  exit_region: Sandship - Corridor
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Corridor - Deck:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Corridor
+  connecting_region: Sandship - Deck
+  direction: 2
+  exit_name: Deck
+  exit_region: Sandship - Corridor
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Corridor - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sandship - Corridor
+  group: 4
+  ss_entrance_name: Lanayru Sand Sea - Sandship Dock Entrance
+  ss_exit_name: Sandship - Main Exit
+Sandship - Corridor - Near Boss Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Corridor
+  connecting_region: Sandship - Near Boss Door
+  direction: 2
+  exit_name: Near Boss Door
+  exit_region: Sandship - Corridor
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Deck - Boss Key Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Deck
+  connecting_region: Sandship - Boss Key Room
+  direction: 2
+  exit_name: Boss Key Room
+  exit_region: Sandship - Deck
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Deck - Corridor:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Deck
+  connecting_region: Sandship - Corridor
+  direction: 2
+  exit_name: Corridor
+  exit_region: Sandship - Deck
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Deck - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Lanayru Sand Sea
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Sandship - Deck
+  group: 3
+  ss_entrance_name: Lanayru Sand Sea - Sandship Dock Entrance
+  ss_exit_name: Sandship - Main Exit
+Sandship - Near Boss Door - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Near Boss Door
+  connecting_region: Sandship - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Sandship - Near Boss Door
+  group: 5
+  ss_entrance_name: Sandship - Boss Room - Entrance
+  ss_exit_name: Sandship - Boss Door one-way Exit
+Sandship - Near Boss Door - Corridor:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Near Boss Door
+  connecting_region: Sandship - Corridor
+  direction: 2
+  exit_name: Corridor
+  exit_region: Sandship - Near Boss Door
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sandship - Near Boss Door - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Lanayru Sand Sea - Sea
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sandship - Near Boss Door
+  group: 4
+  ss_entrance_name: Lanayru Sand Sea - Sandship Dock Entrance
+  ss_exit_name: Sandship - Main Exit
+Sealed Grounds - Behind the Temple - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Sealed Grounds - Behind the Temple
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Behind the Temple - Statue Exit
+Sealed Grounds - Behind the Temple - Path after Vines:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path behind Log
+  connecting_region: Sealed Grounds - Spiral
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 1
+  entrance_stage: F401
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path after Vines
+  exit_region: Sealed Grounds - Behind the Temple
+  exit_room: 0
+  exit_stage: F400
+  group: 1
+  ss_entrance_name: Sealed Grounds Spiral - Shortcut Entrance from Behind the Temple
+  ss_exit_name: Behind the Temple - Shortcut Exit to Spiral
+Sealed Grounds - Behind the Temple - Path to Forest:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Path out of Forest
+  connecting_region: Faron Woods - Forest Entry
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F100
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Path to Forest
+  exit_region: Sealed Grounds - Behind the Temple
+  exit_room: 0
+  exit_stage: F400
+  group: 1
+  ss_entrance_name: Faron Woods - Entrance from Behind the Temple
+  ss_exit_name: Behind the Temple - Exit to Faron Woods
+Sealed Grounds - Behind the Temple - Sealed Temple:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Behind the Temple
+  connecting_region: Sealed Grounds - Sealed Temple
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 2
+  entrance_stage: F402
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Sealed Temple
+  exit_region: Sealed Grounds - Behind the Temple
+  exit_room: 0
+  exit_stage: F400
+  group: 1
+  ss_entrance_name: Sealed Temple - Side Entrance
+  ss_exit_name: Behind the Temple - Door Exit
+Sealed Grounds - Sealed Temple - Behind the Temple:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Sealed Temple
+  connecting_region: Sealed Grounds - Behind the Temple
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F400
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Behind the Temple
+  exit_region: Sealed Grounds - Sealed Temple
+  exit_room: 2
+  exit_stage: F402
+  group: 1
+  ss_entrance_name: Behind the Temple - Door Entrance
+  ss_exit_name: Sealed Temple - Side Exit
+Sealed Grounds - Sealed Temple - Hylia's Realm:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Door to Temple
+  connecting_region: Hylia's Realm
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 2
+  entrance_stage: F404
+  entrance_tod: 0
+  exit_index: 5
+  exit_name: Hylia's Realm
+  exit_region: Sealed Grounds - Sealed Temple
+  exit_room: 2
+  exit_stage: F402
+  group: 1
+  ss_entrance_name: Hylia's Temple - Gate of Time Entrance
+  ss_exit_name: Sealed Temple - Gate of Time Exit
+Sealed Grounds - Sealed Temple - Spiral:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Sealed Temple
+  connecting_region: Sealed Grounds - Spiral
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 1
+  entrance_stage: F401
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Spiral
+  exit_region: Sealed Grounds - Sealed Temple
+  exit_room: 2
+  exit_stage: F402
+  group: 1
+  ss_entrance_name: Sealed Grounds Spiral - Door Entrance
+  ss_exit_name: Sealed Temple - Main Exit
+Sealed Grounds - Spiral - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Emerald Pillar
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sealed Grounds - Spiral
+  group: 9
+  ss_entrance_name: Sky - Faron Pillar - Entrance
+  ss_exit_name: Sealed Grounds Spiral - Statue Exit
+Sealed Grounds - Spiral - Path behind Log:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path after Vines
+  connecting_region: Sealed Grounds - Behind the Temple
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 0
+  entrance_stage: F400
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Path behind Log
+  exit_region: Sealed Grounds - Spiral
+  exit_room: 1
+  exit_stage: F401
+  group: 1
+  ss_entrance_name: Behind the Temple - Shortcut Entrance from Spiral
+  ss_exit_name: Sealed Grounds Spiral - Shortcut Exit to Behind the Temple
+Sealed Grounds - Spiral - Sealed Temple:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Spiral
+  connecting_region: Sealed Grounds - Sealed Temple
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Faron Province
+  entrance_room: 2
+  entrance_stage: F402
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Sealed Temple
+  exit_region: Sealed Grounds - Spiral
+  exit_room: 1
+  exit_stage: F401
+  group: 1
+  ss_entrance_name: Sealed Temple - Main Entrance
+  ss_exit_name: Sealed Grounds Spiral - Door Exit
+Sky - Amber Pillar:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Lanayru Mine - Landing
+  direction: 2
+  exit_name: Amber Pillar
+  exit_region: Sky
+  group: 10
+  ss_entrance_name: Lanayru Mine - Statue Entrance
+  ss_exit_name: Sky - Lanayru Pillar - Lanayru Mine Entry Statue Dive
+Sky - Bamboo Island - Inside - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Sky - Bamboo Island - Outside
+  direction: 2
+  entrance_index: 11
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F020
+  entrance_tod: 2
+  exit_index: 2
+  exit_name: Door
+  exit_region: Sky - Bamboo Island - Inside
+  exit_room: 0
+  exit_stage: F019r
+  group: 1
+  ss_entrance_name: Bamboo Island - Entrance from Inside
+  ss_exit_name: Bamboo Island - Inside - Exit
+Sky - Bamboo Island - Outside - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Sky - Bamboo Island - Inside
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 1
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F019r
+  entrance_tod: 2
+  exit_index: 13
+  exit_name: Door
+  exit_region: Sky - Bamboo Island - Outside
+  exit_room: 0
+  exit_stage: F020
+  group: 1
+  ss_entrance_name: Bamboo Island - Inside - Entrance
+  ss_exit_name: Bamboo Island - Exit to Inside
+Sky - Bamboo Island - Outside - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Bamboo Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Bamboo Island - Outside
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Beedle's Island - Day - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Beedle's Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Beedle's Island - Day
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Beedle's Island - Night - Airship Door:
+  can_shuffle: false
+  can_start_at: true
+  connecting_entrance: Shop Night Exit
+  connecting_region: Beedle's Shop
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F002r
+  entrance_tod: 1
+  exit_index: 14
+  exit_name: Airship Door
+  exit_region: Sky - Beedle's Island - Night
+  exit_room: 0
+  exit_stage: F020
+  group: 1
+  ss_entrance_name: Beedle's Shop - Night Entrance
+  ss_exit_name: Sky - Beedle's Island - Beedle's Ship Exit
+Sky - Dive to Central Skyloft:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Loftwing Platforms
+  connecting_region: Central Skyloft
+  direction: 2
+  exit_name: Dive to Central Skyloft
+  exit_region: Sky
+  group: 8
+  ss_entrance_name: Skyloft - Entrance from Sky
+  ss_exit_name: Sky - Exit to Skyloft
+Sky - Dive to Skyloft Village:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Loftwing Platforms
+  connecting_region: Skyloft Village
+  direction: 2
+  exit_name: Dive to Skyloft Village
+  exit_region: Sky
+  group: 8
+  ss_entrance_name: Skyloft - Entrance from Sky
+  ss_exit_name: Sky - Exit to Skyloft
+Sky - Dive to Upper Skyloft:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Loftwing Platforms
+  connecting_region: Upper Skyloft
+  direction: 2
+  exit_name: Dive to Upper Skyloft
+  exit_region: Sky
+  group: 8
+  ss_entrance_name: Skyloft - Entrance from Sky
+  ss_exit_name: Sky - Exit to Skyloft
+Sky - Emerald Pillar:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sealed Grounds - Spiral
+  direction: 2
+  exit_name: Emerald Pillar
+  exit_region: Sky
+  group: 10
+  ss_entrance_name: Sealed Grounds Spiral - Statue Entrance
+  ss_exit_name: Sky - Faron Pillar - Sealed Grounds Statue Dive
+Sky - Fun Fun Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Fun Fun Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Fun Fun Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Island near Faron Pillar - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Island near Faron Pillar
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Island near Faron Pillar
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Island next to Bamboo Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Island next to Bamboo Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Island next to Bamboo Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Bamboo Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Bamboo Island - Outside
+  direction: 2
+  exit_name: Land at Bamboo Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Beedle's Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Beedle's Island - Day
+  direction: 2
+  exit_name: Land at Beedle's Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Fun Fun Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Fun Fun Island
+  direction: 2
+  exit_name: Land at Fun Fun Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Island near Faron Pillar:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Island near Faron Pillar
+  direction: 2
+  exit_name: Land at Island near Faron Pillar
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Island next to Bamboo Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Island next to Bamboo Island
+  direction: 2
+  exit_name: Land at Island next to Bamboo Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Lumpy Pumpkin:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Lumpy Pumpkin - Outside
+  direction: 2
+  exit_name: Land at Lumpy Pumpkin
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Northeast Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Northeast Island
+  direction: 2
+  exit_name: Land at Northeast Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Orielle's Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Orielle's Island
+  direction: 2
+  exit_name: Land at Orielle's Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Triple Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Triple Island
+  direction: 2
+  exit_name: Land at Triple Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Land at Volcanic Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Sky - Volcanic Island
+  direction: 2
+  exit_name: Land at Volcanic Island
+  exit_region: Sky
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Lumpy Pumpkin - Inside - Back Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: North Door
+  connecting_region: Sky - Lumpy Pumpkin - Outside
+  direction: 2
+  entrance_index: 24
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F020
+  entrance_tod: 2
+  exit_index: 2
+  exit_name: Back Door
+  exit_region: Sky - Lumpy Pumpkin - Inside
+  exit_room: 0
+  exit_stage: F011r
+  group: 1
+  ss_entrance_name: Lumpy Pumpkin - Back Door Entrance
+  ss_exit_name: Lumpy Pumpkin Building - Back Door Exit
+Sky - Lumpy Pumpkin - Inside - Front Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: South Door
+  connecting_region: Sky - Lumpy Pumpkin - Outside
+  direction: 2
+  entrance_index: 22
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F020
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Front Door
+  exit_region: Sky - Lumpy Pumpkin - Inside
+  exit_room: 0
+  exit_stage: F011r
+  group: 1
+  ss_entrance_name: Lumpy Pumpkin - Main Left Door Entrance
+  ss_exit_name: Lumpy Pumpkin Building - Main Right Door Exit
+Sky - Lumpy Pumpkin - Outside - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Lumpy Pumpkin
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Lumpy Pumpkin - Outside
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Lumpy Pumpkin - Outside - North Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Back Door
+  connecting_region: Sky - Lumpy Pumpkin - Inside
+  direction: 2
+  entrance_index: 3
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F011r
+  entrance_tod: 2
+  exit_index: 20
+  exit_name: North Door
+  exit_region: Sky - Lumpy Pumpkin - Outside
+  exit_room: 0
+  exit_stage: F020
+  group: 1
+  ss_entrance_name: Lumpy Pumpkin Building - Back Door Entrance
+  ss_exit_name: Lumpy Pumpkin - Back Door Exit
+Sky - Lumpy Pumpkin - Outside - South Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Front Door
+  connecting_region: Sky - Lumpy Pumpkin - Inside
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F011r
+  entrance_tod: 2
+  exit_index: 18
+  exit_name: South Door
+  exit_region: Sky - Lumpy Pumpkin - Outside
+  exit_room: 0
+  exit_stage: F020
+  group: 1
+  ss_entrance_name: Lumpy Pumpkin Building - Main Left Door Entrance
+  ss_exit_name: Lumpy Pumpkin - Main Right Door Exit
+Sky - Northeast Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Northeast Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Northeast Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Opening in Clouds:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Opening in Clouds
+  connecting_region: Thunderhead
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F023
+  entrance_tod: 0
+  exit_index: 25
+  exit_name: Opening in Clouds
+  exit_region: Sky
+  exit_room: 0
+  exit_stage: F020
+  group: 1
+  ss_entrance_name: Thunderhead - Entrance
+  ss_exit_name: Sky - Exit to Thunderhead
+Sky - Orielle's Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Orielle's Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Orielle's Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Ruby Pillar:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Sky
+  connecting_region: Eldin Volcano - Volcano Entry
+  direction: 2
+  exit_name: Ruby Pillar
+  exit_region: Sky
+  group: 10
+  ss_entrance_name: Eldin Volcano - Volcano Entrance Statue Entrance
+  ss_exit_name: Sky - Eldin Pillar - Temple Entrance Statue Dive
+Sky - Triple Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Triple Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Triple Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky - Volcanic Island - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Volcanic Island
+  connecting_region: Sky
+  direction: 2
+  exit_name: Fly to Sky
+  exit_region: Sky - Volcanic Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Ancient Cistern Room - Fire Sanctuary Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Ancient Cistern Room
+  connecting_region: Sky Keep - Fire Sanctuary Room
+  direction: 2
+  exit_name: Fire Sanctuary Room
+  exit_region: Sky Keep - Ancient Cistern Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Ancient Cistern Room - Lanayru Mining Facility Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Ancient Cistern Room
+  connecting_region: Sky Keep - Lanayru Mining Facility Room
+  direction: 2
+  exit_name: Lanayru Mining Facility Room
+  exit_region: Sky Keep - Ancient Cistern Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Earth Temple Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Central Skyloft
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - Earth Temple Room
+  group: 4
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - Earth Temple Room - Lanayru Mining Facility Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Earth Temple Room
+  connecting_region: Sky Keep - Lanayru Mining Facility Room
+  direction: 2
+  exit_name: Lanayru Mining Facility Room
+  exit_region: Sky Keep - Earth Temple Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Earth Temple Room - Miniboss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Earth Temple Room
+  connecting_region: Sky Keep - Miniboss Room
+  direction: 2
+  exit_name: Miniboss Room
+  exit_region: Sky Keep - Earth Temple Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Fire Sanctuary Room - Ancient Cistern Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fire Sanctuary Room
+  connecting_region: Sky Keep - Ancient Cistern Room
+  direction: 2
+  exit_name: Ancient Cistern Room
+  exit_region: Sky Keep - Fire Sanctuary Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Fire Sanctuary Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Central Skyloft
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - Fire Sanctuary Room
+  group: 4
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - Fire Sanctuary Room - Miniboss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fire Sanctuary Room
+  connecting_region: Sky Keep - Miniboss Room
+  direction: 2
+  exit_name: Miniboss Room
+  exit_region: Sky Keep - Fire Sanctuary Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Fire Sanctuary Room - Sandship Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fire Sanctuary Room
+  connecting_region: Sky Keep - Sandship Room
+  direction: 2
+  exit_name: Sandship Room
+  exit_region: Sky Keep - Fire Sanctuary Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - First Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance on Skyloft
+  connecting_region: Central Skyloft
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - First Room
+  group: 3
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - First Room - Skyview Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Room
+  connecting_region: Sky Keep - Skyview Room
+  direction: 2
+  exit_name: Skyview Room
+  exit_region: Sky Keep - First Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Lanayru Mining Facility Room - Ancient Cistern Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lanayru Mining Facility Room
+  connecting_region: Sky Keep - Ancient Cistern Room
+  direction: 2
+  exit_name: Ancient Cistern Room
+  exit_region: Sky Keep - Lanayru Mining Facility Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Lanayru Mining Facility Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Central Skyloft
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - Lanayru Mining Facility Room
+  group: 4
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - Lanayru Mining Facility Room - Earth Temple Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lanayru Mining Facility Room
+  connecting_region: Sky Keep - Earth Temple Room
+  direction: 2
+  exit_name: Earth Temple Room
+  exit_region: Sky Keep - Lanayru Mining Facility Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Lanayru Mining Facility Room - Skyview Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Lanayru Mining Facility Room
+  connecting_region: Sky Keep - Skyview Room
+  direction: 2
+  exit_name: Skyview Room
+  exit_region: Sky Keep - Lanayru Mining Facility Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Miniboss Room - Earth Temple Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Miniboss Room
+  connecting_region: Sky Keep - Earth Temple Room
+  direction: 2
+  exit_name: Earth Temple Room
+  exit_region: Sky Keep - Miniboss Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Miniboss Room - Fire Sanctuary Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Miniboss Room
+  connecting_region: Sky Keep - Fire Sanctuary Room
+  direction: 2
+  exit_name: Fire Sanctuary Room
+  exit_region: Sky Keep - Miniboss Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Sandship Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Central Skyloft
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - Sandship Room
+  group: 4
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - Sandship Room - Fire Sanctuary Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Sandship Room
+  connecting_region: Sky Keep - Fire Sanctuary Room
+  direction: 2
+  exit_name: Fire Sanctuary Room
+  exit_region: Sky Keep - Sandship Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Skyview Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Central Skyloft
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Sky Keep - Skyview Room
+  group: 4
+  ss_entrance_name: Skyloft - Entrance from Sky Keep
+  ss_exit_name: Sky Keep - First Room - Bottom Exit
+Sky Keep - Skyview Room - First Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Skyview Room
+  connecting_region: Sky Keep - First Room
+  direction: 2
+  exit_name: First Room
+  exit_region: Sky Keep - Skyview Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Sky Keep - Skyview Room - Lanayru Mining Facility Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Skyview Room
+  connecting_region: Sky Keep - Lanayru Mining Facility Room
+  direction: 2
+  exit_name: Lanayru Mining Facility Room
+  exit_region: Sky Keep - Skyview Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyloft Silent Realm - Trial Gate:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Trial Gate on Skyloft
+  connecting_region: Central Skyloft
+  direction: 2
+  exit_name: Trial Gate
+  exit_region: Skyloft Silent Realm
+  group: 7
+  ss_entrance_name: Skyloft - Trial Gate Entrance
+  ss_exit_name: Skyloft Silent Realm - Exit
+Skyloft Village - Bertie's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Skyloft Village - Bertie's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F014r
+  entrance_tod: 2
+  exit_index: 34
+  exit_name: Bertie's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Bertie's House - Entrance
+  ss_exit_name: Bertie's House Exit
+Skyloft Village - Bertie's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Bertie's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 34
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Skyloft Village - Bertie's House
+  exit_room: 0
+  exit_stage: F014r
+  group: 1
+  ss_entrance_name: Bertie's House Entrance
+  ss_exit_name: Bertie's House - Exit
+Skyloft Village - Bridge to Central Skyloft:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Bridge to Skyloft Village
+  connecting_region: Central Skyloft
+  direction: 2
+  exit_name: Bridge to Central Skyloft
+  exit_region: Skyloft Village
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyloft Village - Gondo's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Skyloft Village - Gondo's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F015r
+  entrance_tod: 2
+  exit_index: 35
+  exit_name: Gondo's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Gondo's House - Entrance
+  ss_exit_name: Gondo's House Exit
+Skyloft Village - Gondo's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Gondo's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 35
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Skyloft Village - Gondo's House
+  exit_room: 0
+  exit_stage: F015r
+  group: 1
+  ss_entrance_name: Gondo's House Entrance
+  ss_exit_name: Gondo's House - Exit
+Skyloft Village - Loftwing Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dive to Skyloft Village
+  connecting_region: Sky
+  direction: 2
+  exit_name: Loftwing Platforms
+  exit_region: Skyloft Village
+  group: 8
+  ss_entrance_name: Sky - Entrance from Skyloft
+  ss_exit_name: Skyloft - Exit to Sky
+Skyloft Village - Pipit's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Skyloft Village - Pipit's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F016r
+  entrance_tod: 2
+  exit_index: 36
+  exit_name: Pipit's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Mallara's House - Entrance
+  ss_exit_name: Skyloft - Mallara's House Exit
+Skyloft Village - Pipit's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Pipit's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 36
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Skyloft Village - Pipit's House
+  exit_room: 0
+  exit_stage: F016r
+  group: 1
+  ss_entrance_name: Skyloft - Mallara's House Entrance
+  ss_exit_name: Mallara's House - Exit
+Skyloft Village - Rupin's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Skyloft Village - Rupin's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F017r
+  entrance_tod: 2
+  exit_index: 37
+  exit_name: Rupin's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Rupin's House - Entrance
+  ss_exit_name: Rupin's House Exit
+Skyloft Village - Rupin's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Rupin's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 37
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 1
+  exit_name: Door
+  exit_region: Skyloft Village - Rupin's House
+  exit_room: 0
+  exit_stage: F017r
+  group: 1
+  ss_entrance_name: Rupin's House Entrance
+  ss_exit_name: Rupin's House - Exit
+Skyloft Village - Shed Door to Batreaux's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Exit Shed Door
+  connecting_region: Batreaux's House
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F012r
+  entrance_tod: 2
+  exit_index: 30
+  exit_name: Shed Door to Batreaux's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Batreaux's House - Entrance
+  ss_exit_name: Batreaux's House Exit
+Skyloft Village - Sparrot's House:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Skyloft Village - Sparrot's House
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F013r
+  entrance_tod: 2
+  exit_index: 33
+  exit_name: Sparrot's House
+  exit_region: Skyloft Village
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Sparrot's House - Entrance
+  ss_exit_name: Sparrot's House Exit
+Skyloft Village - Sparrot's House - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Sparrot's House
+  connecting_region: Skyloft Village
+  direction: 2
+  entrance_index: 33
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Skyloft Village - Sparrot's House
+  exit_room: 0
+  exit_stage: F013r
+  group: 1
+  ss_entrance_name: Sparrot's House Entrance
+  ss_exit_name: Sparrot's House - Exit
+Skyview - Boss Door Area - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Skyview - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Skyview - Boss Door Area
+  group: 5
+  ss_entrance_name: Skyview Temple - Boss Room - Entrance from Dungeon
+  ss_exit_name: Skyview Temple - Boss Door Exit
+Skyview - Boss Door Area - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Deep Woods after Beehive
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Skyview - Boss Door Area
+  group: 4
+  ss_entrance_name: Deep Woods - Entrance from Skyview Temple
+  ss_exit_name: Skyview Temple - Main Exit
+Skyview - Boss Door Area - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Door Area
+  connecting_region: Skyview - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Skyview - Boss Door Area
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Boss Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Skyview - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Skyview - Boss Room
+  group: 5
+  ss_entrance_name: Skyview Temple - Boss Door Entrance
+  ss_exit_name: Skyview Temple - Boss Room - Exit to Dungeon
+Skyview - Boss Room - Skyview Spring:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Boss Room
+  connecting_region: Skyview - Skyview Spring
+  direction: 2
+  exit_name: Skyview Spring
+  exit_region: Skyview - Boss Room
+  group: 5
+  ss_entrance_name: Skyview Temple - Spring - Entrance
+  ss_exit_name: Skyview Temple - Boss Room - Exit to Spring
+Skyview - First Room - Dungeon Exit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Entrance in Deep Woods
+  connecting_region: Faron Woods - Deep Woods after Beehive
+  direction: 2
+  exit_name: Dungeon Exit
+  exit_region: Skyview - First Room
+  group: 3
+  ss_entrance_name: Deep Woods - Entrance from Skyview Temple
+  ss_exit_name: Skyview Temple - Main Exit
+Skyview - First Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: First Room
+  connecting_region: Skyview - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Skyview - First Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Main Room - Boss Door Area:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Skyview - Boss Door Area
+  direction: 2
+  exit_name: Boss Door Area
+  exit_region: Skyview - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Main Room - Dungeon Exit:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Deep Woods after Beehive
+  direction: 1
+  exit_name: Dungeon Exit
+  exit_region: Skyview - Main Room
+  group: 4
+  ss_entrance_name: Deep Woods - Entrance from Skyview Temple
+  ss_exit_name: Skyview Temple - Main Exit
+Skyview - Main Room - Second Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Main Room
+  connecting_region: Skyview - Second Room
+  direction: 2
+  exit_name: Second Room
+  exit_region: Skyview - Main Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Second Room - First Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Skyview - First Room
+  direction: 2
+  exit_name: First Room
+  exit_region: Skyview - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Second Room - Main Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Second Room
+  connecting_region: Skyview - Main Room
+  direction: 2
+  exit_name: Main Room
+  exit_region: Skyview - Second Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Skyview - Skyview Spring - Boss Room:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Skyview Spring
+  connecting_region: Skyview - Boss Room
+  direction: 2
+  exit_name: Boss Room
+  exit_region: Skyview - Skyview Spring
+  group: 5
+  ss_entrance_name: Skyview Temple - Boss Room - Entrance from Spring
+  ss_exit_name: Skyview Temple - Spring - Exit
+Skyview - Skyview Spring - Strike Crest:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Faron Woods - Deep Woods after Beehive
+  direction: 1
+  exit_name: Strike Crest
+  exit_region: Skyview - Skyview Spring
+  group: 6
+  ss_entrance_name: Deep Woods - Entrance from Skyview Temple
+  ss_exit_name: Skyview Spring - Crest Hit Exit
+Thunderhead - Bug Heaven - Fly to Thunderhead:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Bug Heaven
+  connecting_region: Thunderhead
+  direction: 2
+  exit_name: Fly to Thunderhead
+  exit_region: Thunderhead - Bug Heaven
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - East Island - Fly to Thunderhead:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at East Island
+  connecting_region: Thunderhead
+  direction: 2
+  exit_name: Fly to Thunderhead
+  exit_region: Thunderhead - East Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Island next to Bug Heaven - Fly to Thunderhead:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Island next to Bug Heaven
+  connecting_region: Thunderhead
+  direction: 2
+  exit_name: Fly to Thunderhead
+  exit_region: Thunderhead - Island next to Bug Heaven
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Isle of Songs - Inside - Crawlspace:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Crawlspace after Bridge Puzzle
+  connecting_region: Thunderhead - Isle of Songs - Outside
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F023
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Crawlspace
+  exit_region: Thunderhead - Isle of Songs - Inside
+  exit_room: 0
+  exit_stage: F010r
+  group: 1
+  ss_entrance_name: Isle of Songs - Entrance from Inside
+  ss_exit_name: Isle of Songs - Exit
+Thunderhead - Isle of Songs - Outside - Crawlspace after Bridge Puzzle:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Crawlspace
+  connecting_region: Thunderhead - Isle of Songs - Inside
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F010r
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Crawlspace after Bridge Puzzle
+  exit_region: Thunderhead - Isle of Songs - Outside
+  exit_room: 0
+  exit_stage: F023
+  group: 1
+  ss_entrance_name: Isle of Songs - Entrance
+  ss_exit_name: Isle of Songs - Exit to Inside
+Thunderhead - Isle of Songs - Outside - Fly to Thunderhead:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Isle of Songs
+  connecting_region: Thunderhead
+  direction: 2
+  exit_name: Fly to Thunderhead
+  exit_region: Thunderhead - Isle of Songs - Outside
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Land at Bug Heaven:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Thunderhead
+  connecting_region: Thunderhead - Bug Heaven
+  direction: 2
+  exit_name: Land at Bug Heaven
+  exit_region: Thunderhead
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Land at East Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Thunderhead
+  connecting_region: Thunderhead - East Island
+  direction: 2
+  exit_name: Land at East Island
+  exit_region: Thunderhead
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Land at Island next to Bug Heaven:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Thunderhead
+  connecting_region: Thunderhead - Island next to Bug Heaven
+  direction: 2
+  exit_name: Land at Island next to Bug Heaven
+  exit_region: Thunderhead
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Land at Isle of Songs:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Thunderhead
+  connecting_region: Thunderhead - Isle of Songs - Outside
+  direction: 2
+  exit_name: Land at Isle of Songs
+  exit_region: Thunderhead
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Land at Mogma Mitts Island:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Fly to Thunderhead
+  connecting_region: Thunderhead - Mogma Mitts Island
+  direction: 2
+  exit_name: Land at Mogma Mitts Island
+  exit_region: Thunderhead
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Mogma Mitts Island - Fly to Thunderhead:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Land at Mogma Mitts Island
+  connecting_region: Thunderhead
+  direction: 2
+  exit_name: Fly to Thunderhead
+  exit_region: Thunderhead - Mogma Mitts Island
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Thunderhead - Opening in Clouds:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Opening in Clouds
+  connecting_region: Sky
+  direction: 2
+  entrance_index: 28
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F020
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Opening in Clouds
+  exit_region: Thunderhead
+  exit_room: 0
+  exit_stage: F023
+  group: 1
+  ss_entrance_name: Sky - Entrance from Thunderhead
+  ss_exit_name: Thunderhead - Exit
+Upper Skyloft - Goddess Statue:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Upper Skyloft - Goddess Statue
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F008r
+  entrance_tod: 2
+  exit_index: 5
+  exit_name: Goddess Statue
+  exit_region: Upper Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Goddess Statue - Entrance
+  ss_exit_name: Goddess Statue Exit
+Upper Skyloft - Goddess Statue - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Goddess Statue
+  connecting_region: Upper Skyloft
+  direction: 2
+  entrance_index: 6
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Upper Skyloft - Goddess Statue
+  exit_room: 0
+  exit_stage: F008r
+  group: 1
+  ss_entrance_name: Goddess Statue Entrance
+  ss_exit_name: Goddess Statue - Exit
+Upper Skyloft - Knight Academy - Lower Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Knight Academy Lower Door
+  connecting_region: Upper Skyloft
+  direction: 2
+  entrance_index: 5
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 1
+  exit_name: Lower Door
+  exit_region: Upper Skyloft - Knight Academy
+  exit_room: 0
+  exit_stage: F001r
+  group: 1
+  ss_entrance_name: Skyloft - Knight Academy Lower Left Door Entrance
+  ss_exit_name: Skyloft - Knight Academy - Lower Right Door Exit
+Upper Skyloft - Knight Academy - Upper Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Knight Academy Upper Door
+  connecting_region: Upper Skyloft
+  direction: 2
+  entrance_index: 23
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 2
+  exit_name: Upper Door
+  exit_region: Upper Skyloft - Knight Academy
+  exit_room: 0
+  exit_stage: F001r
+  group: 1
+  ss_entrance_name: Skyloft - Knight Academy Upper Left Door Entrance
+  ss_exit_name: Skyloft - Knight Academy - Upper Right Door Exit
+Upper Skyloft - Knight Academy Chimney:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: One-Way Entrance from Upper Skyloft
+  connecting_region: Upper Skyloft - Zelda's Room
+  direction: 1
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 6
+  entrance_stage: F001r
+  entrance_tod: 2
+  exit_index: 57
+  exit_name: Knight Academy Chimney
+  exit_region: Upper Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Skyloft - Knight Academy - Chimney
+  ss_exit_name: Skyloft - Knight Academy Chimney Entrance
+Upper Skyloft - Knight Academy Lower Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Lower Door
+  connecting_region: Upper Skyloft - Knight Academy
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F001r
+  entrance_tod: 2
+  exit_index: 3
+  exit_name: Knight Academy Lower Door
+  exit_region: Upper Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Skyloft - Knight Academy - Lower Left Door Entrance
+  ss_exit_name: Skyloft - Knight Academy Lower Right Door Exit
+Upper Skyloft - Knight Academy Upper Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Upper Door
+  connecting_region: Upper Skyloft - Knight Academy
+  direction: 2
+  entrance_index: 4
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F001r
+  entrance_tod: 2
+  exit_index: 24
+  exit_name: Knight Academy Upper Door
+  exit_region: Upper Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Skyloft - Knight Academy - Upper Left Door Entrance
+  ss_exit_name: Skyloft - Knight Academy Upper Right Door Exit
+Upper Skyloft - Loftwing Platforms:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Dive to Upper Skyloft
+  connecting_region: Sky
+  direction: 2
+  exit_name: Loftwing Platforms
+  exit_region: Upper Skyloft
+  group: 8
+  ss_entrance_name: Sky - Entrance from Skyloft
+  ss_exit_name: Skyloft - Exit to Sky
+Upper Skyloft - Sparring Hall:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Door
+  connecting_region: Upper Skyloft - Sparring Hall
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F009r
+  entrance_tod: 2
+  exit_index: 27
+  exit_name: Sparring Hall
+  exit_region: Upper Skyloft
+  exit_room: 0
+  exit_stage: F000
+  group: 1
+  ss_entrance_name: Sparring Hall - Left Door Entrance
+  ss_exit_name: Skyloft - Sparring Hall Right Door Exit
+Upper Skyloft - Sparring Hall - Door:
+  can_shuffle: true
+  can_start_at: true
+  connecting_entrance: Sparring Hall
+  connecting_region: Upper Skyloft
+  direction: 2
+  entrance_index: 21
+  entrance_layer: 0
+  entrance_province: The Sky
+  entrance_room: 0
+  entrance_stage: F000
+  entrance_tod: 2
+  exit_index: 0
+  exit_name: Door
+  exit_region: Upper Skyloft - Sparring Hall
+  exit_room: 0
+  exit_stage: F009r
+  group: 1
+  ss_entrance_name: Skyloft - Sparring Hall Left Door Entrance
+  ss_exit_name: Sparring Hall - Right Door Exit
+Upper Skyloft - Stairs to Central Skyloft:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Stairs to Upper Skyloft
+  connecting_region: Central Skyloft
+  direction: 2
+  exit_name: Stairs to Central Skyloft
+  exit_region: Upper Skyloft
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Upper Skyloft - Zelda's Room - Zelda's Door:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Upper Skyloft - Knight Academy
+  direction: 1
+  exit_name: Zelda's Door
+  exit_region: Upper Skyloft - Zelda's Room
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Volcano Summit - After Second Frog - Dungeon Entrance in Volcano Summit:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Dungeon Exit
+  connecting_region: Fire Sanctuary - First Room
+  direction: 2
+  exit_name: Dungeon Entrance in Volcano Summit
+  exit_region: Volcano Summit - After Second Frog
+  group: 3
+  ss_entrance_name: Fire Sanctuary - Main Entrance
+  ss_exit_name: Outside Fire Sanctuary - Exit to Fire Sanctuary
+Volcano Summit - After Second Frog - Fly to Sky:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: null
+  connecting_region: Sky
+  direction: 1
+  exit_name: Fly to Sky
+  exit_region: Volcano Summit - After Second Frog
+  group: 9
+  ss_entrance_name: Sky - Eldin Pillar - Entrance
+  ss_exit_name: Outside Fire Sanctuary - Statue Exit
+Volcano Summit - After Second Frog - Pass Second Frog:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass Second Frog
+  connecting_region: Volcano Summit - Between Frogs
+  direction: 2
+  exit_name: Pass Second Frog
+  exit_region: Volcano Summit - After Second Frog
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Volcano Summit - Before First Frog - Pass First Frog:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass First Frog
+  connecting_region: Volcano Summit - Between Frogs
+  direction: 2
+  exit_name: Pass First Frog
+  exit_region: Volcano Summit - Before First Frog
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Volcano Summit - Before First Frog - Path across from First Frog:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Upper Path out of Summit after Lava Platforms
+  connecting_region: Volcano Summit - Summit
+  direction: 2
+  entrance_index: 1
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F201_1
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path across from First Frog
+  exit_region: Volcano Summit - Before First Frog
+  exit_room: 0
+  exit_stage: F201_3
+  group: 1
+  ss_entrance_name: Volcano Summit - Entrance from Outside Fire Sanctuary
+  ss_exit_name: Outside Fire Sanctuary - Exit to Summit
+Volcano Summit - Between Frogs - Pass First Frog:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass First Frog
+  connecting_region: Volcano Summit - Before First Frog
+  direction: 2
+  exit_name: Pass First Frog
+  exit_region: Volcano Summit - Between Frogs
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Volcano Summit - Between Frogs - Pass Second Frog:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Pass Second Frog
+  connecting_region: Volcano Summit - After Second Frog
+  direction: 2
+  exit_name: Pass Second Frog
+  exit_region: Volcano Summit - Between Frogs
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
+Volcano Summit - Summit - Path out of Summit after Lava Platforms:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path out of Waterfall
+  connecting_region: Volcano Summit - Waterfall
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F201_4
+  entrance_tod: 0
+  exit_index: 1
+  exit_name: Path out of Summit after Lava Platforms
+  exit_region: Volcano Summit - Summit
+  exit_room: 0
+  exit_stage: F201_1
+  group: 1
+  ss_entrance_name: Volcano Summit - Waterfall - Entrance
+  ss_exit_name: Volcano Summit - Exit to Waterfall
+Volcano Summit - Summit - Path out of Summit before Sandy Slope:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Upper Path out of Hot Cave
+  connecting_region: Eldin Volcano - Hot Cave
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 5
+  entrance_stage: F200
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path out of Summit before Sandy Slope
+  exit_region: Volcano Summit - Summit
+  exit_room: 0
+  exit_stage: F201_1
+  group: 1
+  ss_entrance_name: Eldin Volcano - Entrance from Summit
+  ss_exit_name: Volcano Summit - Exit to Eldin Volcano
+Volcano Summit - Summit - Upper Path out of Summit after Lava Platforms:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path across from First Frog
+  connecting_region: Volcano Summit - Before First Frog
+  direction: 2
+  entrance_index: 0
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F201_3
+  entrance_tod: 0
+  exit_index: 2
+  exit_name: Upper Path out of Summit after Lava Platforms
+  exit_region: Volcano Summit - Summit
+  exit_room: 0
+  exit_stage: F201_1
+  group: 1
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Summit
+  ss_exit_name: Volcano Summit - Exit to Outside Fire Sanctuary
+Volcano Summit - Waterfall - Path out of Waterfall:
+  can_shuffle: true
+  can_start_at: false
+  connecting_entrance: Path out of Summit after Lava Platforms
+  connecting_region: Volcano Summit - Summit
+  direction: 2
+  entrance_index: 2
+  entrance_layer: 0
+  entrance_province: Eldin Province
+  entrance_room: 0
+  entrance_stage: F201_1
+  entrance_tod: 0
+  exit_index: 0
+  exit_name: Path out of Waterfall
+  exit_region: Volcano Summit - Waterfall
+  exit_room: 0
+  exit_stage: F201_4
+  group: 1
+  ss_entrance_name: Volcano Summit - Entrance from Waterfall
+  ss_exit_name: Volcano Summit - Waterfall - Exit

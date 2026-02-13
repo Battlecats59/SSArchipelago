@@ -1,0 +1,31 @@
+class SSAPEntrance(NamedTuple):
+    """
+    Class contains data for an AP exit in SS.
+
+    exit_region: Region of the exit
+    exit_name: Full name of the exit (Region - Exit)
+    entrance_region: Region of the entrance
+    entrance_name: Full name of the connecting exit (Region - Exit) or None if one-way
+    direction: 1 if one-way, 2 if two-way, 0 if inaccessible
+    can_shuffle: True or False
+    group: The shuffle group, None for no shuffle
+    """
+
+    exit_region: str
+    exit_name: str
+    entrance_region: str
+    entrance_name: Optional[str]
+    direction: int
+    can_shuffle: bool | int
+    group: int
+    ss_exit_name: str | None
+    ss_entrance_name: str | None
+    can_start_at: bool
+    exit_stage: Optional[str] = None
+    exit_room: Optional[int] = None
+    exit_index: Optional[int] = None
+    entrance_stage: Optional[str] = None
+    entrance_room: Optional[int] = None
+    entrance_index: Optional[int] = None
+    entrance_layer: Optional[int] = None
+    entrance_tod: Optional[int] = None

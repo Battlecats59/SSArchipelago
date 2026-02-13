@@ -1,0 +1,29 @@
+class SSGameEntrance(NamedTuple):
+    """
+    Class contains data for a game entrance in SS.
+
+    name: Name of the entrance, as recognized by the patcher.
+    statue_name: Statue name or `Link's Room`, as recognized by the patcher.
+    province: The province that the entrance leads to.
+    stage: The game stage name that the entrance leads to.
+    room: The game room int that the entrance leads to.
+    layer: The game layer int that the entrance leads to.
+    entrance: The game entrance int that the entrance leads to.
+    tod: The time of day that the entrance must be forced to.
+    type: The type of the entrance. `Entrance`, `Statue`, or `Vanilla`.
+    apregion: The name of the Archipelago region that the entrance leads to.
+    """
+
+    name: str
+    statue_name: Optional[str]
+    province: str
+    stage: str
+    room: int
+    layer: int
+    entrance: int
+    tod: int
+    type: str
+    apregion: str
+    flag_space: Optional[str] = None
+    flag: Optional[int] = None
+    vanilla_statue: Optional[bool] = None

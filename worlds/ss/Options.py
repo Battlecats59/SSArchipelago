@@ -359,16 +359,16 @@ class RandomizeEntrances(Choice):
     """
     Shuffles entrances with one another.
     **None**: entrances are vanilla.
-    **Required Dungeons Separately**: required dungeons entrances are only shuffled with each other.
-    **All Surface Dungeons**: all surface dungeons entrances are shuffled with each other.
-    **All Surface Dungeons + Sky Keep** - all surface dungeon entrances AND the Sky Keep entrance are shuffled with each other.
+    **Required Dungeons Only**: only required dungeon entrances are shuffled with each other.
+    **Dungeons Only**: all dungeon entrances are shuffled with each other.
+    **All Entrances**: all shuffle-able entrances are shuffled with each other, with some limitations.
     """
 
     display_name = "Randomize Entrances"
     option_none = 0
-    option_required_dungeons_separately = 1
-    option_all_surface_dungeons = 2
-    option_all_surface_dungeons_and_sky_keep = 3
+    option_required_dungeons_only = 1
+    option_dungeons_only = 2
+    option_all_entrances = 3
     default = 0
 
 
