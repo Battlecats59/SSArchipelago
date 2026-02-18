@@ -490,9 +490,6 @@ class EntranceRando:
         Randomize dungeon entrances based on the player's options.
         """
 
-        exs_to_place = [ex for ex in self.exits if not ex in self.placed_exits]
-        ents_to_place = [ent for ent in self.entrances if not ent in self.placed_entrances]
-
         duns_to_place = deepcopy(self.dungeons)
         randomized_dungeon_entrances = deepcopy(self.dungeon_entrances)
 
@@ -525,52 +522,25 @@ class EntranceRando:
             dun_region = DUNGEON_INITIAL_REGIONS[dun]
             ent_region = DUNGEON_ENTRANCE_REGIONS[ent]
             if self.world.options.empty_unrequired_dungeons and dun in non_req_duns:
-                self.world.get_region(dun_region).add_exits(
-                    {ent_region: f"{dun_region} (Dungeon Exit) --> {ent_region}"},
-                    {ent_region: lambda state: True}
-                )
-                self.world.get_region(ent_region).add_exits(
-                    {dun_region: f"{ent_region} ({ent}) --> {dun_region}"},
-                    {dun_region: lambda state: True}
-                )
-                self.entrance_mapping.append((SSExit(dun_region, "Dungeon Exit"), SSEntrance(ent_region, ent)))
-                self.entrance_mapping.append((SSExit(ent_region, ent), SSEntrance(dun_region, "Dungeon Exit")))
+                no_logic = True
             else:
-                self.world.get_region(dun_region).add_exits(
-                    {ent_region: f"{dun_region} (Dungeon Exit) --> {ent_region}"},
-                    {ent_region: exit_requirements(self.world, f"{dun_region} - Dungeon Exit")}
-                )
-                self.world.get_region(ent_region).add_exits(
-                    {dun_region: f"{ent_region} ({ent}) --> {dun_region}"},
-                    {dun_region: exit_requirements(self.world, f"{ent_region} - {ent}")}
-                )
-                self.entrance_mapping.append((SSExit(dun_region, "Dungeon Exit"), SSEntrance(ent_region, ent)))
-                self.entrance_mapping.append((SSExit(ent_region, ent), SSEntrance(dun_region, "Dungeon Exit")))
+                no_logic = False
+            SSExit(dun_region, "Dungeon Exit", world=self.world).link(SSEntrance(ent_region, ent, world=self.world), reversible=True, no_logic=no_logic)
 
         for dun in req_dun_regions:
             dun_name = [name for name, reg in DUNGEON_INITIAL_REGIONS.items() if reg == dun].pop()
-            ent = [en for ex, en in self.entrance_mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
+            ent = [en for ex, en, x in self.entrance_mapping.mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
             for ex in self.dungeon_exits_to_place[dun_name]:
-                self.world.get_region(ex.region).add_exits(
-                    {ent.region: f"{ex.region} ({ex.name}) --> {ent.region}"},
-                    {ent.region: exit_requirements(self.world, f"{ex.region} - {ex.name}")}
-                )
+                SSExit(ex.region, ex.name, world=self.world).link(ent, reversible=False, plando=True)
         
         for dun in non_req_dun_regions:
             dun_name = [name for name, reg in DUNGEON_INITIAL_REGIONS.items() if reg == dun].pop()
-            ent = [en for ex, en in self.entrance_mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
-            if self.world.options.empty_unrequired_dungeons:
-                for ex in self.dungeon_exits_to_place[dun_name]:
-                    self.world.get_region(ex.region).add_exits(
-                        {ent.region: f"{ex.region} ({ex.name}) --> {ent.region}"},
-                        {ent.region: lambda state: True}
-                    )
-            else:
-                for ex in self.dungeon_exits_to_place[dun_name]:
-                    self.world.get_region(ex.region).add_exits(
-                        {ent.region: f"{ex.region} ({ex.name}) --> {ent.region}"},
-                        {ent.region: exit_requirements(self.world, f"{ex.region} - {ex.name}")}
-                    )
+            ent = [en for ex, en, x in self.entrance_mapping.mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
+            for ex in self.dungeon_exits_to_place[dun_name]:
+                if self.world.options.empty_unrequired_dungeons:
+                    SSExit(ex.region, ex.name, world=self.world).link(ent, reversible=False, plando=True, no_logic=True)
+                else:
+                    SSExit(ex.region, ex.name, world=self.world).link(ent, reversible=False, plando=True)
 
 
     def randomize_trial_gates(self) -> None:

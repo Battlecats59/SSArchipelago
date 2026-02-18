@@ -789,7 +789,9 @@ class HintDistribution(Choice):
 
     display_name = "Archipelago Hint Distribution"
     option_standard = 0
-    option_junk = 1
+    option_standard_with_dungeon_er = 1
+    option_full_entrance_rando = 2
+    option_junk = 3
     default = 0
 
 class SongHints(Choice):
@@ -848,18 +850,41 @@ class SeparateCubeSotS(Toggle):
     """
     If enabled, when a SotS hint points to a Goddess Chest, the hint will change to indicate this and display
     which of the cube progress regions is SotS.
+
+    If the precise hints option is enabled, it will display the exact Goddess chest and cube.
     """
 
     display_name = "Separate Cube SotS"
 
 
-class PreciseItemHints(Toggle):
+class PreciseItemHints(DefaultOnToggle):
     """
     If enabled, item hints will indicate the exact location within a region that is being hinted.
     If disabled, only the region will be hinted.
+    This applies to item hints ONLY.
     """
 
     display_name = "Precise Item Hints"
+
+
+class PreciseHints(Toggle):
+    """
+    If enabled, hints will indicate the exact location within a region that is being hinted.
+    If disabled, only the region will be hinted.
+    This applies to item hints, SotS hints, path hints, and entrance hints.
+    """
+
+    display_name = "Precise Hints"
+
+
+class ExplicitHints(Toggle):
+    """
+    If enabled, Fi hints and gossip stones hint text will be as explicit as possible.
+    For a more immersive game, keep this off.
+    """
+
+    display_name = "Explicit Hints"
+
 
 class SSProgressionBalancing(ProgressionBalancing):
     """
@@ -944,8 +969,10 @@ class SSOptions(PerGameCommonOptions):
     chest_dowsing: ChestDowsing
     dungeon_dowsing: AllowDowsingInDungeons
     impa_sot_hint: PastImpaStoneOfTrialsHint
-    #cube_sots: SeparateCubeSotS
-    #precise_item: PreciseItemHints
+    cube_sots: SeparateCubeSotS
+    precise_item_hints: PreciseItemHints
+    precise_hints: PreciseHints
+    explicit_hints: ExplicitHints
     starting_items: StartInventoryPool
     death_link: DeathLink
     progression_balancing: SSProgressionBalancing

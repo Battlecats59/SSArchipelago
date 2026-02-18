@@ -434,8 +434,8 @@ class SSWorld(World):
                     # Dungeons will be placed later
                     if entrance_short_name is None:
                         raise Exception(f"Randomizable entrance in region {entrance_region} does not have a name")
-                    self.entrances.regions[region_name]["exits"].append(SSExit(region_name, exit_short_name))
-                    self.entrances.regions[entrance_region]["entrances"].append(SSEntrance(entrance_region, entrance_short_name))
+                    self.entrances.regions[region_name]["exits"].append(SSExit(region_name, exit_short_name, world=self))
+                    self.entrances.regions[entrance_region]["entrances"].append(SSEntrance(entrance_region, entrance_short_name, world=self))
                 elif er_option != "none" and entrance.group in [4, 6]:
                     self.entrances.dungeon_exits_to_place[ex_hint_region].append(SSExit(region_name, exit_short_name))
                 elif entrance.group == 7:
@@ -519,7 +519,7 @@ class SSWorld(World):
 
         :param output_directory: The output directory for the .apssr file.
         """
-                # Fill hint data
+        # Fill hint data
         self.hints = Hints(self)
         self.hints.handle_hints()
 
