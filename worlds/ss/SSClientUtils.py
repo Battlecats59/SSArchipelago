@@ -1,3 +1,5 @@
+from NetUtils import HintStatus
+
 # dAcPy_c::LINK
 LINK_PTR = 0x8057578C
 
@@ -134,3 +136,35 @@ CONNECTION_CONNECTED_STATUS = "Dolphin connected successfully."
 CONNECTION_INITIAL_STATUS = "Dolphin connection has not been initiated."
 
 CONSOLE_CONNECTED_STATUS = "Wii connected successfully."
+
+class LocationForHint():
+    """
+    Docstring for LocationForHint
+    """
+
+    location: int
+    player: int
+    status: HintStatus
+
+    def __init__(self, loc: int, plr: int, sts: int = 0):
+        self.location = loc
+        self.player = plr
+
+        if sts == 0:
+            self.status = HintStatus.HINT_UNSPECIFIED
+        elif sts == 10:
+            self.status = HintStatus.HINT_NO_PRIORITY
+        elif sts == 20:
+            self.status = HintStatus.HINT_AVOID
+        elif sts == 30:
+            self.status = HintStatus.HINT_PRIORITY
+        else:
+            self.status = HintStatus.HINT_UNSPECIFIED
+
+    def __eq__(self, other):
+        if not isinstance(other, LocationForHint):
+            return False
+        return self.location == other.location and self.player == other.player
+    
+    def __hash__(self):
+        return hash((self.location, self.player))

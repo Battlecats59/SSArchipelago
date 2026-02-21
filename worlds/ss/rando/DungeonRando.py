@@ -234,27 +234,36 @@ class DungeonKeyHandler:
                 if self.world.get_location(loc).item is None
             ])
         elif self.world.options.lanayru_caves_small_key == "lanayru":
-            # Let's check to see where the starting statue is
-            # We MUST place the small key on that side of caves
-            if self.world.entrances.starting_statues["Lanayru Province"][0] in [
-                "Lanayru Sand Sea Docks - Statue Entrance",
-                "Pirate Stronghold - Statue Entrance",
-                "Shipyard - Statue Entrance",
-                "Skipper's Retreat - Statue Entrance",
-            ]:
-                # In this case, we must place the key in sand sea
+            # Firstly, if ER is enabled, this really limits us
+            # To simplify things, let's just place it in caves
+            # Then we'll limit cave entrances during ER
+            if self.world.options.randomize_entrances == "all_entrances":
                 locs_placeable.extend([
-                    loc for loc, data in LOCATION_TABLE.items()
-                    if data.region in ["Lanayru Sand Sea"]
-                    and self.world.get_location(loc).item is None
+                    loc for loc in ["Lanayru Caves - Chest", "Lanayru Caves - Golo's Gift"]
+                    if self.world.get_location(loc).item is None
                 ])
             else:
-                # Otherwise, place the key anywhere except sand sea
-                locs_placeable.extend([
-                    loc for loc, data in LOCATION_TABLE.items()
-                    if data.region in ["Lanayru Mine", "Lanayru Desert", "Lanayru Caves", "Lanayru Gorge"]
-                    and self.world.get_location(loc).item is None
-                ])
+                # Let's check to see where the starting statue is
+                # We MUST place the small key on that side of caves
+                if self.world.entrances.starting_statues["Lanayru Province"][0] in [
+                    "Lanayru Sand Sea Docks - Statue Entrance",
+                    "Pirate Stronghold - Statue Entrance",
+                    "Shipyard - Statue Entrance",
+                    "Skipper's Retreat - Statue Entrance",
+                ]:
+                    # In this case, we must place the key in sand sea
+                    locs_placeable.extend([
+                        loc for loc, data in LOCATION_TABLE.items()
+                        if data.region in ["Lanayru Sand Sea"]
+                        and self.world.get_location(loc).item is None
+                    ])
+                else:
+                    # Otherwise, place the key anywhere except sand sea
+                    locs_placeable.extend([
+                        loc for loc, data in LOCATION_TABLE.items()
+                        if data.region in ["Lanayru Mine", "Lanayru Desert", "Lanayru Caves", "Lanayru Gorge"]
+                        and self.world.get_location(loc).item is None
+                    ])
         elif self.world.options.lanayru_caves_small_key == "anywhere":
             return []
         

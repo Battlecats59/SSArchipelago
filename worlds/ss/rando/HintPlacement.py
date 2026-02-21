@@ -33,18 +33,20 @@ class Hints:
 
         self.placed_hints: dict[str, list] = {}
         self.placed_hints_log: dict[str, list] = {}
-        self.locations_for_hint: dict[str, list] = {}
+        self.locations_for_hint: dict = {}
         self.hinted_locations: list[Location] = []
-        self.hinted_item_locations: list = []
-        self.distribution_option = self.world.options.hint_distribution
-        if self.distribution_option == "standard":
-            self.distribution: dict[str, any] = HINT_DISTRIBUTIONS["Standard"]
-        if self.distribution_option == "standard_with_dungeon_er":
-            self.distribution: dict[str, any] = HINT_DISTRIBUTIONS["Standard with Dungeon ER"]
-        if self.distribution_option == "full_entrance_rando":
-            self.distribution: dict[str, any] = HINT_DISTRIBUTIONS["Full Entrance Rando"]
-        if self.distribution_option == "junk":
-            self.distribution: dict[str, any] = HINT_DISTRIBUTIONS["Junk"]
+        self.distribution_option = [
+            "Standard",
+            "Weak",
+            "Strong",
+            "Funky",
+            "Location and Item Hints Only",
+            "Large Multiworld",
+            "Standard with Dungeon ER",
+            "Full Entrance Rando",
+            "Junk",
+        ][self.world.options.hint_distribution.value]
+        self.distribution: dict[str, any] = HINT_DISTRIBUTIONS[self.distribution_option]
 
         self.always_locations = [
             self.world.get_location(loc)
@@ -114,6 +116,9 @@ class Hints:
                 else:
                     self.placed_hints["Fi"] = [fh.to_fi_text() for fh in fi_hints]
                 self.placed_hints_log["Fi"] = [fh.to_log_text() for fh in fi_hints]
+                self.locations_for_hint["Fi"] = [(fh.location.address, fh.location.player, 0) for fh in fi_hints if isinstance(fh, SSLocationHint) or isinstance(fh, SSItemHint)]
+                if self.world.options.precise_hints:
+                    self.locations_for_hint["Fi"].extend([(fh.location.address, self.world.player, 30 if fh.location.item.player == self.world.player else 0) for fh in fi_hints if isinstance(fh, SSSotSHint) or isinstance(fh, SSPathHint)])
             elif data.type == SSHintType.STONE:
                 stone_hints = []
                 for _ in range(self.distribution["hints_per_stone"]):
@@ -123,6 +128,9 @@ class Hints:
                 else:
                     self.placed_hints[hint] = [sh.to_stone_text() for sh in stone_hints]
                 self.placed_hints_log[hint] = [sh.to_log_text() for sh in stone_hints]
+                self.locations_for_hint[hint] = [(sh.location.address, sh.location.player, 0) for sh in stone_hints if isinstance(sh, SSLocationHint) or isinstance(sh, SSItemHint)]
+                if self.world.options.precise_hints:
+                    self.locations_for_hint[hint].extend([(sh.location.address, self.world.player, 30 if sh.location.item.player == self.world.player else 0) for sh in stone_hints if isinstance(sh, SSSotSHint) or isinstance(sh, SSPathHint)])
             elif data.type == SSHintType.SONG:
                 song_hints = self._handle_song_hints(hint)
                 self.placed_hints[hint] = song_hints
@@ -343,7 +351,7 @@ class Hints:
     def _create_barren_hints(self, q) -> list[SSBarrenHint]:
         hints = []
 
-        if q < len(self.hint_regions.barren_regions):
+        if q > len(self.hint_regions.barren_regions):
             num_hints = len(self.hint_regions.barren_regions)
         else:
             num_hints = q
@@ -439,7 +447,7 @@ class Hints:
             else:
                 return [useless_text]
         if self.world.options.song_hints == "direct":
-            self.locations_for_hint[hint] = [f"{trial_connection} - Trial Reward"]
+            self.locations_for_hint[hint] = [(f"{trial_connection} - Trial Reward", self.world.player, 0)]
             player_name = self.multiworld.get_player_name(trial_item.player)
             item_name = trial_item.name
             return [direct_text.format(plr=player_name, itm=item_name)]

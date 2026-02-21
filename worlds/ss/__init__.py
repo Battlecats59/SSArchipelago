@@ -364,9 +364,6 @@ class SSWorld(World):
         elif self.options.randomize_entrances == "dungeons_only" or self.options.randomize_entrances == "required_dungeons_only":
             self.entrances.randomize_dungeon_entrances_only()
 
-        print(self.entrances.entrance_mapping.output_entrance_mapping())
-        
-
         #for ent in self.get_entrances():
         #    print(f"{ent.parent_region} -> {ent.name} -> {ent.connected_region}")
 
@@ -495,8 +492,10 @@ class SSWorld(World):
             )
         raise KeyError(f"Invalid item name: {name}")
     
- #   def post_fill(self):
-
+    def post_fill(self):
+        # Fill hint data
+        self.hints = Hints(self)
+        self.hints.handle_hints()
 
     def region_to_hint_region(self, region: Region | str) -> str:
         """
@@ -519,9 +518,6 @@ class SSWorld(World):
 
         :param output_directory: The output directory for the .apssr file.
         """
-        # Fill hint data
-        self.hints = Hints(self)
-        self.hints.handle_hints()
 
         # spheres = self.multiworld.get_spheres()
         # locs = {}
@@ -537,6 +533,9 @@ class SSWorld(World):
             self.multiworld.get_player_name(i + 1)
             for i in range(self.multiworld.players)
         ]
+
+        for loc in self.multiworld.get_locations():
+            print(f"{loc.name}: {loc.item.name}")
 
         # seed_name on web adds an additional 'W', making the seed 21 characters long.
         if 'W' in multiworld.seed_name:
@@ -703,8 +702,10 @@ class SSWorld(World):
             "chest_dowsing": self.options.chest_dowsing.value,
             "dungeon_dowsing": self.options.dungeon_dowsing.value,
             "impa_sot_hint": self.options.impa_sot_hint.value,
-            "cube_sots": 0, #self.options.cube_sots.value,
-            "precise_item": 1, #self.options.precise_item.value,
+            "cube_sots": self.options.cube_sots.value,
+            "precise_item_hints": self.options.precise_item_hints.value,
+            "precise_hints": self.options.precise_hints.value,
+            "explicit_hints": self.options.explicit_hints.value,
             "starting_items": self.options.starting_items.value,
             "death_link": self.options.death_link.value,
             "locations_for_hint": getattr(getattr(self, "hints", None), "locations_for_hint", []),

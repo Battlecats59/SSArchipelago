@@ -303,8 +303,11 @@ class EntranceRando:
         if len(self.reachable_exits) == 0:
             return
         
-        #og_reachable_exits = deepcopy(self.reachable_exits)
-        ex = self.world.random.choice(list(self.reachable_exits))
+        if len(self.reachable_exits) == 2 and any([not ex.reversible for ex in self.reachable_exits]):
+            # This is a special case
+            ex = [ex for ex in self.reachable_exits if not ex.reversible].pop()
+        else:
+            ex = self.world.random.choice(list(self.reachable_exits))
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=dead_ends, dead_ends=dead_ends)
         print(f"{ex} ---> {entrance_to_place}")
         reversible = ex.reversible and entrance_to_place.reversible
@@ -382,7 +385,20 @@ class EntranceRando:
         # Couple edge cases to account for
         if SSEntrance("Volcano Summit - Before First Frog", "Path across from First Frog") not in self.entrance_mapping.entrances:
             # Since this part of summit is not travelable backwards
-            placeable_entrances.remove(SSEntrance("Volcano Summit - After Second Frog", "Dungeon Entrance in Volcano Summit"))
+            ent = SSEntrance("Volcano Summit - After Second Frog", "Dungeon Entrance in Volcano Summit")
+            if ent in placeable_entrances:
+                # May not be in placeable ents, so check first
+                placeable_entrances.remove(ent)
+
+        if (
+            SSEntrance("Lanayru Caves - Caves", "North Exit") not in self.entrance_mapping.entrances
+            and SSEntrance("Lanayru Caves - Caves", "East Exit") not in self.entrance_mapping.entrances
+            and SSEntrance("Lanayru Caves - Past Crawlspace", "Path away from Crawlspace") not in self.entrance_mapping.entrances
+            and (self.world.options.lanayru_caves_small_key == "caves" or self.world.options.lanayru_caves_small_key == "lanayru")
+        ):
+            ent = SSEntrance("Lanayru Caves - Past Locked Door", "Path away from Door")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
 
         if dead_ends:
             return self.world.random.choice(list(placeable_entrances))
@@ -430,6 +446,7 @@ class EntranceRando:
         :param ex: The starting exit, as an SSExit object.
         """
         self.scanned_placeable_exits.clear()
+        self.scanned_reachable_regions.clear()
         self.scanned_exits.clear()
 
         return self.follow_exit_chain(ex)

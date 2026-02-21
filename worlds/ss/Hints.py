@@ -481,6 +481,73 @@ HINT_DISTRIBUTIONS = {
             "junk": {"order": 6, "weight": 0.5, "fixed": 0, "copies": 1},
         },
     },
+    "Weak": {
+        "fi": 0,
+        "hints_per_stone": 1,
+        "max_order": 6,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 4.0, "fixed": 2, "copies": 1},
+            "item": {"order": 2, "weight": 2.0, "fixed": 2, "copies": 1},
+            "sots": {"order": 3, "weight": 1.0, "fixed": 0, "copies": 1},
+            "barren": {"order": 5, "weight": 0.2, "fixed": 0, "copies": 1},
+            "path": {"order": 4, "weight": 0.5, "fixed": 0, "copies": 1}, # Fixed per required dungeon
+            "junk": {"order": 6, "weight": 2.0, "fixed": 0, "copies": 1},
+        },
+    },
+    "Strong": {
+        "fi": 6,
+        "hints_per_stone": 2,
+        "max_order": 6,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 2.0, "fixed": 4, "copies": 1},
+            "item": {"order": 2, "weight": 4.0, "fixed": 6, "copies": 1},
+            "sots": {"order": 3, "weight": 3.0, "fixed": 4, "copies": 1},
+            "barren": {"order": 5, "weight": 1.5, "fixed": 1, "copies": 1},
+            "path": {"order": 4, "weight": 2.0, "fixed": 1, "copies": 1}, # Fixed per required dungeon
+            "junk": {"order": 6, "weight": 0.1, "fixed": 0, "copies": 1},
+        },
+    },
+    "Funky": {
+        "fi": 2,
+        "hints_per_stone": 2,
+        "max_order": 6,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 1.2, "fixed": 0, "copies": 1},
+            "item": {"order": 2, "weight": 1.5, "fixed": 0, "copies": 1},
+            "sots": {"order": 3, "weight": 1.8, "fixed": 2, "copies": 1},
+            "barren": {"order": 5, "weight": 0.2, "fixed": 1, "copies": 1},
+            "path": {"order": 4, "weight": 1.5, "fixed": 2, "copies": 1}, # Fixed per required dungeon
+            "junk": {"order": 6, "weight": 1.5, "fixed": 4, "copies": 1},
+        },
+    },
+    "Location and Item Hints Only": {
+        "fi": 0,
+        "hints_per_stone": 2,
+        "max_order": 3,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 1.0, "fixed": 4, "copies": 1},
+            "item": {"order": 2, "weight": 1.5, "fixed": 6, "copies": 1},
+            "junk": {"order": 3, "weight": 0.5, "fixed": 0, "copies": 1},
+        },
+    },
+    "Large Multiworld": {
+        "fi": 4,
+        "hints_per_stone": 2,
+        "max_order": 6,
+        "distribution": {
+            "always": {"order": 0, "weight": 0.0, "fixed": 0, "copies": 1},
+            "sometimes": {"order": 1, "weight": 1.5, "fixed": 2, "copies": 1},
+            "item": {"order": 2, "weight": 4.5, "fixed": 6, "copies": 1},
+            "sots": {"order": 3, "weight": 2.5, "fixed": 0, "copies": 1},
+            "barren": {"order": 5, "weight": 1.0, "fixed": 0, "copies": 1},
+            "path": {"order": 4, "weight": 1.5, "fixed": 0, "copies": 1}, # Fixed per required dungeon
+            "junk": {"order": 6, "weight": 0.2, "fixed": 0, "copies": 1},
+        },
+    },
     "Standard with Dungeon ER": {
         "fi": 0,
         "hints_per_stone": 2,

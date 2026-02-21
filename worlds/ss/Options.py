@@ -789,9 +789,14 @@ class HintDistribution(Choice):
 
     display_name = "Archipelago Hint Distribution"
     option_standard = 0
-    option_standard_with_dungeon_er = 1
-    option_full_entrance_rando = 2
-    option_junk = 3
+    option_weak = 1
+    option_strong = 2
+    option_funky = 3
+    option_location_and_item_hints_only = 4
+    option_large_multiworld = 5
+    option_standard_with_dungeon_er = 6
+    option_full_entrance_rando = 7
+    option_junk = 8
     default = 0
 
 class SongHints(Choice):

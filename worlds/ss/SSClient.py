@@ -20,7 +20,7 @@ from CommonClient import (
     logger,
     server_loop,
 )
-from NetUtils import ClientStatus, NetworkItem
+from NetUtils import ClientStatus, NetworkItem, HintStatus
 
 from .Items import ITEM_TABLE, LOOKUP_ID_TO_NAME
 from .Locations import LOCATION_TABLE, SSLocation, SSLocFlag, SSLocType, SSLocCheckedFlag
@@ -810,8 +810,8 @@ class SSContext(CommonContext):
                 checked = bool(flag & flag_value)
 
                 if checked or self.finished_game:
-                    for locname in self.locations_for_hint.get(hint, []):
-                        self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
+                    for loc, plr, sts in self.locations_for_hint.get(hint, []):
+                        self.hints_checked.add(LocationForHint(loc, plr, sts))
 
             for i, (name, (flag_bit, flag_value, addr)) in enumerate(cubes_table):
                 flag = storyflags.lookup_byte(addr + flag_bit)
@@ -835,7 +835,8 @@ class SSContext(CommonContext):
             if locations_checked:
                 await self.send_msgs([{"cmd": "LocationChecks", "locations": locations_checked}]) 
             if hints_checked:
-                await self.send_msgs([{"cmd": "LocationScouts", "locations": hints_checked, "create_as_hint": 2}])
+                for hint in hints_checked:
+                    await self.send_msgs([{"cmd": "CreateHints", "locations": [hint.location], "player": hint.player, "status": hint.status}])
 
             self.checked_hints |= hints_checked
 
