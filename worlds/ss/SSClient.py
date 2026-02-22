@@ -443,15 +443,6 @@ class SSContext(CommonContext):
             # we can skip checking "DeathLink" in ctx.tags, as otherwise we wouldn't have been send this
             if "BreathLink" in tags and self.last_breath_link != args["data"]["time"]:
                 self.on_breathlink(args["data"])
-
-    def on_deathlink(self, data: dict[str, Any]) -> None:
-        """
-        Handle a DeathLink event.
-
-        :param data: The data associated with the DeathLink event.
-        """
-        super().on_deathlink(data)
-        asyncio.create_task(self._give_death())
     
     def on_breathlink(self, data: typing.Dict[str, typing.Any]) -> None:
         """Gets dispatched when a new BreathLink is triggered by another linked player."""
