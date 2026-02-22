@@ -695,35 +695,35 @@ class SSContext(CommonContext):
         item_id = ITEM_TABLE[item_name].item_id  # In game item ID
 
         # Loop through the item array, placing the item in an empty slot (0xFF).
-        for idx in range(self.len_give_item_array):
-            slot = await self.read_byte(ARCHIPELAGO_ARRAY_ADDR + idx)
-            if slot == 0xFF:
-                # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
-                await self.write_byte(ARCHIPELAGO_ARRAY_ADDR + idx, item_id)
-                await asyncio.sleep(0.25)
+        slot = await self.read_byte(ARCHIPELAGO_ITEM_INDEX)
+        if slot == 0xFF:
+            # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
+            await self.write_byte(ARCHIPELAGO_ITEM_INDEX, item_id)
+            await asyncio.sleep(0.25)
+            await self.cache_link_data() # Recalculate State & Action
+            # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
+            # or bed which could delete the item, so we should check for a reload
+            while await self.read_byte(ARCHIPELAGO_IS_ITEM_LOADING) != 0x00:
+                await asyncio.sleep(0.2)
                 await self.cache_link_data() # Recalculate State & Action
-                # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
-                # or bed which could delete the item, so we should check for a reload
-                while self.is_link_not_in_action([ITEM_GET_ACTION]):
-                    await asyncio.sleep(0.2)
-                    await self.cache_link_data() # Recalculate State & Action
-                    # While the client won't initiate an item send while the player is swimming, the player
-                    # can still receive items underwater if they're sent one just before entering the water.
-                    # The patched game *will* still give them the item, but it won't put them in the item action,
-                    # so we shouldn't resend the item, or else it will be duplicated.
-                    if self.is_link_in_action(SWIM_ACTIONS):
-                        break
-                    # If state is 0, that means a reload occurred, so we should resend the item.
-                    # However, we shouldn't resend the item if the user immediately enters the item get action anyway
-                    # (which can happen if this reload occurs due to a door, in which case the original item will still be received)
-                    if not self.check_ingame():
-                        # Reset the value at this array index to 0, to avoid duplicating the item if it was never read in the first place
-                        await self.write_byte(ARCHIPELAGO_ARRAY_ADDR + idx, 0xFF)
-                        debug_text = f"DEBUG: A reload deleted {self.player_names[self.slot]}'s {item_name} (ID {item_id}). Resending the item..."
-                        logger.info(debug_text)
-                        self.forward_client_message(debug_text)
-                        return False
-                return True
+                # While the client won't initiate an item send while the player is swimming, the player
+                # can still receive items underwater if they're sent one just before entering the water.
+                # The patched game *will* still give them the item, but it won't put them in the item action,
+                # so we shouldn't resend the item, or else it will be duplicated.
+                # if self.is_link_in_action(SWIM_ACTIONS):
+                #    break
+                # If state is 0, that means a reload occurred, so we should resend the item.
+                # However, we shouldn't resend the item if the user immediately enters the item get action anyway
+                # (which can happen if this reload occurs due to a door, in which case the original item will still be received)
+                if not self.check_ingame():
+                    # Reset the value at this array index to 0, to avoid duplicating the item if it was never read in the first place
+                    await self.write_byte(ARCHIPELAGO_ITEM_INDEX, 0xFF)
+                    await self.write_byte(ARCHIPELAGO_IS_ITEM_LOADING, 0x00)
+                    debug_text = f"DEBUG: A reload deleted {self.player_names[self.slot]}'s {item_name} (ID {item_id}). Resending the item..."
+                    logger.info(debug_text)
+                    self.forward_client_message(debug_text)
+                    return False
+            return True
 
         # If unable to place the item in the array, return False.
         return False
@@ -809,9 +809,9 @@ class SSContext(CommonContext):
                 flag = storyflags.lookup_byte(addr + flag_bit)
                 checked = bool(flag & flag_value)
 
-                if checked or self.finished_game:
-                    for locname in self.locations_for_hint.get(hint, []):
-                        self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
+                #if checked or self.finished_game:
+                    #for locname in self.locations_for_hint.get(hint, []):
+                    #    self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
 
             for i, (name, (flag_bit, flag_value, addr)) in enumerate(cubes_table):
                 flag = storyflags.lookup_byte(addr + flag_bit)
