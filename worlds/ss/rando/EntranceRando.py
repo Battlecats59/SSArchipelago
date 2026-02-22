@@ -194,7 +194,6 @@ class EntranceRando:
             return
         
         self.find_reachable_region_exits(self.world.origin_region_name)
-        #og_reachable_exits = deepcopy(self.reachable_exits)
         ex = self.world.random.choice(list(self.reachable_exits))
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=False, dead_ends=False, banned=set([ogex.toEntrance() for ogex in self.reachable_exits]))
         print(f"{ex} ---> {entrance_to_place}")
@@ -225,7 +224,6 @@ class EntranceRando:
             return
         
         self.find_reachable_region_exits(self.world.origin_region_name)
-        #og_reachable_exits = deepcopy(self.reachable_exits)
         ex = self.world.random.choice(list(self.reachable_exits))
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=[dun], dead_ends=False, banned=set([ogex.toEntrance() for ogex in self.reachable_exits]))
         print(f"{ex} ---> {entrance_to_place}")
@@ -269,7 +267,6 @@ class EntranceRando:
             return
         
         self.find_reachable_region_exits(self.world.origin_region_name)
-        #og_reachable_exits = deepcopy(self.reachable_exits)
         ex = self.world.random.choice(list(self.reachable_exits))
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=True, dead_ends=True, banned=set([ogex.toEntrance() for ogex in self.reachable_exits]))
         print(f"{ex} ---> {entrance_to_place}")
@@ -384,6 +381,18 @@ class EntranceRando:
             ent = SSEntrance("Volcano Summit - After Second Frog", "Dungeon Entrance in Volcano Summit")
             if ent in placeable_entrances:
                 # May not be in placeable ents, so check first
+                placeable_entrances.remove(ent)
+
+        if SSExit("Thunderhead - Isle of Songs - Outside", "Crawlspace after Bridge Puzzle") not in self.entrance_mapping.exits:
+            # Make sure the exit is placed first, otherwise the bridge won't be done
+            ent = SSEntrance("Thunderhead - Isle of Songs - Outside", "Crawlspace after Bridge Puzzle")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if SSEntrance("Lanayru Sand Sea - Shipyard - Construction Bay", "Upper Door") not in self.entrance_mapping.entrances:
+            # Make sure the upper entrance to construction bay is placed before the lower
+            ent = SSEntrance("Lanayru Sand Sea - Shipyard - Construction Bay", "Lower Door")
+            if ent in placeable_entrances:
                 placeable_entrances.remove(ent)
 
         if (

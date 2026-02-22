@@ -3876,7 +3876,7 @@ Lanayru Sand Sea - Sea - Dungeon Entrance in Lanayru Sand Sea:
   ss_entrance_name: Sandship - Main Entrance
   ss_exit_name: Lanayru Sand Sea - Sandship Dock Exit
 Lanayru Sand Sea - Shipyard - Construction Bay - Lower Door:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: false
   connecting_entrance: Door
   connecting_region: Lanayru Sand Sea - Shipyard - Outside
@@ -3896,7 +3896,7 @@ Lanayru Sand Sea - Shipyard - Construction Bay - Lower Door:
   ss_entrance_name: Shipyard - Construction Bay Lower Entrance
   ss_exit_name: Shipyard - Construction Bay - Lower Exit
 Lanayru Sand Sea - Shipyard - Construction Bay - Upper Door:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: false
   connecting_entrance: Door
   connecting_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
@@ -3936,7 +3936,7 @@ Lanayru Sand Sea - Shipyard - Outside - Boat to Sea:
   ss_entrance_name: Lanayru Sand Sea - Shipyard Dock Entrance
   ss_exit_name: Shipyard - Dock Exit
 Lanayru Sand Sea - Shipyard - Outside - Door:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: false
   connecting_entrance: Lower Door
   connecting_region: Lanayru Sand Sea - Shipyard - Construction Bay
@@ -3978,7 +3978,7 @@ Lanayru Sand Sea - Shipyard - Outside - Roller Coaster:
   ss_entrance_name: null
   ss_exit_name: null
 Lanayru Sand Sea - Shipyard - Past Roller Coaster - Door:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: false
   connecting_entrance: Upper Door
   connecting_region: Lanayru Sand Sea - Shipyard - Construction Bay

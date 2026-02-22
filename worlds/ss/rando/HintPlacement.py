@@ -116,7 +116,9 @@ class Hints:
                 else:
                     self.placed_hints["Fi"] = [fh.to_fi_text() for fh in fi_hints]
                 self.placed_hints_log["Fi"] = [fh.to_log_text() for fh in fi_hints]
-                self.locations_for_hint["Fi"] = [(fh.location.address, fh.location.player, 0) for fh in fi_hints if isinstance(fh, SSLocationHint) or isinstance(fh, SSItemHint)]
+                self.locations_for_hint["Fi"] = [(fh.location.address, fh.location.player, 0) for fh in fi_hints if isinstance(fh, SSLocationHint)]
+                if self.world.options.precise_item_hints:
+                    self.locations_for_hint["Fi"].extend([(fh.location.address, fh.location.player, 0) for fh in fi_hints if isinstance(fh, SSItemHint)])
                 if self.world.options.precise_hints:
                     self.locations_for_hint["Fi"].extend([(fh.location.address, self.world.player, 30 if fh.location.item.player == self.world.player else 0) for fh in fi_hints if isinstance(fh, SSSotSHint) or isinstance(fh, SSPathHint)])
             elif data.type == SSHintType.STONE:
@@ -128,7 +130,9 @@ class Hints:
                 else:
                     self.placed_hints[hint] = [sh.to_stone_text() for sh in stone_hints]
                 self.placed_hints_log[hint] = [sh.to_log_text() for sh in stone_hints]
-                self.locations_for_hint[hint] = [(sh.location.address, sh.location.player, 0) for sh in stone_hints if isinstance(sh, SSLocationHint) or isinstance(sh, SSItemHint)]
+                self.locations_for_hint[hint] = [(sh.location.address, sh.location.player, 0) for sh in stone_hints if isinstance(sh, SSLocationHint)]
+                if self.world.options.precise_item_hints:
+                    self.locations_for_hint[hint].extend([(sh.location.address, sh.location.player, 0) for sh in stone_hints if isinstance(sh, SSItemHint)])
                 if self.world.options.precise_hints:
                     self.locations_for_hint[hint].extend([(sh.location.address, self.world.player, 30 if sh.location.item.player == self.world.player else 0) for sh in stone_hints if isinstance(sh, SSSotSHint) or isinstance(sh, SSPathHint)])
             elif data.type == SSHintType.SONG:
