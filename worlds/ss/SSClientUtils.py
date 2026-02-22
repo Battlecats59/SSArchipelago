@@ -46,10 +46,10 @@ CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
 
 # This is an array of length 0x10 where each element is a byte and contains item IDs for items to give the player.
 # 0xFF represents no item. The array is read and cleared every frame.
-ARCHIPELAGO_ARRAY_ADDR = 0x80678770 # ARRAY[16]
+# ARCHIPELAGO_ARRAY_ADDR = 0x80678770 # ARRAY[16]
+ARCHIPELAGO_SLOT_ADDR = 0x806786A0
 # WILL BE UPDATED WHEN THE BUILD IS RELEASED
-ARCHIPELAGO_ITEM_INDEX = 0x80686D90
-ARCHIPELAGO_IS_ITEM_LOADING = 0x8068690C
+ARCHIPELAGO_ITEM_INDEX = EXPECTED_INDEX_ADDR + 2
 
 # This is the address that holds the player's file name.
 FILE_NAME_ADDR = 0x80955D38  # ARRAY[16]

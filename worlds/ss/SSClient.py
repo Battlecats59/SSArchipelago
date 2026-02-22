@@ -632,7 +632,7 @@ class SSContext(CommonContext):
 
         :return: The string containing the slot name.
         """
-        slot_bytes = await self.read_bytes(ARCHIPELAGO_ARRAY_ADDR + 0x14, 0x10)
+        slot_bytes = await self.read_bytes(ARCHIPELAGO_SLOT_ADDR, 0x10)
         slot_bytes = slot_bytes.replace(b"\xFF", b"")
 
         return slot_bytes.decode("utf-8")
@@ -701,28 +701,6 @@ class SSContext(CommonContext):
             await self.write_byte(ARCHIPELAGO_ITEM_INDEX, item_id)
             await asyncio.sleep(0.25)
             await self.cache_link_data() # Recalculate State & Action
-            # If this happens, this may be an indicator that the player interrupted the itemget with something like a Fi call
-            # or bed which could delete the item, so we should check for a reload
-            while await self.read_byte(ARCHIPELAGO_IS_ITEM_LOADING) != 0x00:
-                await asyncio.sleep(0.2)
-                await self.cache_link_data() # Recalculate State & Action
-                # While the client won't initiate an item send while the player is swimming, the player
-                # can still receive items underwater if they're sent one just before entering the water.
-                # The patched game *will* still give them the item, but it won't put them in the item action,
-                # so we shouldn't resend the item, or else it will be duplicated.
-                # if self.is_link_in_action(SWIM_ACTIONS):
-                #    break
-                # If state is 0, that means a reload occurred, so we should resend the item.
-                # However, we shouldn't resend the item if the user immediately enters the item get action anyway
-                # (which can happen if this reload occurs due to a door, in which case the original item will still be received)
-                if not self.check_ingame():
-                    # Reset the value at this array index to 0, to avoid duplicating the item if it was never read in the first place
-                    await self.write_byte(ARCHIPELAGO_ITEM_INDEX, 0xFF)
-                    await self.write_byte(ARCHIPELAGO_IS_ITEM_LOADING, 0x00)
-                    debug_text = f"DEBUG: A reload deleted {self.player_names[self.slot]}'s {item_name} (ID {item_id}). Resending the item..."
-                    logger.info(debug_text)
-                    self.forward_client_message(debug_text)
-                    return False
             return True
 
         # If unable to place the item in the array, return False.
@@ -749,6 +727,7 @@ class SSContext(CommonContext):
                         await self.cache_link_data()
 
                     # Increment the expected index.
+                    # await asyncio.sleep(0.25)
                     await self.write_short(EXPECTED_INDEX_ADDR, idx + 1)
 
 
@@ -1003,7 +982,7 @@ class SSContext(CommonContext):
             and self.validate_link_state()
             and self.validate_link_action()
             and not await self.check_in_minigame()
-            and self.current_stage_name != DEMISE_STAGE
+            and self.can_get_items_on_stage(self.current_stage_name)
         )
 
     async def can_send_items(self) -> bool:
@@ -1011,6 +990,19 @@ class SSContext(CommonContext):
         Link must be on File 1 and not on the tile screen to send items.
         """
         return (not await self.check_on_title_screen()) and await self.check_on_file_1()
+    
+    def can_get_items_on_stage(self, stage_name: str) -> bool:
+        # don't receive items in a boss arena or post-boss arena
+        if stage_name.startswith('B'):
+            return False
+        
+        # don't receive items in sealed temple before getting the Song from Impa
+        # (yes this is hacky)
+        if stage_name == "F402":
+            return SSLocation.get_apid(89) in self.locations_checked
+        
+        return True
+
 
 async def do_sync_task(ctx: SSContext) -> None:
     """
