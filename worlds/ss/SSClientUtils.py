@@ -138,7 +138,7 @@ CONSOLE_CONNECTED_STATUS = "Wii connected successfully."
 COLOR_CONTROL_SEQUENCES = {
     # closest equivalents available in SS
     "black": "\x0e\x00\x03\x02\x0c",
-    "red": "\x0e\x00\x03\x02\x09",
+    "red": "\x0e\x00\x03\x02\x01",
     "green": "\x0e\x00\x03\x02\x04",
     "yellow": "\x0e\x00\x03\x02\x0b",
     "blue": "\x0e\x00\x03\x02\x03",
