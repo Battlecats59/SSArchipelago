@@ -56,7 +56,11 @@ class AsyncWiiMemoryClient:
         self.transport = None
         self.protocol = None
         self.established = False
-        
+        # Number of additional attempts after the first try (total attempts = retry_count + 1)
+        self.retry_count: int = 2
+        # Base backoff in seconds; exponential backoff will be applied between retries
+        self.retry_backoff: float = 0.2
+
         # Queue for UDP queries to the wii
         self.command_queue = asyncio.Queue()
         self.current_request: Optional[CommandRequest] = None
@@ -114,20 +118,49 @@ class AsyncWiiMemoryClient:
         else:
             raise Exception(f"Establishing UDP connection failed")
     
-    async def _send_command_queued(self, command: bytes, timeout=2):
-        """Queue up command to read/write to console"""
-            
-        request = CommandRequest(command, timeout)
-        await self.command_queue.put(request)
+    async def _send_command_queued(self, command: bytes, timeout=2, retries: Optional[int] = None):
+        """Queue up command to read/write to console with optional retries/backoff.
+
+        This will attempt the command up to `retries + 1` times (default uses
+        `self.retry_count`) with exponential backoff between attempts. On the
+        final failure a `asyncio.TimeoutError` is raised to keep compatibility
+        with existing callers.
+        """
+
+        if retries is None:
+            retries = self.retry_count
+
+        last_exception = None
+        # Try up to retries+1 times
+        for attempt in range(retries + 1):
+            request = CommandRequest(command, timeout)
+            await self.command_queue.put(request)
+
+            try:
+                response = await asyncio.wait_for(request.future, timeout=timeout)
+                return response
+            except asyncio.TimeoutError as e:
+                last_exception = e
+                print(
+                    f"Command {command!r} timed out (attempt {attempt+1}/{retries+1})"
+                )
+
+                # Cancel the request future if still pending
+                try:
+                    if not request.future.done():
+                        request.future.cancel()
+                except Exception:
+                    pass
+
+                # If we have more attempts left, wait with exponential backoff then retry
+                if attempt < retries:
+                    backoff = self.retry_backoff * (2 ** attempt)
+                    await asyncio.sleep(backoff)
+                    continue
+                # No attempts left — re-raise the last TimeoutError
+                raise last_exception
         
-        try:
-            # Wait for wii's response
-            response = await asyncio.wait_for(request.future, timeout=timeout)
-            return response
-        except asyncio.TimeoutError:
-            print(f"Command {command} timed out")
-            self.established = False
-            raise
+        raise last_exception
 
     async def _process_command_queue(self):
         """Process commands from queue with rate limiting"""
