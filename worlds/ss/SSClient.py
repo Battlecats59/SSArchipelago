@@ -785,9 +785,9 @@ class SSContext(CommonContext):
                 flag = storyflags.lookup_byte(addr + flag_bit)
                 checked = bool(flag & flag_value)
 
-                #if checked or self.finished_game:
-                    #for locname in self.locations_for_hint.get(hint, []):
-                    #    self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
+                if checked or self.finished_game:
+                    for locname in self.locations_for_hint.get(hint, []):
+                        self.hints_checked.add(SSLocation.get_apid(LOCATION_TABLE[locname].code))
 
             for i, (name, (flag_bit, flag_value, addr)) in enumerate(cubes_table):
                 flag = storyflags.lookup_byte(addr + flag_bit)
