@@ -8,6 +8,7 @@ import socket
 import struct
 import threading
 from typing import TYPE_CHECKING, Any, List, Optional
+import typing
 
 import dolphin_memory_engine
 
@@ -271,6 +272,16 @@ class SSCommandProcessor(ClientCommandProcessor):
             else:
                 Utils.async_start(self.ctx.update_death_link(True))
                 logger.info("Deathlink enabled.")
+    
+    def _cmd_breathlink(self) -> None:
+        """Toggle BreathLink."""
+        if isinstance(self.ctx, SSContext):
+            if "BreathLink" in self.ctx.tags:
+                Utils.async_start(self.ctx.update_breath_link(False))
+                logger.info("Breathlink disabled.")
+            else:
+                Utils.async_start(self.ctx.update_breath_link(True))
+                logger.info("Breathlink enabled.")
 
 
 class SSContext(CommonContext):
@@ -299,6 +310,8 @@ class SSContext(CommonContext):
         self.awaiting_rom: bool = False
         self.last_rcvd_index: int = -1
         self.has_send_death: bool = False
+        self.last_breath_link: float = time.time()  # last send/received breath link on AP layer
+        self.has_send_breath: bool = False
         self.locations_for_hint: dict[str, list] = {}
         self.lost_client_connection: bool = False
 
@@ -360,6 +373,16 @@ class SSContext(CommonContext):
             logger.info("Awaiting connection to the game to get player information.")
             return
         await self.send_connect()
+    
+    async def update_breath_link(self, breath_link: bool):
+        """Helper function to set Breath Link connection tag on/off and update the connection if already connected."""
+        old_tags = self.tags.copy()
+        if breath_link:
+            self.tags.add("BreathLink")
+        else:
+            self.tags -= {"BreathLink"}
+        if old_tags != self.tags and self.server and not self.server.socket.closed:
+            await self.send_msgs([{"cmd": "ConnectUpdate", "tags": self.tags}])
 
     def on_package(self, cmd: str, args: dict[str, Any]) -> None:
         """
@@ -375,6 +398,10 @@ class SSContext(CommonContext):
             if "death_link" in args["slot_data"]:
                 Utils.async_start(
                     self.update_death_link(bool(args["slot_data"]["death_link"]))
+                )
+            if "breath_link" in args["slot_data"]:
+                Utils.async_start(
+                    self.update_breath_link(bool(args["slot_data"]["breath_link"]))
                 )
             # Request the connected slot's dictionary (used as a set) of visited stages.
             visited_stages_key = AP_VISITED_STAGE_NAMES_KEY_FORMAT % self.slot
@@ -411,7 +438,46 @@ class SSContext(CommonContext):
                             self.update_visited_stages(current_stage_name)
                         )
                     self.visited_stage_names = visited_stage_names
+        elif cmd == "Bounced":
+            tags = args.get("tags", [])
+            # we can skip checking "DeathLink" in ctx.tags, as otherwise we wouldn't have been send this
+            if "BreathLink" in tags and self.last_breath_link != args["data"]["time"]:
+                self.on_breathlink(args["data"])
 
+    def on_deathlink(self, data: dict[str, Any]) -> None:
+        """
+        Handle a DeathLink event.
+
+        :param data: The data associated with the DeathLink event.
+        """
+        super().on_deathlink(data)
+        asyncio.create_task(self._give_death())
+    
+    def on_breathlink(self, data: typing.Dict[str, typing.Any]) -> None:
+        """Gets dispatched when a new BreathLink is triggered by another linked player."""
+        self.last_breath_link = max(data["time"], self.last_breath_link)
+        text = data.get("cause", "")
+        if text:
+            logger.info(f"BreathLink: {text}")
+        else:
+            logger.info(f"BreathLink: Received from {data['source']}")
+        
+        asyncio.create_task(self._deplete_stamina())
+
+    async def send_breath(self, breath_text: str = ""):
+        """Helper function to send a breathlink using breath_text as the unique breath cause string."""
+        if self.server and self.server.socket:
+            logger.info("BreathLink: Taking your friends' breath away...")
+            self.last_breath_link = time.time()
+            await self.send_msgs([{
+                "cmd": "Bounce", "tags": ["BreathLink"],
+                "data": {
+                    "time": self.last_breath_link,
+                    "source": self.player_names[self.slot],
+                    "cause": breath_text
+                }
+            }])
+    
     def on_deathlink(self, data: dict[str, Any]) -> None:
         """
         Handle a DeathLink event.
@@ -609,6 +675,17 @@ class SSContext(CommonContext):
             console_address, value.to_bytes(2, byteorder="big")
         )
     
+    async def write_long(self, console_address: int, value: int) -> None:
+        """
+        Write a 4-byte long to the game's memory
+
+        :param console_address: Address to write to.
+        :param value: Value to write.
+        """
+        await self.write_bytes(
+            console_address, value.to_bytes(4, byteorder="big")
+        )
+    
     async def read_string(self, console_address: int, strlen: int) -> str:
         """
         Read a string from the game's memory.
@@ -677,8 +754,27 @@ class SSContext(CommonContext):
             and self.check_ingame()
             and not await self.check_in_minigame()
         ):
-            self.has_send_death = True
+            await asyncio.sleep(0.1)
             await self.write_short(CURR_HEALTH_ADDR, 0)
+            self.has_send_death = True
+            await asyncio.sleep(0.1)
+    
+    async def _deplete_stamina(self) -> None:
+        """
+        Deplete the player's stamina in-game by setting their current stamina to zero.
+        """
+        if (
+            self.slot is not None
+            and self.is_hooked()
+            and self.check_ingame()
+            and not await self.check_in_minigame()
+        ):
+            await asyncio.sleep(0.1)
+            await self.write_short(self.link_ptr + 0x43dc, 0x7f)
+            await self.write_short(self.link_ptr + 0x4379, 0x191e)
+            await self.write_long(self.link_ptr + CURR_STAMINA_OFFSET, 0)
+            self.has_send_breath = True
+            await asyncio.sleep(0.1)
 
 
     async def _give_item(self, item_name: str) -> bool:
@@ -908,6 +1004,22 @@ class SSContext(CommonContext):
                     await self.send_death(self.player_names[self.slot] + " ran out of hearts.")
             else:
                 self.has_send_death = False
+    
+    async def check_out_of_breath(self) -> None:
+        """
+        Check if the player is out of stamina
+        If BreathLink is on, notify the server of the player's breathlessness.
+
+        :return: `True` if the player is out of stamina, otherwise `False`.
+        """
+        if self.slot is not None and self.check_ingame() and not await self.check_on_title_screen():
+            cur_stamina = await self.read_long(x := self.link_ptr + CURR_STAMINA_OFFSET)
+            if cur_stamina <= 0:
+                if not self.has_send_breath and time.time() >= self.last_breath_link + 3:
+                    self.has_send_breath = True
+                    await self.send_breath(self.player_names[self.slot] + " ran out of stamina.")
+            else:
+                self.has_send_breath = False
 
     def check_ingame(self) -> bool:
         """
@@ -1033,6 +1145,8 @@ async def do_sync_task(ctx: SSContext) -> None:
                     if ctx.slot is not None:
                         if "DeathLink" in ctx.tags:
                             await ctx.check_death()
+                        if "BreathLink" in ctx.tags:
+                            await ctx.check_out_of_breath()
                         await ctx.give_items()
                         await ctx.check_locations()
                         await ctx.check_current_stage_changed()
@@ -1097,6 +1211,8 @@ async def do_sync_task(ctx: SSContext) -> None:
                     if ctx.slot is not None:
                         if "DeathLink" in ctx.tags:
                             await ctx.check_death()
+                        if "BreathLink" in ctx.tags:
+                            await ctx.check_out_of_breath()
                         await ctx.give_items()
                         await ctx.check_locations()
                         await ctx.check_current_stage_changed()

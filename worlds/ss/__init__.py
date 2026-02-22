@@ -718,6 +718,7 @@ class SSWorld(World):
             "precise_item": 1, #self.options.precise_item.value,
             "starting_items": self.options.starting_items.value,
             "death_link": self.options.death_link.value,
+            "breath_link": self.options.breath_link.value,
             "locations_for_hint": getattr(getattr(self, "hints", None), "locations_for_hint", []),
             "excluded_locations": self.nonprogress_locations,
             "required_dungeons": self.dungeons.required_dungeons,
