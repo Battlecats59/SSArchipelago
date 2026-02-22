@@ -39,17 +39,15 @@ SELECTED_FILE_ADDR = 0x8095FC98
 # The expected index for the following item that should be received. Array of 2 bytes right after the give item array
 # Uses an unused scene index which is 16 bytes wide
 EXPECTED_INDEX_ADDR = 0x80956F28 # HALFWORD
-# WILL BE UPDATED WHEN THE BUILD IS RELEASED
 
 # This address contains the current stage ID.
 CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
 
-# This is an array of length 0x10 where each element is a byte and contains item IDs for items to give the player.
-# 0xFF represents no item. The array is read and cleared every frame.
-# ARCHIPELAGO_ARRAY_ADDR = 0x80678770 # ARRAY[16]
+# The patcher will write the AP slot name at this address
 ARCHIPELAGO_SLOT_ADDR = 0x806786A0
-# WILL BE UPDATED WHEN THE BUILD IS RELEASED
-ARCHIPELAGO_ITEM_INDEX = EXPECTED_INDEX_ADDR + 2
+
+# A byte here represents what item ID to give to the player. The game will clear this out and give items whenever possible.
+ARCHIPELAGO_ITEM_SLOT = EXPECTED_INDEX_ADDR + 2
 
 # This is the address that holds the player's file name.
 FILE_NAME_ADDR = 0x80955D38  # ARRAY[16]

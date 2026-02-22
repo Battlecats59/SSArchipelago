@@ -329,9 +329,6 @@ class SSContext(CommonContext):
         # It starts as `None` until it has been read from the server.
         self.visited_stage_names: Optional[set[str]] = None
 
-        # Length of the item get array in memory.
-        self.len_give_item_array: int = 0x1  # TODO CHANGE TO 0x10 WHEN GAME IS FIXED
-
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         """
         Disconnect the client from the server and reset game state variables.
@@ -694,16 +691,17 @@ class SSContext(CommonContext):
 
         item_id = ITEM_TABLE[item_name].item_id  # In game item ID
 
-        # Loop through the item array, placing the item in an empty slot (0xFF).
-        slot = await self.read_byte(ARCHIPELAGO_ITEM_INDEX)
+        # Read the item slot, and place the item here if the slot is empty.
+        # When the game confirms the player received the item, it'll clear out this slot again.
+        slot = await self.read_byte(ARCHIPELAGO_ITEM_SLOT)
         if slot == 0xFF:
             # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
-            await self.write_byte(ARCHIPELAGO_ITEM_INDEX, item_id)
+            await self.write_byte(ARCHIPELAGO_ITEM_SLOT, item_id)
             await asyncio.sleep(0.25)
             await self.cache_link_data() # Recalculate State & Action
             return True
 
-        # If unable to place the item in the array, return False.
+        # If unable to give the item, return False
         return False
 
 
@@ -727,7 +725,6 @@ class SSContext(CommonContext):
                         await self.cache_link_data()
 
                     # Increment the expected index.
-                    # await asyncio.sleep(0.25)
                     await self.write_short(EXPECTED_INDEX_ADDR, idx + 1)
 
 
