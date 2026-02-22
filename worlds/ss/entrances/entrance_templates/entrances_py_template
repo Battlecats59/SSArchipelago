@@ -113,8 +113,7 @@ class SSExit:
         if not plando:
             # Remove from regions
             self.world.entrances.regions[self.region]["exits"].remove(self)
-            if entrance.name != "Link's Room":
-                self.world.entrances.regions[entrance.region]["entrances"].remove(entrance)
+            self.world.entrances.regions[entrance.region]["entrances"].remove(entrance)
 
         if no_logic:
             self.world.get_region(self.region).add_exits(
@@ -129,6 +128,34 @@ class SSExit:
 
         if reversible:
             SSExit(entrance.region, entrance.name, world=self.world).link(self.toEntrance(), reversible=False, plando=plando, no_logic=no_logic)
+
+    def link_to_start(self, no_logic=False):
+        if not self.world:
+            raise Exception(f"Tried to run SSExit link_to_start() function without a valid world")
+        
+        start_entrance = SSEntrance(self.world.entrances.starting_entrance["apregion"], self.world.entrances.starting_entrance["statue-name"])
+        
+        entrance_mapping = self.world.entrances.entrance_mapping
+
+        if self in entrance_mapping.exits:
+            raise Exception(f"Tried to link exit {self.region} ({self.name}) to start but exit is already linked")
+        
+        entrance_mapping.exits.append(self)
+        entrance_mapping.mapping.add((self, start_entrance, True))
+
+        # Remove from regions
+        self.world.entrances.regions[self.region]["exits"].remove(self)
+
+        if no_logic:
+            self.world.get_region(self.region).add_exits(
+                {start_entrance.region: f"{self.region} ({self.name}) --> {start_entrance.region}"},
+                {start_entrance.region: lambda state: True}
+            )
+        else:
+            self.world.get_region(self.region).add_exits(
+                {start_entrance.region: f"{self.region} ({self.name}) --> {start_entrance.region}"},
+                {start_entrance.region: self.world.entrances.exit_requirements(self.world, f"{self.region} - {self.name}")}
+            )
 
     def toEntrance(self):
         return SSEntrance(self.region, self.name, world=self.world)

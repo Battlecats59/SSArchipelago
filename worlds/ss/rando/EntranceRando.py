@@ -255,8 +255,7 @@ class EntranceRando:
                 # In this case, entrance is reversible but exit is not
                 # Since the entrance can be traveled back through but we have no where to send
                 # the player, let's just send them back to the starting entrance
-                start_entrance = SSEntrance(self.starting_entrance["apregion"], self.starting_entrance["statue-name"], world=self.world)
-                entrance_to_place.toExit().link(start_entrance, reversible=False, no_logic=no_logic)
+                entrance_to_place.toExit().link_to_start(no_logic=no_logic)
         ex.link(entrance_to_place, reversible=reversible, no_logic=no_logic)
 
         self.build_dungeon_paths(dun, entrance_to_place.region)
