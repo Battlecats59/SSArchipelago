@@ -693,10 +693,17 @@ class SSContext(CommonContext):
 
         # Read the item slot, and place the item here if the slot is empty.
         # When the game confirms the player received the item, it'll clear out this slot again.
-        slot = await self.read_byte(ARCHIPELAGO_ITEM_SLOT)
-        if slot == 0xFF:
+        slots = await self.read_short(ARCHIPELAGO_ITEM_SLOT)
+        main_slot, secondary_slot = slots >> 8, slots & 0xFF
+        if main_slot == 0xFF:
             # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
             await self.write_byte(ARCHIPELAGO_ITEM_SLOT, item_id)
+            await asyncio.sleep(0.25)
+            await self.cache_link_data() # Recalculate State & Action
+            return True
+        elif secondary_slot == 0xFF:
+            # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
+            await self.write_byte(ARCHIPELAGO_ITEM_SLOT + 1, item_id)
             await asyncio.sleep(0.25)
             await self.cache_link_data() # Recalculate State & Action
             return True
@@ -944,7 +951,7 @@ class SSContext(CommonContext):
         """
         if self.link_ptr == 0x0:
             return False
-        return self.link_action <= MAX_SAFE_ACTION
+        return self.link_action <= MAX_SAFE_ACTION or self.link_action == ITEM_GET_ACTION
 
     def is_link_not_in_action(self, actions: List[int]) -> bool:
         if self.link_ptr == 0x0:
