@@ -693,20 +693,14 @@ class SSContext(CommonContext):
 
         # Read the item slot, and place the item here if the slot is empty.
         # When the game confirms the player received the item, it'll clear out this slot again.
-        slots = await self.read_short(ARCHIPELAGO_ITEM_SLOT)
-        main_slot, secondary_slot = slots >> 8, slots & 0xFF
-        if main_slot == 0xFF:
-            # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
-            await self.write_byte(ARCHIPELAGO_ITEM_SLOT, item_id)
-            await asyncio.sleep(0.25)
-            await self.cache_link_data() # Recalculate State & Action
-            return True
-        elif secondary_slot == 0xFF:
-            # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
-            await self.write_byte(ARCHIPELAGO_ITEM_SLOT + 1, item_id)
-            await asyncio.sleep(0.25)
-            await self.cache_link_data() # Recalculate State & Action
-            return True
+        slots = await self.read_bytes(ARCHIPELAGO_ITEM_SLOT, self.len_item_buffer)
+        for i, slot in enumerate(slots):
+            if slot == 0xFF:
+                # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
+                await self.write_byte(ARCHIPELAGO_ITEM_SLOT + i, item_id)
+                await asyncio.sleep(0.25)
+                await self.cache_link_data() # Recalculate State & Action
+                return True
 
         # If unable to give the item, return False
         return False
