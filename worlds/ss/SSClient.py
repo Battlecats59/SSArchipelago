@@ -329,6 +329,8 @@ class SSContext(CommonContext):
         # It starts as `None` until it has been read from the server.
         self.visited_stage_names: Optional[set[str]] = None
 
+        self.len_item_buffer = 6 # length of the item ring buffer in-game
+
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         """
         Disconnect the client from the server and reset game state variables.
