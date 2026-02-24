@@ -156,6 +156,7 @@ class SSWorld(World):
         self.entrances = EntranceRando(self)
 
         self.hints_ready = threading.Event()
+        self.hint_lock = threading.Lock()
 
     def determine_progress_and_nonprogress_locations(self) -> tuple[set[str], set[str]]:
         """
@@ -502,24 +503,35 @@ class SSWorld(World):
         """
 
         return ALL_REQUIREMENTS[region.name]["hint_region"]
+    
+    def ensure_hints(self) -> None:
+        """
+        Ensure that hints are generated before the client can connect to the server.
+        """
+        if self.hints_ready.is_set():
+            return
+        
+        with self.hint_lock:
+            if not self.hints_ready.is_set():
+                self.hints = Hints(self)
+                self.hints.handle_hints()
 
+                # spheres = self.multiworld.get_spheres()
+                # locs = {}
+                # for i, sphere in enumerate(spheres):
+                #     locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
+                # with open("./worlds/ss/Playthrough.json", "w") as f:
+                #     json.dump(locs, f, indent=2)
+                self.hints_ready.set()
+        self.hints_ready.wait()
+        
     def generate_output(self, output_directory: str) -> None:
         """
         Create the output .apssr file that is used to randomize the ISO.
 
         :param output_directory: The output directory for the .apssr file.
         """
-                # Fill hint data
-        self.hints = Hints(self)
-        self.hints.handle_hints()
-
-        # spheres = self.multiworld.get_spheres()
-        # locs = {}
-        # for i, sphere in enumerate(spheres):
-        #     locs[i] = sorted([(loc.name, loc.item.name) for loc in sphere], key=lambda loc: loc[0])
-        # with open("./worlds/ss/Playthrough.json", "w") as f:
-        #     json.dump(locs, f, indent=2)
-        self.hints_ready.set()
+        self.ensure_hints()
           
         multiworld = self.multiworld
         player = self.player
@@ -656,7 +668,7 @@ class SSWorld(World):
         :return: A dictionary to be sent to the client when it connects to the server.
         """
         #Make sure slotdata doesnt fill before hints are ready from generate output 
-        self.hints_ready.wait()
+        self.ensure_hints()
 
         slot_data = {
             "required_dungeon_count": self.options.required_dungeon_count.value,
