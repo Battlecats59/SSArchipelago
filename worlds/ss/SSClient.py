@@ -745,10 +745,8 @@ class SSContext(CommonContext):
             and self.check_ingame()
             and not await self.check_in_minigame()
         ):
-            await asyncio.sleep(0.1)
             await self.write_short(CURR_HEALTH_ADDR, 0)
             self.has_send_death = True
-            await asyncio.sleep(0.1)
     
     async def _deplete_stamina(self) -> None:
         """
@@ -758,14 +756,11 @@ class SSContext(CommonContext):
             self.slot is not None
             and self.is_hooked()
             and self.check_ingame()
-            and not await self.check_in_minigame()
         ):
-            await asyncio.sleep(0.1)
             await self.write_short(self.link_ptr + 0x43dc, 0x7f)
             await self.write_short(self.link_ptr + 0x4379, 0x191e)
             await self.write_long(self.link_ptr + CURR_STAMINA_OFFSET, 0)
             self.has_send_breath = True
-            await asyncio.sleep(0.1)
 
 
     async def _give_item(self, item_name: str) -> bool:
