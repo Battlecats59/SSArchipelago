@@ -329,7 +329,7 @@ class SSContext(CommonContext):
         # It starts as `None` until it has been read from the server.
         self.visited_stage_names: Optional[set[str]] = None
 
-        self.len_item_buffer = 6 # length of the item ring buffer in-game
+        self.len_item_buffer = 14 # length of the item ring buffer in-game
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         """
@@ -697,7 +697,7 @@ class SSContext(CommonContext):
         # When the game confirms the player received the item, it'll clear out this slot again.
         slots = await self.read_bytes(ARCHIPELAGO_ITEM_SLOT, self.len_item_buffer)
         for i, slot in enumerate(slots):
-            if slot == 0xFF:
+            if slot == 0:
                 # logger.info(f"DEBUG: Gave item {item_id} to player {ctx.player_names[ctx.slot]}.")
                 await self.write_byte(ARCHIPELAGO_ITEM_SLOT + i, item_id)
                 await asyncio.sleep(0.25)
@@ -979,10 +979,11 @@ class SSContext(CommonContext):
             self.link_ptr != 0x0
             and await self.can_send_items()
             and await self.check_alive()
-            and self.validate_link_state()
-            and self.validate_link_action()
-            and not await self.check_in_minigame()
-            and self.can_get_items_on_stage(self.current_stage_name)
+            # These are now handled in-game
+            # and self.validate_link_state()
+            # and self.validate_link_action()
+            # and not await self.check_in_minigame()
+            # and self.can_get_items_on_stage(self.current_stage_name)
         )
 
     async def can_send_items(self) -> bool:
