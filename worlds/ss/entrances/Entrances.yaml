@@ -217,7 +217,7 @@ Batreaux's House - Exit Shed Door:
   ss_entrance_name: Batreaux's House Entrance
   ss_exit_name: Batreaux's House - Exit
 Beedle's Shop - Shop Day Exit:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: true
   connecting_entrance: Ring Beedle's Bell
   connecting_region: Central Skyloft
@@ -747,7 +747,7 @@ Central Skyloft - Piper's House - Door:
   ss_entrance_name: Piper's House Entrance
   ss_exit_name: Piper's House - Exit
 Central Skyloft - Ring Beedle's Bell:
-  can_shuffle: false
+  can_shuffle: true
   can_start_at: true
   connecting_entrance: Shop Day Exit
   connecting_region: Beedle's Shop
@@ -3969,9 +3969,9 @@ Lanayru Sand Sea - Shipyard - Outside - Fly to Sky:
 Lanayru Sand Sea - Shipyard - Outside - Roller Coaster:
   can_shuffle: false
   can_start_at: false
-  connecting_entrance: null
+  connecting_entrance: Roller Coaster
   connecting_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
-  direction: 1
+  direction: 2
   exit_name: Roller Coaster
   exit_region: Lanayru Sand Sea - Shipyard - Outside
   group: 2
@@ -3997,6 +3997,17 @@ Lanayru Sand Sea - Shipyard - Past Roller Coaster - Door:
   group: 1
   ss_entrance_name: Shipyard - Construction Bay - Upper Entrance
   ss_exit_name: Shipyard - Construction Bay Upper Exit
+Lanayru Sand Sea - Shipyard - Past Roller Coaster - Roller Coaster:
+  can_shuffle: false
+  can_start_at: false
+  connecting_entrance: Roller Coaster
+  connecting_region: Lanayru Sand Sea - Shipyard - Outside
+  direction: 2
+  exit_name: Roller Coaster
+  exit_region: Lanayru Sand Sea - Shipyard - Past Roller Coaster
+  group: 2
+  ss_entrance_name: null
+  ss_exit_name: null
 Lanayru Sand Sea - Skipper's Retreat - After Rock - Dock:
   can_shuffle: false
   can_start_at: false
@@ -5859,7 +5870,7 @@ Upper Skyloft - Goddess Statue:
   connecting_region: Upper Skyloft - Goddess Statue
   direction: 2
   entrance_index: 0
-  entrance_layer: 0
+  entrance_layer: 1
   entrance_province: The Sky
   entrance_room: 0
   entrance_stage: F008r

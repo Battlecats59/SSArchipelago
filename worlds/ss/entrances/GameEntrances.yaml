@@ -286,7 +286,7 @@ Goddess Statue - Entrance:
   province: The Sky
   stage: F008r
   room: 0
-  layer: 0
+  layer: 1
   entrance: 0
   tod: 2
 

@@ -528,6 +528,7 @@ AP_EXIT_GRAPH = {
         "Door": "Lanayru Sand Sea - Shipyard - Construction Bay",
     },
     "Lanayru Sand Sea - Shipyard - Past Roller Coaster": {
+        "Roller Coaster": "Lanayru Sand Sea - Shipyard - Outside",
         "Door": "Lanayru Sand Sea - Shipyard - Construction Bay",
     },
     "Lanayru Sand Sea - Shipyard - Construction Bay": {

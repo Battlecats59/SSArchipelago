@@ -373,7 +373,8 @@ class EntranceRando:
             placeable_entrances.update(set([ent for ent in data["entrances"] if ent != ex.toEntrance()]))
 
         if banned:
-            placeable_entrances -= banned
+            if len(placeable_entrances - banned) > 0:
+                placeable_entrances -= banned
 
         # Couple edge cases to account for
         if SSEntrance("Volcano Summit - Before First Frog", "Path across from First Frog") not in self.entrance_mapping.entrances:

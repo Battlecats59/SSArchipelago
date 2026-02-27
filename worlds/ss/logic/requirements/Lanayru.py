@@ -342,6 +342,7 @@ LANAYRU_REQUIREMENTS = {
     "Lanayru Sand Sea - Shipyard - Past Roller Coaster": {
         "hint_region": "Lanayru Sand Sea",
         "exits": {
+            "Roller Coaster": "Impossible",
             "Door": "Nothing",
         },
         "locations": {},

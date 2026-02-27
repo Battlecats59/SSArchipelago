@@ -113,8 +113,7 @@ class SSExit:
         if not plando:
             # Remove from regions
             self.world.entrances.regions[self.region]["exits"].remove(self)
-            if entrance.name != "Link's Room":
-                self.world.entrances.regions[entrance.region]["entrances"].remove(entrance)
+            self.world.entrances.regions[entrance.region]["entrances"].remove(entrance)
 
         if no_logic:
             self.world.get_region(self.region).add_exits(
@@ -129,6 +128,34 @@ class SSExit:
 
         if reversible:
             SSExit(entrance.region, entrance.name, world=self.world).link(self.toEntrance(), reversible=False, plando=plando, no_logic=no_logic)
+
+    def link_to_start(self, no_logic=False):
+        if not self.world:
+            raise Exception(f"Tried to run SSExit link_to_start() function without a valid world")
+        
+        start_entrance = SSEntrance(self.world.entrances.starting_entrance["apregion"], self.world.entrances.starting_entrance["statue-name"])
+        
+        entrance_mapping = self.world.entrances.entrance_mapping
+
+        if self in entrance_mapping.exits:
+            raise Exception(f"Tried to link exit {self.region} ({self.name}) to start but exit is already linked")
+        
+        entrance_mapping.exits.append(self)
+        entrance_mapping.mapping.add((self, start_entrance, True))
+
+        # Remove from regions
+        self.world.entrances.regions[self.region]["exits"].remove(self)
+
+        if no_logic:
+            self.world.get_region(self.region).add_exits(
+                {start_entrance.region: f"{self.region} ({self.name}) --> {start_entrance.region}"},
+                {start_entrance.region: lambda state: True}
+            )
+        else:
+            self.world.get_region(self.region).add_exits(
+                {start_entrance.region: f"{self.region} ({self.name}) --> {start_entrance.region}"},
+                {start_entrance.region: self.world.entrances.exit_requirements(self.world, f"{self.region} - {self.name}")}
+            )
 
     def toEntrance(self):
         return SSEntrance(self.region, self.name, world=self.world)
@@ -254,7 +281,7 @@ EXIT_GRAPH = [
         "Goddess Statue - Entrance",
         True,
         "F000", 0, 5,
-        "F008r", 0, 0, 0, 2,
+        "F008r", 0, 0, 1, 2,
     ),
     SSAPEntrance(
         "Upper Skyloft",
@@ -455,7 +482,7 @@ EXIT_GRAPH = [
         "Ring Beedle's Bell",
         "Beedle's Shop",
         "Shop Day Exit",
-        2, False, 1,
+        2, True, 1,
         "Skyloft - Exit to Beedle's Shop",
         "Beedle's Shop - Day Entrance",
         True,
@@ -791,7 +818,7 @@ EXIT_GRAPH = [
         "Shop Day Exit",
         "Central Skyloft",
         "Ring Beedle's Bell",
-        2, False, 1,
+        2, True, 1,
         "Beedle's Shop - Day Exit",
         "Skyloft - Entrance from Beedle's Shop",
         True,
@@ -3424,8 +3451,8 @@ EXIT_GRAPH = [
         "Lanayru Sand Sea - Shipyard - Outside",
         "Roller Coaster",
         "Lanayru Sand Sea - Shipyard - Past Roller Coaster",
-        None,
-        1, False, 2,
+        "Roller Coaster",
+        2, False, 2,
         None,
         None,
         False,
@@ -3435,7 +3462,7 @@ EXIT_GRAPH = [
         "Door",
         "Lanayru Sand Sea - Shipyard - Construction Bay",
         "Lower Door",
-        2, False, 1,
+        2, True, 1,
         "Shipyard - Construction Bay Lower Exit",
         "Shipyard - Construction Bay - Lower Entrance",
         False,
@@ -3444,10 +3471,20 @@ EXIT_GRAPH = [
     ),
     SSAPEntrance(
         "Lanayru Sand Sea - Shipyard - Past Roller Coaster",
+        "Roller Coaster",
+        "Lanayru Sand Sea - Shipyard - Outside",
+        "Roller Coaster",
+        2, False, 2,
+        None,
+        None,
+        False,
+    ),
+    SSAPEntrance(
+        "Lanayru Sand Sea - Shipyard - Past Roller Coaster",
         "Door",
         "Lanayru Sand Sea - Shipyard - Construction Bay",
         "Upper Door",
-        2, False, 1,
+        2, True, 1,
         "Shipyard - Construction Bay Upper Exit",
         "Shipyard - Construction Bay - Upper Entrance",
         False,
@@ -3459,7 +3496,7 @@ EXIT_GRAPH = [
         "Upper Door",
         "Lanayru Sand Sea - Shipyard - Past Roller Coaster",
         "Door",
-        2, False, 1,
+        2, True, 1,
         "Shipyard - Construction Bay - Upper Exit",
         "Shipyard - Construction Bay Upper Entrance",
         False,
@@ -3471,7 +3508,7 @@ EXIT_GRAPH = [
         "Lower Door",
         "Lanayru Sand Sea - Shipyard - Outside",
         "Door",
-        2, False, 1,
+        2, True, 1,
         "Shipyard - Construction Bay - Lower Exit",
         "Shipyard - Construction Bay Lower Entrance",
         False,
@@ -5097,14 +5134,14 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F009r", 0, 0, 1, 2,
-        "Entrance", "Upper Skyloft",
+        "Entrance", "Upper Skyloft - Sparring Hall",
     ),
     SSGameEntrance(
         "Sparring Hall - Left Door Entrance",
         None,
         "The Sky",
         "F009r", 0, 0, 2, 2,
-        "Entrance", "Upper Skyloft",
+        "Entrance", "Upper Skyloft - Sparring Hall",
     ),
     SSGameEntrance(
         "Skyloft - Sparring Hall Left Door Entrance",
@@ -5125,7 +5162,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F008r", 0, 0, 0, 2,
-        "Entrance", "Upper Skyloft",
+        "Entrance", "Upper Skyloft - Goddess Statue",
     ),
     SSGameEntrance(
         "Goddess Statue Entrance",
@@ -5139,14 +5176,14 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "D000", 0, 0, 0, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Waterfall Cave",
     ),
     SSGameEntrance(
         "Waterfall Cave - Lower Entrance",
         None,
         "The Sky",
         "D000", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Waterfall Cave",
     ),
     SSGameEntrance(
         "Waterfall Cave Upper Entrance",
@@ -5160,28 +5197,28 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F000", 0, 0, 8, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Under Waterfall",
     ),
     SSGameEntrance(
         "Bazaar - North Entrance",
         None,
         "The Sky",
         "F004r", 0, 0, 0, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Bazaar",
     ),
     SSGameEntrance(
         "Bazaar - South Entrance",
         None,
         "The Sky",
         "F004r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Bazaar",
     ),
     SSGameEntrance(
         "Bazaar - West Entrance",
         None,
         "The Sky",
         "F004r", 0, 0, 2, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Bazaar",
     ),
     SSGameEntrance(
         "Bazaar North Entrance",
@@ -5230,7 +5267,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F005r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Orielle and Parrow's House",
     ),
     SSGameEntrance(
         "Orielle and Parrow's House Entrance",
@@ -5244,7 +5281,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F018r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Peatrice's House",
     ),
     SSGameEntrance(
         "Peatrice's House Entrance",
@@ -5258,7 +5295,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F006r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Kukiel's House",
     ),
     SSGameEntrance(
         "Wryna's House Entrance",
@@ -5272,7 +5309,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F014r", 0, 0, 1, 2,
-        "Entrance", "Skyloft Village",
+        "Entrance", "Skyloft Village - Bertie's House",
     ),
     SSGameEntrance(
         "Bertie's House Entrance",
@@ -5286,7 +5323,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F013r", 0, 0, 1, 2,
-        "Entrance", "Skyloft Village",
+        "Entrance", "Skyloft Village - Sparrot's House",
     ),
     SSGameEntrance(
         "Sparrot's House Entrance",
@@ -5307,7 +5344,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F016r", 0, 0, 1, 2,
-        "Entrance", "Skyloft Village",
+        "Entrance", "Skyloft Village - Pipit's House",
     ),
     SSGameEntrance(
         "Batreaux's House - Entrance",
@@ -5328,7 +5365,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F015r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Gondo's House",
     ),
     SSGameEntrance(
         "Gondo's House Entrance",
@@ -5342,7 +5379,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F017r", 0, 0, 1, 2,
-        "Entrance", "Skyloft Village",
+        "Entrance", "Skyloft Village - Rupin's House",
     ),
     SSGameEntrance(
         "Rupin's House Entrance",
@@ -5356,7 +5393,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F007r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Central Skyloft - Piper's House",
     ),
     SSGameEntrance(
         "Piper's House Entrance",
@@ -5370,21 +5407,21 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F019r", 0, 1, 0, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Bamboo Island - Inside",
     ),
     SSGameEntrance(
         "Bamboo Island - Entrance from Inside",
         None,
         "The Sky",
         "F020", 0, 0, 11, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Bamboo Island - Outside",
     ),
     SSGameEntrance(
         "Sky - Beedle's Island - Beedle's Ship Entrance",
         None,
         "The Sky",
         "F020", 0, 4, 0, 1,
-        "Entrance", "Beedle's Shop",
+        "Entrance", "Beedle's Shop - Beedle's Island - Night",
     ),
     SSGameEntrance(
         "Sky - Eldin Pillar - Entrance",
@@ -5398,42 +5435,42 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F011r", 0, 0, 1, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Inside",
     ),
     SSGameEntrance(
         "Lumpy Pumpkin Building - Main Left Door Entrance",
         None,
         "The Sky",
         "F011r", 0, 0, 2, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Inside",
     ),
     SSGameEntrance(
         "Lumpy Pumpkin Building - Back Door Entrance",
         None,
         "The Sky",
         "F011r", 0, 0, 3, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Inside",
     ),
     SSGameEntrance(
         "Lumpy Pumpkin - Main Left Door Entrance",
         None,
         "The Sky",
         "F020", 0, 0, 22, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Outside",
     ),
     SSGameEntrance(
         "Lumpy Pumpkin - Main Right Door Entrance",
         None,
         "The Sky",
         "F020", 0, 0, 23, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Outside",
     ),
     SSGameEntrance(
         "Lumpy Pumpkin - Back Door Entrance",
         None,
         "The Sky",
         "F020", 0, 0, 24, 2,
-        "Entrance", "Sky",
+        "Entrance", "Sky - Lumpy Pumpkin - Outside",
     ),
     SSGameEntrance(
         "Sky - Faron Pillar - Entrance",
@@ -5607,7 +5644,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "Faron Province",
         "F103_1", 0, 0, 0, 2,
-        "Entrance", "Flooded Faron Woods",
+        "Entrance", "Flooded Faron Woods - Great Tree",
     ),
     SSGameEntrance(
         "Flooded Faron Woods - Entrance from Upper Flooded Great Tree",
@@ -6052,21 +6089,21 @@ GAME_ENTRANCE_TABLE = [
         None,
         "Lanayru Province",
         "F301_3", 0, 0, 1, 2,
-        "Entrance", "Lanayru Sand Sea - Skipper's Retreat - Shack",
+        "Entrance", "Lanayru Sand Sea - Skipper's Retreat - Outside Shack",
     ),
     SSGameEntrance(
         "Skipper's Retreat - Shack - Entrance",
         None,
         "Lanayru Province",
         "F301_5", 0, 0, 0, 2,
-        "Entrance", "Lanayru Sand Sea - Skipper's Retreat - Shack",
+        "Entrance", "Lanayru Sand Sea - Skipper's Retreat - Inside Shack",
     ),
     SSGameEntrance(
         "Shipyard - Statue Entrance",
         "Lanayru Shipyard",
         "Lanayru Province",
         "F301_4", 0, 0, 10, 2,
-        "Statue", "Lanayru Sand Sea - Shipyard",
+        "Statue", "Lanayru Sand Sea - Shipyard - Outside",
         "Lanayru Sand Sea", 85, False,
     ),
     SSGameEntrance(
@@ -6074,14 +6111,14 @@ GAME_ENTRANCE_TABLE = [
         None,
         "Lanayru Province",
         "F301_4", 0, 0, 0, 2,
-        "Entrance", "Lanayru Sand Sea - Shipyard",
+        "Entrance", "Lanayru Sand Sea - Shipyard - Outside",
     ),
     SSGameEntrance(
         "Pirate Stronghold - Statue Entrance",
         "Pirate Stronghold",
         "Lanayru Province",
         "F301_6", 0, 0, 10, 2,
-        "Statue", "Lanayru Sand Sea - Pirate Stronghold",
+        "Statue", "Lanayru Sand Sea - Pirate Stronghold - Outside",
         "Lanayru Sand Sea", 84, False,
     ),
     SSGameEntrance(
@@ -6089,20 +6126,20 @@ GAME_ENTRANCE_TABLE = [
         None,
         "Lanayru Province",
         "F301_6", 0, 0, 0, 2,
-        "Entrance", "Lanayru Sand Sea - Pirate Stronghold",
+        "Entrance", "Lanayru Sand Sea - Pirate Stronghold - Outside",
     ),
     SSGameEntrance(
         "Pirate Stronghold - Side Entrance",
         None,
         "Lanayru Province",
         "F301_6", 0, 0, 1, 2,
-        "Entrance", "Lanayru Sand Sea - Pirate Stronghold",
+        "Entrance", "Lanayru Sand Sea - Pirate Stronghold - Outside",
     ),
     SSGameEntrance(
         "Pirate Stronghold - Inside - First Door Entrance",
         None,
         "Lanayru Province",
         "F301_2", 1, 0, 0, 2,
-        "Entrance", "Lanayru Sand Sea - Pirate Stronghold",
+        "Entrance", "Lanayru Sand Sea - Pirate Stronghold - Inside",
     ),
 ]
