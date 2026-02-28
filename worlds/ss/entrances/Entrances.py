@@ -5365,14 +5365,14 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F015r", 0, 0, 1, 2,
-        "Entrance", "Central Skyloft - Gondo's House",
+        "Entrance", "Skyloft Village - Gondo's House",
     ),
     SSGameEntrance(
         "Gondo's House Entrance",
         None,
         "The Sky",
         "F000", 0, 0, 35, 2,
-        "Entrance", "Central Skyloft",
+        "Entrance", "Skyloft Village",
     ),
     SSGameEntrance(
         "Rupin's House - Entrance",
@@ -5421,7 +5421,7 @@ GAME_ENTRANCE_TABLE = [
         None,
         "The Sky",
         "F020", 0, 4, 0, 1,
-        "Entrance", "Beedle's Shop - Beedle's Island - Night",
+        "Entrance", "Sky - Beedle's Island - Night",
     ),
     SSGameEntrance(
         "Sky - Eldin Pillar - Entrance",
