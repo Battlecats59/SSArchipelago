@@ -74,7 +74,7 @@ class EntranceRando:
         # Place plando entrances first
         self.place_plando_entrances()
 
-        print("Building path to sealed temple")
+        print("----- Building path to sealed temple")
         self.build_path(self.world.origin_region_name)
 
         req_dun_regions = [reg for dun, reg in DUNGEON_INITIAL_REGIONS.items() if dun in self.world.dungeons.required_dungeons]
@@ -86,7 +86,7 @@ class EntranceRando:
 
         for dun in req_dun_regions:
             dun_name = [name for name, reg in DUNGEON_INITIAL_REGIONS.items() if reg == dun].pop()
-            print(f"Building path to dungeon: {dun}")
+            print(f"----- Building path to dungeon: {dun}")
             self.build_dungeon_paths(dun, self.world.origin_region_name)
             ent = [en for ex, en, x in self.entrance_mapping.mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
             for ex in self.dungeon_exits_to_place[dun_name]:
@@ -94,7 +94,7 @@ class EntranceRando:
         
         for dun in non_req_dun_regions:
             dun_name = [name for name, reg in DUNGEON_INITIAL_REGIONS.items() if reg == dun].pop()
-            print(f"Building path to dungeon: {dun}")
+            print(f"----- Building path to dungeon: {dun}")
             self.build_dungeon_paths(dun, self.world.origin_region_name)
             ent = [en for ex, en, x in self.entrance_mapping.mapping if ex == SSExit(dun, "Dungeon Exit")].pop()
             for ex in self.dungeon_exits_to_place[dun_name]:
@@ -105,11 +105,11 @@ class EntranceRando:
 
         for reg, data in ALL_REQUIREMENTS.items():
             if len(data["exits"].keys()) == 1 and SSExit(reg, list(data["exits"].keys())[0]) not in self.entrance_mapping.exits:
-                print(f"Building path to dead end region: {reg}")
+                print(f"----- Building path to dead end region: {reg}")
                 self.build_dead_end_paths(reg, self.world.origin_region_name)
 
         # Now, place remaining entrances
-        print("Connecting remaining entrances")
+        print("----- Connecting remaining entrances")
         self.finalize_entrance_placements(dead_ends=True, new_regions_only=False)
 
     def place_plando_entrances(self) -> None:
@@ -369,8 +369,12 @@ class EntranceRando:
         :param banned: A set of entrances that cannot be selected, or None if any entrances can be picked.
         """
         placeable_entrances = set()
+        test = []
         for reg, data in self.regions.items():
+            test.extend([str(ent) for ent in data["entrances"]])
             placeable_entrances.update(set([ent for ent in data["entrances"] if ent != ex.toEntrance()]))
+
+        print(test)
 
         if banned:
             if len(placeable_entrances - banned) > 0:
@@ -405,6 +409,8 @@ class EntranceRando:
             ent = SSEntrance("Lanayru Caves - Past Locked Door", "Path away from Door")
             if ent in placeable_entrances:
                 placeable_entrances.remove(ent)
+
+        print([str(ent) for ent in placeable_entrances])
 
         if dead_ends:
             return self.world.random.choice(list(placeable_entrances))
