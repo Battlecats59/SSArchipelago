@@ -4500,9 +4500,9 @@ EXIT_GRAPH = [
         "Dungeon Exit",
         "Volcano Summit - After Second Frog",
         None,
-        1, False, 2,
-        None,
-        None,
+        1, False, 4,
+        "Fire Sanctuary - Main Exit",
+        "Outside Fire Sanctuary - Entrance from Fire Sanctuary",
         False,
     ),
     SSAPEntrance(

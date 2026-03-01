@@ -2282,9 +2282,9 @@ Fire Sanctuary - Second Room - Dungeon Exit:
   direction: 1
   exit_name: Dungeon Exit
   exit_region: Fire Sanctuary - Second Room
-  group: 2
-  ss_entrance_name: null
-  ss_exit_name: null
+  group: 4
+  ss_entrance_name: Outside Fire Sanctuary - Entrance from Fire Sanctuary
+  ss_exit_name: Fire Sanctuary - Main Exit
 Fire Sanctuary - Second Room - First Bridge:
   can_shuffle: false
   can_start_at: false

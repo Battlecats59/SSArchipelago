@@ -303,6 +303,9 @@ class EntranceRando:
         else:
             ex = self.world.random.choice(list(self.reachable_exits))
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=dead_ends, dead_ends=dead_ends)
+        while not entrance_to_place:
+            new_ex = self.world.random.choice([r_ex for r_ex in self.reachable_exits if r_ex != ex])
+            entrance_to_place = self.find_entrance_pairing(new_ex, dungeons=dead_ends, dead_ends=dead_ends)
         print(f"{ex} ---> {entrance_to_place}")
         reversible = ex.reversible and entrance_to_place.reversible
         if not reversible:
@@ -357,7 +360,7 @@ class EntranceRando:
                 if ex in self.reachable_exits:
                     self.reachable_exits.remove(ex)
 
-    def find_entrance_pairing(self, ex: SSExit, dungeons: list | bool = False, dead_ends: bool = False, banned: set | None = None) -> SSEntrance:
+    def find_entrance_pairing(self, ex: SSExit, dungeons: list | bool = False, dead_ends: bool = False, banned: set | None = None) -> SSEntrance | None:
         """
         Find valid entrance pairings for a given shuffled exit.
 
@@ -369,12 +372,12 @@ class EntranceRando:
         :param banned: A set of entrances that cannot be selected, or None if any entrances can be picked.
         """
         placeable_entrances = set()
-        test = []
+        all_entrances = []
         for reg, data in self.regions.items():
-            test.extend([str(ent) for ent in data["entrances"]])
+            all_entrances.extend([ent for ent in data["entrances"]])
             placeable_entrances.update(set([ent for ent in data["entrances"] if ent != ex.toEntrance()]))
 
-        print(test)
+        print([str(ent) for ent in all_entrances])
 
         if banned:
             if len(placeable_entrances - banned) > 0:
@@ -411,6 +414,11 @@ class EntranceRando:
                 placeable_entrances.remove(ent)
 
         print([str(ent) for ent in placeable_entrances])
+
+        if len(placeable_entrances) == 0:
+            if len(all_entrances) < 2:
+                raise Exception("Tried to pick an entrance but less than 2 exist")
+            return None
 
         if dead_ends:
             return self.world.random.choice(list(placeable_entrances))
