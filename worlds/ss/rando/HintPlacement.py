@@ -530,7 +530,8 @@ class HintRegions:
                 state = CollectionState(self.multiworld)
                 state.sweep_for_advancements([swloc for swloc in self.world.get_locations() if swloc != loc])
                 if not state.can_reach_location(DUNGEON_FINAL_CHECKS[dun], self.world.player):
-                    self.path_locations[dun].append(loc)
+                    if self.world.region_to_hint_region(loc.parent_region) != dun:
+                        self.path_locations[dun].append(loc)
 
     def get_er_regions(self):
         if self.world.options.randomize_entrances == "none":

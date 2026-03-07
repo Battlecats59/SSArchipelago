@@ -1903,11 +1903,11 @@ Faron Woods - Inside Upper Great Tree - Speak to Water Dragon:
   connecting_entrance: Speak to Water Dragon
   connecting_region: Flooded Faron Woods - Great Tree
   direction: 2
-  entrance_index: 6
-  entrance_layer: 1
+  entrance_index: 4
+  entrance_layer: 2
   entrance_province: Faron Province
   entrance_room: 0
-  entrance_stage: F100_1
+  entrance_stage: F103_1
   entrance_tod: 0
   exit_index: 5
   exit_name: Speak to Water Dragon
@@ -1915,7 +1915,7 @@ Faron Woods - Inside Upper Great Tree - Speak to Water Dragon:
   exit_room: 0
   exit_stage: F100_1
   group: 1
-  ss_entrance_name: Great Tree - Entrance from Flooded Great Tree
+  ss_entrance_name: Flooded Great Tree - Entrance from Great Tree
   ss_exit_name: Great Tree - Exit to Flooded Great Tree
 Faron Woods - Inside Upper Great Tree - Upper Exit:
   can_shuffle: true
@@ -2408,24 +2408,24 @@ Fire Sanctuary - Water Fruit Room - Lower First Trapped Mogma Room:
   ss_exit_name: null
 Flooded Faron Woods - Great Tree:
   can_shuffle: false
-  can_start_at: false
+  can_start_at: true
   connecting_entrance: Exit Great Tree
   connecting_region: Flooded Faron Woods - Great Tree
   direction: 2
-  entrance_index: 6
-  entrance_layer: 1
+  entrance_index: 0
+  entrance_layer: 0
   entrance_province: Faron Province
   entrance_room: 0
-  entrance_stage: F100_1
+  entrance_stage: F103_1
   entrance_tod: 0
-  exit_index: 11
+  exit_index: 0
   exit_name: Great Tree
   exit_region: Flooded Faron Woods
   exit_room: 0
-  exit_stage: F103_1
+  exit_stage: F103
   group: 1
-  ss_entrance_name: Great Tree - Entrance from Flooded Great Tree
-  ss_exit_name: Flooded Great Tree - Exit to Great Tree
+  ss_entrance_name: Flooded Great Tree - Entrance from Upper Flooded Faron Woods
+  ss_exit_name: Flooded Faron Woods - Exit to Upper Flooded Great Tree
 Flooded Faron Woods - Great Tree - Exit Great Tree:
   can_shuffle: false
   can_start_at: true

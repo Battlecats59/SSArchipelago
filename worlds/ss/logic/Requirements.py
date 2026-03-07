@@ -921,7 +921,8 @@ def location_requirements(world: "SSWorld", loc):
             (
                 state.can_reach_region("Volcano Summit - Summit", player)
                 and (
-                    (state.has("Progressive Sword", player, 2))
+                    state.has("Fireshield Earrings", player, 1)
+                    and (state.has("Progressive Sword", player, 2))
                     and (
                         (state.has("Progressive Sword", player, 6))
                         or (
@@ -3286,7 +3287,9 @@ def exit_requirements(world: "SSWorld", ex):
     if ex == "Sky - Bamboo Island - Inside - Door":
         return lambda state, player=world.player: True
     if ex == "Thunderhead - Opening in Clouds":
-        return lambda state, player=world.player: True
+        return lambda state, player=world.player: state.has(
+            "Ballad of the Goddess", player, 1
+        )
     if ex == "Thunderhead - Land at East Island":
         return lambda state, player=world.player: True
     if ex == "Thunderhead - Land at Isle of Songs":
@@ -3410,6 +3413,8 @@ def exit_requirements(world: "SSWorld", ex):
             )
             or (state._ss_option_lake_floria_open(player))
         )
+    if ex == "Faron Woods - In the Woods - Shortcut to Floria Waterfall":
+        return lambda state, player=world.player: True
     if ex == "Faron Woods - Viewing Platform - Fly to Sky":
         return lambda state, player=world.player: True
     if ex == "Faron Woods - Viewing Platform - In the Woods":
@@ -3608,11 +3613,19 @@ def exit_requirements(world: "SSWorld", ex):
         )
     if ex == "Eldin Volcano - Near Temple Entrance - Hot Cave":
         return lambda state, player=world.player: True
+    if ex == "Eldin Volcano - Near Temple Entrance - Upper Eldin Cave":
+        return lambda state, player=world.player: True
     if ex == "Eldin Volcano - Near Temple Entrance - Dungeon Entrance in Eldin Volcano":
         return lambda state, player=world.player: state.has("Key Piece", player, 5)
     if ex == "Eldin Volcano - Hot Cave - Near Temple Entrance":
         return lambda state, player=world.player: state.can_reach_region(
             "Eldin Volcano - Near Temple Entrance", player
+        ) and (
+            state.can_reach_region("Eldin Volcano - Hot Cave", player)
+            and (
+                state.has("Fireshield Earrings", player, 1)
+                or state._ss_option_damage_multiplier_under_12(player)
+            )
         )
     if ex == "Eldin Volcano - Hot Cave - Sand Slide":
         return lambda state, player=world.player: (
@@ -3632,6 +3645,12 @@ def exit_requirements(world: "SSWorld", ex):
         return lambda state, player=world.player: True
     if ex == "Eldin Volcano - Bottom of Sand Slide - Hot Cave":
         return lambda state, player=world.player: True
+    if ex == "Eldin Volcano - Bottom of Sand Slide - Lower Eldin Cave":
+        return lambda state, player=world.player: True
+    if ex == "Eldin Volcano - Fire Dragon Dummy Room 1 - Cave Exit":
+        return lambda state, player=world.player: True
+    if ex == "Eldin Volcano - Fire Dragon Dummy Room 2 - Cave Exit":
+        return lambda state, player=world.player: True
     if ex == "Mogma Turf - Entry - Use First Air Vent":
         return lambda state, player=world.player: True
     if ex == "Mogma Turf - Entry - Use Digging Air Vent":
@@ -3643,7 +3662,9 @@ def exit_requirements(world: "SSWorld", ex):
     if ex == "Mogma Turf - After Digging Air Vent - Use Last Air Vent":
         return lambda state, player=world.player: True
     if ex == "Volcano Summit - Summit - Path out of Summit before Sandy Slope":
-        return lambda state, player=world.player: True
+        return lambda state, player=world.player: state.has(
+            "Fireshield Earrings", player, 1
+        )
     if ex == "Volcano Summit - Summit - Path out of Summit after Lava Platforms":
         return lambda state, player=world.player: state.has(
             "Fireshield Earrings", player, 1
@@ -3729,10 +3750,33 @@ def exit_requirements(world: "SSWorld", ex):
                 )
             )
         )
+    if ex == "Bokoblin Base - Volcano - Lower Bokoblin Base Cave":
+        return lambda state, player=world.player: state.has(
+            "Clawshots", player, 1
+        ) and (
+            state.has("Bomb Bag", player, 1)
+            or (
+                state.has("Whip", player, 1)
+                and (
+                    state.can_reach_region("Bokoblin Base - Volcano", player)
+                    and (
+                        state.has("Bomb Bag", player, 1)
+                        or (state.has("Progressive Slingshot", player, 1))
+                        or (state.has("Progressive Bow", player, 1))
+                    )
+                )
+            )
+        )
     if ex == "Bokoblin Base - Top of Volcano - Path through Hot Cave":
         return lambda state, player=world.player: state.has(
             "Bomb Bag", player, 1
         ) and state.has("Fireshield Earrings", player, 1)
+    if ex == "Bokoblin Base - Top of Volcano - Upper Bokoblin Base Cave":
+        return lambda state, player=world.player: True
+    if ex == "Bokoblin Base - Fire Dragon Dummy Room 1 - Cave Exit":
+        return lambda state, player=world.player: True
+    if ex == "Bokoblin Base - Fire Dragon Dummy Room 2 - Cave Exit":
+        return lambda state, player=world.player: True
     if ex == "Bokoblin Base - Summit - Dragon's Lair":
         return lambda state, player=world.player: True
     if ex == "Bokoblin Base - Dragon's Lair - Exit Dragon's Lair":
@@ -4022,6 +4066,8 @@ def exit_requirements(world: "SSWorld", ex):
         return lambda state, player=world.player: True
     if ex == "Lanayru Sand Sea - Shipyard - Outside - Door":
         return lambda state, player=world.player: True
+    if ex == "Lanayru Sand Sea - Shipyard - Past Roller Coaster - Roller Coaster":
+        return lambda state, player=world.player: state.has("Impossible", player, 1)
     if ex == "Lanayru Sand Sea - Shipyard - Past Roller Coaster - Door":
         return lambda state, player=world.player: True
     if ex == "Lanayru Sand Sea - Shipyard - Construction Bay - Upper Door":

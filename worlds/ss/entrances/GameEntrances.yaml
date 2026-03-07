@@ -2229,6 +2229,9 @@ Flooded Great Tree - Underwater Tunnel Entrance:
 Flooded Faron Woods - Exit to Upper Flooded Great Tree:
   type: exit
   vanilla: Flooded Great Tree - Entrance from Upper Flooded Faron Woods
+  stage: F103
+  room: 0
+  index: 0
 
 Flooded Faron Woods - Entrance from Upper Flooded Great Tree:
   type: entrance
@@ -2243,6 +2246,9 @@ Flooded Faron Woods - Entrance from Upper Flooded Great Tree:
 Flooded Faron Woods - Underwater Hole Exit:
   type: exit
   vanilla: Flooded Great Tree - Underwater Tunnel Entrance
+  stage: F103
+  room: 0
+  index: 2
 
 Flooded Faron Woods - Underwater Hole Entrance:
   type: entrance

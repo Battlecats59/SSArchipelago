@@ -294,6 +294,7 @@ class EntranceRando:
         :type dead_ends: bool
         """
         self.find_reachable_region_exits(self.world.origin_region_name)
+        currently_reachable_exits = [ex for ex in self.reachable_exits]
         if len(self.reachable_exits) == 0:
             return
         
@@ -301,10 +302,10 @@ class EntranceRando:
             # This is a special case
             ex = [ex for ex in self.reachable_exits if not ex.reversible].pop()
         else:
-            ex = self.world.random.choice(list(self.reachable_exits))
+            ex = self.world.random.choice(currently_reachable_exits)
         entrance_to_place = self.find_entrance_pairing(ex, dungeons=dead_ends, dead_ends=dead_ends)
         while not entrance_to_place:
-            new_ex = self.world.random.choice([r_ex for r_ex in self.reachable_exits if r_ex != ex])
+            new_ex = self.world.random.choice([r_ex for r_ex in currently_reachable_exits if r_ex != ex])
             entrance_to_place = self.find_entrance_pairing(new_ex, dungeons=dead_ends, dead_ends=dead_ends)
         print(f"{ex} ---> {entrance_to_place}")
         reversible = ex.reversible and entrance_to_place.reversible
@@ -360,6 +361,12 @@ class EntranceRando:
                 if ex in self.reachable_exits:
                     self.reachable_exits.remove(ex)
 
+        if self.regions["Lanayru Sand Sea - Pirate Stronghold - Inside"]["accessed"] == False:
+            # Require access to inside of PS prior to placing under jaw exit
+            ex = SSExit("Lanayru Sand Sea - Pirate Stronghold - Under Jaw", "Door under Jaw")
+            if ex in self.reachable_exits:
+                self.reachable_exits.remove(ex)
+
     def find_entrance_pairing(self, ex: SSExit, dungeons: list | bool = False, dead_ends: bool = False, banned: set | None = None) -> SSEntrance | None:
         """
         Find valid entrance pairings for a given shuffled exit.
@@ -377,23 +384,46 @@ class EntranceRando:
             all_entrances.extend([ent for ent in data["entrances"]])
             placeable_entrances.update(set([ent for ent in data["entrances"] if ent != ex.toEntrance()]))
 
-        print([str(ent) for ent in all_entrances])
+        #print([str(ent) for ent in all_entrances])
 
         if banned:
             if len(placeable_entrances - banned) > 0:
                 placeable_entrances -= banned
 
         # Couple edge cases to account for
-        if SSEntrance("Volcano Summit - Before First Frog", "Path across from First Frog") not in self.entrance_mapping.entrances:
-            # Since this part of summit is not travelable backwards
-            ent = SSEntrance("Volcano Summit - After Second Frog", "Dungeon Entrance in Volcano Summit")
-            if ent in placeable_entrances:
-                # May not be in placeable ents, so check first
-                placeable_entrances.remove(ent)
-
         if SSExit("Thunderhead - Isle of Songs - Outside", "Crawlspace after Bridge Puzzle") not in self.entrance_mapping.exits:
             # Make sure the exit is placed first, otherwise the bridge won't be done
             ent = SSEntrance("Thunderhead - Isle of Songs - Outside", "Crawlspace after Bridge Puzzle")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if self.regions["Sealed Grounds - Spiral"]["accessed"] == False:
+            # Cannot access statue area from temple door, so require access before placing as entrance
+            ent = SSEntrance("Sealed Grounds - Spiral", "Sealed Temple")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if SSEntrance("Volcano Summit - Before First Frog", "Path across from First Frog") not in self.entrance_mapping.entrances:
+            # Since this part of summit is not traversable backwards
+            ent = SSEntrance("Volcano Summit - After Second Frog", "Dungeon Entrance in Volcano Summit")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if self.regions["Eldin Volcano - Hot Cave"]["accessed"] == False:
+            # Cannot call Fi, so require access to prevent softlocks
+            ent = SSEntrance("Eldin Volcano - Hot Cave", "Upper Path out of Hot Cave")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if self.regions["Lanayru Mine - Ending"]["accessed"] == False:
+            # Assume non-traversable backwards until accessed due to bomb rock
+            ent = SSEntrance("Lanayru Mine - Ending", "Minecart Ride out of Mine")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
+        if self.regions["Lanayru Sand Sea - Shipyard - Outside"]["accessed"] == False:
+            # Not traversable backwards
+            ent = SSEntrance("Lanayru Sand Sea - Shipyard - Past Roller Coaster", "Door")
             if ent in placeable_entrances:
                 placeable_entrances.remove(ent)
 
@@ -403,17 +433,24 @@ class EntranceRando:
             if ent in placeable_entrances:
                 placeable_entrances.remove(ent)
 
+        if self.regions["Lanayru Sand Sea - Pirate Stronghold - Inside"]["accessed"] == False:
+            # Require access to inside of PS prior to placing under jaw entrance
+            ent = SSEntrance("Lanayru Sand Sea - Pirate Stronghold - Under Jaw", "Door under Jaw")
+            if ent in placeable_entrances:
+                placeable_entrances.remove(ent)
+
         if (
             SSEntrance("Lanayru Caves - Caves", "North Exit") not in self.entrance_mapping.entrances
             and SSEntrance("Lanayru Caves - Caves", "East Exit") not in self.entrance_mapping.entrances
             and SSEntrance("Lanayru Caves - Past Crawlspace", "Path away from Crawlspace") not in self.entrance_mapping.entrances
             and (self.world.options.lanayru_caves_small_key == "caves" or self.world.options.lanayru_caves_small_key == "lanayru")
         ):
+            # If caves key is in cave, make sure behind locked door is not placed first
             ent = SSEntrance("Lanayru Caves - Past Locked Door", "Path away from Door")
             if ent in placeable_entrances:
                 placeable_entrances.remove(ent)
 
-        print([str(ent) for ent in placeable_entrances])
+        #print([str(ent) for ent in placeable_entrances])
 
         if len(placeable_entrances) == 0:
             if len(all_entrances) < 2:

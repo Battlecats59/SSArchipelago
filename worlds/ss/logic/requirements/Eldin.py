@@ -85,7 +85,7 @@ ELDIN_REQUIREMENTS = {
             "Fly to Sky": "Nothing",
             "Thrill Digger Cliff": "can_reach_region Eldin Volcano - Thrill Digger Cliff",
             "Hot Cave": "Nothing",
-            "Upper Eldin Cave": "Can Speak to Fire Dragon",
+            "Upper Eldin Cave": "Nothing",
             "Dungeon Entrance in Eldin Volcano": "Key Piece x5",
         },
         "locations": {
@@ -125,7 +125,7 @@ ELDIN_REQUIREMENTS = {
         "exits": {
             "Volcano Ascent": "Nothing",
             "Hot Cave": "Nothing",
-            "Lower Eldin Cave": "Can Speak to Fire Dragon",
+            "Lower Eldin Cave": "Nothing",
         },
         "locations": {
             "Digging Spot after Draining Lava": "Has Digging Mitts",
