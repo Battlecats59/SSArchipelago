@@ -43,9 +43,10 @@ class AsyncUDPProtocol(asyncio.DatagramProtocol):
         self.client.established = False
 
 class CommandRequest:
-    def __init__(self, command: bytes, timeout: float = 10.0):
+    def __init__(self, command: bytes, timeout: float = 10.0, retries: int = 2):
         self.command = command
         self.timeout = timeout
+        self.retries = retries
         self.future = asyncio.Future()
         self.timestamp = time.time()
 
@@ -56,9 +57,13 @@ class AsyncWiiMemoryClient:
         self.transport = None
         self.protocol = None
         self.established = False
-        
+        # Number of additional attempts after the first try (total attempts = retry_count + 1)
+        self.retry_count: int = 2
+        # Base backoff in seconds; exponential backoff will be applied between retries
+        self.retry_backoff: float = 0.2
+
         # Queue for UDP queries to the wii
-        self.command_queue = asyncio.Queue()
+        self.command_queue: asyncio.Queue[CommandRequest] = asyncio.Queue()
         self.current_request: Optional[CommandRequest] = None
         self.queue_processor_task = None
         
@@ -114,53 +119,53 @@ class AsyncWiiMemoryClient:
         else:
             raise Exception(f"Establishing UDP connection failed")
     
-    async def _send_command_queued(self, command: bytes, timeout=2):
-        """Queue up command to read/write to console"""
-            
-        request = CommandRequest(command, timeout)
+    async def _send_command_queued(self, command: bytes, timeout=2, retries: Optional[int] = None):
+        if retries is None:
+            retries = self.retry_count
+
+        request = CommandRequest(command, timeout, retries)
         await self.command_queue.put(request)
-        
-        try:
-            # Wait for wii's response
-            response = await asyncio.wait_for(request.future, timeout=timeout)
-            return response
-        except asyncio.TimeoutError:
-            print(f"Command {command} timed out")
-            self.established = False
-            raise
+        # once the command queue process this, return the result
+        return await request.future
 
     async def _process_command_queue(self):
-        """Process commands from queue with rate limiting"""
         while True:
             try:
                 request = await self.command_queue.get()
-                
-                # Send command to wii
-                if self.transport and not request.future.cancelled():
+                if request.future.cancelled():
+                    continue
+
+                success = False
+                for attempt in range(request.retries + 1):
+                    if request.future.cancelled():
+                        break
+
                     self.current_request = request
                     self.transport.sendto(request.command)
-                    
-                    asyncio.create_task(self._handle_request_timeout(request))
-                elif request.future and not request.future.cancelled():
-                    # Connection lost, cancel the request
-                    request.future.set_exception(ConnectionError("Not connected"))
-                    
+
+                    try:
+                        # Wait for handle_response to fire
+                        await asyncio.wait_for(
+                            asyncio.shield(request.future), 
+                            timeout=request.timeout
+                        )
+                        success = True
+                        break
+                    except asyncio.TimeoutError:
+                        self.current_request = None
+                        if attempt < request.retries:
+                            backoff = self.retry_backoff * (2 ** attempt)
+                            print(f"Timeout attempt {attempt+1}, retrying in {backoff}s")
+                            await asyncio.sleep(backoff)
+
+                if not success and not request.future.done():
+                    request.future.set_exception(asyncio.TimeoutError())
+
             except asyncio.CancelledError:
                 break
             except Exception as e:
-                print(f"Error in command queue: {e}")
-                if self.current_request and not self.current_request.future.cancelled():
+                if self.current_request and not self.current_request.future.done():
                     self.current_request.future.set_exception(e)
-
-    async def _handle_request_timeout(self, request: CommandRequest):
-        """Handle timeout for a specific request"""
-        try:
-            await asyncio.sleep(request.timeout)
-            if self.current_request == request and not request.future.done():
-                request.future.set_exception(asyncio.TimeoutError())
-                self.current_request = None
-        except asyncio.CancelledError:
-            pass
 
     def handle_response(self, data):
         """Handle incoming UDP response"""
