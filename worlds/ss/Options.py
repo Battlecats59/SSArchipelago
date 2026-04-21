@@ -868,6 +868,11 @@ class SSProgressionBalancing(ProgressionBalancing):
     """
     default = 70
 
+class BreathLink(Toggle):
+    """When you run out of stamina, everyone with breath link enabled does. Of course, the reverse is true too."""
+    display_name = "Breath Link"
+    rich_text_doc = True
+
 
 @dataclass
 class SSOptions(PerGameCommonOptions):
@@ -948,5 +953,6 @@ class SSOptions(PerGameCommonOptions):
     #precise_item: PreciseItemHints
     starting_items: StartInventoryPool
     death_link: DeathLink
+    breath_link: BreathLink
     progression_balancing: SSProgressionBalancing
 
