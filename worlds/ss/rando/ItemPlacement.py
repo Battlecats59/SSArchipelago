@@ -67,6 +67,7 @@ def handle_itempool(world: "SSWorld") -> None:
             pool.remove(itm)
     
     pool = _fill_itempool(world, pool, filler_pool)
+    _fill_overflowpool(world)
 
     # Create the pool of the remaining shuffled items.
     items = [world.create_item(itm) for itm in pool]
@@ -91,6 +92,13 @@ def _create_base_itempool(world: "SSWorld") -> tuple[list[str], list[str], list[
     useful_pool: list[str] = []
     filler_pool: list[str] = []
     for item, data in ITEM_TABLE.items():
+        quantity = data.quantity
+        if item == "Dusk Relic":
+            if world.options.treasuresanity_in_silent_realms:
+                quantity = world.options.trial_treasure_amount.value * 4 + 1
+            else:
+                quantity = 1
+
         if data.type in ["Item", "Small Key", "Boss Key", "Map"]:
             adjusted_classification = item_classification(world, item)
             classification = (
@@ -100,16 +108,11 @@ def _create_base_itempool(world: "SSWorld") -> tuple[list[str], list[str], list[
             )
 
             if classification == IC.progression or classification == IC.progression_skip_balancing:
-                progression_pool.extend([item] * data.quantity)
+                progression_pool.extend([item] * quantity)
             elif classification == IC.useful:
-                useful_pool.extend([item] * data.quantity)
+                useful_pool.extend([item] * quantity)
             else:
-                filler_pool.extend([item] * data.quantity)
-
-    if not world.options.rupeesanity:
-        filler_pool.extend([data.vanilla_item for loc, data in LOCATION_TABLE.items() if data.flags & SSLocFlag.RUPEE])
-            # Put all placed rupees in filler pool if rupeesanity is on
-            # These will be removed from the pool and manually placed vanilla
+                filler_pool.extend([item] * quantity)
 
     return progression_pool, useful_pool, filler_pool
 
@@ -127,16 +130,23 @@ def _fill_itempool(world: "SSWorld", pool: list[str], filler_pool: list[str]) ->
     for loc in world.multiworld.get_locations(world.player):
         if not loc.item:
             num_items_needed += 1
-
     num_items_needed -= len(pool)
     num_items_needed -= len(filler_pool)
 
-    consumable_pool = world.random.choices(
-        list(CONSUMABLE_ITEMS.keys()),
-        weights=list(CONSUMABLE_ITEMS.values()),
-        k=num_items_needed,
-    )
-    filler_pool.extend(consumable_pool)
+    if num_items_needed > 0:
+        consumable_pool = world.random.choices(
+            list(CONSUMABLE_ITEMS.keys()),
+            weights=list(CONSUMABLE_ITEMS.values()),
+            k=num_items_needed,
+        )
+        filler_pool.extend(consumable_pool)
+
+    elif num_items_needed < 0:
+        overflow_count = min(-num_items_needed, len(filler_pool))
+        world.random.shuffle(filler_pool)
+        world.overflow_items.extend(filler_pool[:overflow_count])
+        del filler_pool[:overflow_count]
+
     world.random.shuffle(filler_pool)
 
     # Now fill rupoors
@@ -161,6 +171,51 @@ def _fill_itempool(world: "SSWorld", pool: list[str], filler_pool: list[str]) ->
 
     return pool
 
+def _fill_overflowpool(world: "SSWorld") -> None:
+    """
+    Fills an overflow pool to fill the uncreated locations for the patchfile
+
+    :param world: The SS game world.
+    """
+    total_locations = len(LOCATION_TABLE)
+    ap_locations = len(world.multiworld.get_locations(world.player))
+  
+    if world.options.treasuresanity_in_silent_realms:
+        vanilla_dusk_relic_count =  40 - (
+            world.options.trial_treasure_amount.value * 4
+        )
+    else:
+        vanilla_dusk_relic_count = 40
+
+    if not world.options.rupeesanity:
+        rupeesanity_vanilla_location_count = 0
+        for data in LOCATION_TABLE.values():
+            if data.flags & SSLocFlag.RUPEE:
+                rupeesanity_vanilla_location_count += 1
+        excluded_rupee_locations_count = rupeesanity_vanilla_location_count
+    else:
+        excluded_rupee_locations_count = 0
+
+    # calculate the amount of overflow locations to be filled
+    overflow_count = (
+        total_locations
+        -ap_locations
+        -vanilla_dusk_relic_count
+        -excluded_rupee_locations_count
+        -len(world.overflow_items)
+    )
+
+    if overflow_count <= 0:
+        return
+    
+        # Fill overflow with weighted consumables
+    overflow_pool = world.random.choices(
+        list(CONSUMABLE_ITEMS.keys()),
+        weights=list(CONSUMABLE_ITEMS.values()),
+        k=overflow_count,
+    )
+    world.random.shuffle(overflow_pool)
+    world.overflow_items.extend(overflow_pool)
 
 def _handle_starting_items(world: "SSWorld") -> list[str]:
     """
@@ -285,22 +340,6 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
             )
             placed.append("Gratitude Crystal")
 
-    if not options.treasuresanity_in_silent_realms:
-        for loc, data in LOCATION_TABLE.items():
-            if data.type == SSLocType.RELIC:
-                world.get_location(loc).place_locked_item(
-                    world.create_item("Dusk Relic")
-                )
-                placed.append("Dusk Relic")
-    else:
-        num_relics = options.trial_treasure_amount.value
-        for trl in TRIAL_LIST:
-            all_relics = [loc for loc in world.multiworld.get_locations(world.player) if loc.parent_region == world.get_region(trl) and loc.type == SSLocType.RELIC]
-            relics_to_place = [rel for rel in all_relics if int(rel.name.split(" ")[-1]) > num_relics]
-            for rel in relics_to_place:
-                rel.place_locked_item(world.create_item("Dusk Relic"))
-                placed.append("Dusk Relic")
-
     if not options.shopsanity:
         for loc, data in LOCATION_TABLE.items():
             if data.type == SSLocType.SHOP:
@@ -325,14 +364,6 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
             else:
                 # If we can't place any more tadtones, put a junk item here
                 tad.progress_type = LocationProgressType.EXCLUDED
-
-    if not options.rupeesanity:
-        for loc, data in LOCATION_TABLE.items():
-            if data.flags & SSLocFlag.RUPEE:
-                world.get_location(loc).place_locked_item(
-                    world.create_item(data.vanilla_item)
-                )
-                placed.append(data.vanilla_item)
 
     if not options.gondo_upgrades:
         placed.extend(GONDO_UPGRADES)
@@ -380,7 +411,7 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
             placed.append("Progressive Sword")
 
     # Vanilla Triforces
-    if options.triforce_shuffle == "vanilla":
+    if options.triforce_shuffle == "vanilla" and (options.triforce_required or not options.empty_unrequired_dungeons):
         world.get_location("Sky Keep - Sacred Power of Din").place_locked_item(world.create_item("Triforce of Power"))
         world.get_location("Sky Keep - Sacred Power of Nayru").place_locked_item(world.create_item("Triforce of Wisdom"))
         world.get_location("Sky Keep - Sacred Power of Farore").place_locked_item(world.create_item("Triforce of Courage"))
@@ -397,7 +428,7 @@ def _handle_placements(world: "SSWorld", pool: list[str]) -> list[str]:
         placed.extend(world.dungeons.key_handler.place_dungeon_maps())
 
     # Non-vanilla Triforces
-    if options.triforce_shuffle == "sky_keep":
+    if options.triforce_shuffle == "sky_keep" and (options.triforce_required or not options.empty_unrequired_dungeons):
         locations_to_place = [loc for loc in world.multiworld.get_locations(world.player) if world.region_to_hint_region(loc.parent_region) == "Sky Keep" and not loc.item]
         triforce_locations = world.random.sample(locations_to_place, 3)
         world.random.shuffle(triforce_locations)
@@ -434,37 +465,6 @@ def item_classification(world: "SSWorld", name: str) -> IC | None:
             if name == "Stone of Trials":
                 adjusted_classification = IC.filler
     
-    # Dungeon Items
-    if (
-        world.options.empty_unrequired_dungeons
-        and item_type in ["Map", "Small Key", "Boss Key"]
-    ):
-        if item_type == "Map":
-            item_dungeon = name[:-4]
-            if item_dungeon == "Sky Keep":
-                adjusted_classification = IC.filler if not world.dungeons.sky_keep_required else None
-            elif not item_dungeon in world.dungeons.required_dungeons:
-                adjusted_classification = IC.filler
-                # If map not a required dungeon, make it filler
-                # Otherwise, it will be useful
-        if item_type == "Small Key":
-            item_dungeon = name[:-10]
-            if item_dungeon == "Sky Keep":
-                adjusted_classification = IC.filler if not world.dungeons.sky_keep_required else None
-            elif item_dungeon == "Lanayru Caves":
-                pass
-                # Caves key will always stay progression
-            elif not item_dungeon in world.dungeons.required_dungeons:
-                adjusted_classification = IC.filler
-                # If small key not a required dungeon, make it filler
-                # Otherwise, it will be progression
-        if item_type == "Boss Key":
-            item_dungeon = name[:-9]
-            if not item_dungeon in world.dungeons.required_dungeons:
-                adjusted_classification = IC.filler
-                # If boss key not a required dungeon, make it filler
-                # Otherwise, it will be progression
-
     # Triforces
     if not world.options.triforce_required:
         if "Triforce" in name:
