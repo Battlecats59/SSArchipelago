@@ -128,7 +128,7 @@ class SSItemHint:
         if self.precise_item_hints:
             return f"Your {self.item} is in {self.player_to_find}'s world at {self.location.name}."
         else:
-            return f"Your {self.item} is in {self.player_to_find}'s world in {self.region.name}."
+            return f"Your {self.item} is in {self.player_to_find}'s world in {self.region.name} ({self.location.name})."
     
     def to_explicit_text(self) -> str:
         if self.precise_item_hints:
@@ -156,6 +156,7 @@ class SSSotSHint:
 
         self.region = self.location.parent_region
         self.hint_region = self.world.region_to_hint_region(self.region)
+        self.item_player_name = self.world.multiworld.get_player_name(self.location.item.player)
 
     def to_stone_text(self) -> str:
         if self.precise_hints:
@@ -173,7 +174,7 @@ class SSSotSHint:
         if self.precise_hints:
             return f"{self.location.name} is SotS."
         else:
-            return f"{self.hint_region} is SotS."
+            return f"{self.hint_region} is SotS ({self.item_player_name}'s {self.location.item.name} in {self.location.name})."
     
     def to_explicit_text(self) -> str:
         if self.precise_hints:
@@ -229,6 +230,7 @@ class SSPathHint:
         self.region = loc.parent_region
         self.hint_region = self.world.region_to_hint_region(self.region)
         self.boss = DUNGEON_BOSS_NAMES[dun]
+        self.item_player_name = self.world.multiworld.get_player_name(self.location.item.player)
 
     def to_stone_text(self) -> str:
         if self.precise_hints:
@@ -246,7 +248,7 @@ class SSPathHint:
         if self.precise_hints:
             return f"{self.location.name} is on the path to {self.boss}."
         else:
-            return f"{self.hint_region} is on the path to {self.boss}."
+            return f"{self.hint_region} is on the path to {self.boss} ({self.item_player_name}'s {self.location.item.name} in {self.location.name})."
     
     def to_explicit_text(self) -> str:
         if self.precise_hints:

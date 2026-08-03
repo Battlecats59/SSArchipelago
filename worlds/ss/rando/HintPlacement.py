@@ -526,9 +526,10 @@ class HintRegions:
     def get_path_regions(self):
         for dun in self.world.dungeons.required_dungeons:
             self.path_locations[dun] = []
-            for loc in self.world.get_locations():
+            # we only need to check sots locations, all path locations are also sots
+            for loc in self.sots_locations:
                 state = CollectionState(self.multiworld)
-                state.sweep_for_advancements([swloc for swloc in self.world.get_locations() if swloc != loc])
+                state.sweep_for_advancements([swloc for swloc in self.multiworld.get_locations() if swloc != loc])
                 if not state.can_reach_location(DUNGEON_FINAL_CHECKS[dun], self.world.player):
                     if self.world.region_to_hint_region(loc.parent_region) != dun:
                         self.path_locations[dun].append(loc)
