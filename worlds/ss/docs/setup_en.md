@@ -167,6 +167,7 @@ Discussion regarding this APWorld is in the [Archipelago Main Discord](https://d
 - **Battlecats59**: Archipelago implementation
 - **YourAverageLink**: Archipelago implementation, client work, tracker implementation, console implementation
 - **Harmjan387**: Significant testing and bug fixes
+- **SomeJakeGuy**: Universal Tracker implementation
 - **robojumper**: Client and logic work
 - **Trez**: Archipelago web implementation
 - **Fireworkspinner**: Early Archipelago manual designs

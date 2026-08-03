@@ -559,27 +559,29 @@ class EntranceRando:
             # In this case, the chain did find any more placeable exits, so return false
             return False
 
-    def randomize_dungeon_entrances_only(self) -> None:
+    def randomize_dungeon_entrances_only(self, ut_gen: bool) -> None:
         """
         Randomize dungeon entrances based on the player's options.
         """
+        if ut_gen:
+            self.dungeon_connections = dict(self.multiworld.re_gen_passthrough[self.world.game]["dungeon_connections"])
+        else:
+            duns_to_place = deepcopy(self.dungeons)
+            randomized_dungeon_entrances = deepcopy(self.dungeon_entrances)
 
-        duns_to_place = deepcopy(self.dungeons)
-        randomized_dungeon_entrances = deepcopy(self.dungeon_entrances)
+            if self.world.options.randomize_entrances == "required_dungeons_only":
+                for dun in self.world.dungeons.banned_dungeons:
+                    self.dungeon_connections[dun] = VANILLA_DUNGEON_CONNECTIONS[dun]
+                    duns_to_place.remove(dun)
+                    randomized_dungeon_entrances.remove(VANILLA_DUNGEON_CONNECTIONS[dun])
 
-        if self.world.options.randomize_entrances == "required_dungeons_only":
-            for dun in self.world.dungeons.banned_dungeons:
-                self.dungeon_connections[dun] = VANILLA_DUNGEON_CONNECTIONS[dun]
-                duns_to_place.remove(dun)
-                randomized_dungeon_entrances.remove(VANILLA_DUNGEON_CONNECTIONS[dun])
+                if not self.world.dungeons.sky_keep_required:
+                    self.dungeon_connections["Sky Keep"] = VANILLA_DUNGEON_CONNECTIONS["Sky Keep"]
+                    duns_to_place.remove("Sky Keep")
+                    randomized_dungeon_entrances.remove(VANILLA_DUNGEON_CONNECTIONS["Sky Keep"])
 
-            if not self.world.dungeons.sky_keep_required:
-                self.dungeon_connections["Sky Keep"] = VANILLA_DUNGEON_CONNECTIONS["Sky Keep"]
-                duns_to_place.remove("Sky Keep")
-                randomized_dungeon_entrances.remove(VANILLA_DUNGEON_CONNECTIONS["Sky Keep"])
-
-        self.world.random.shuffle(randomized_dungeon_entrances)
-        self.dungeon_connections.update(dict(zip(duns_to_place, randomized_dungeon_entrances)))
+            self.world.random.shuffle(randomized_dungeon_entrances)
+            self.dungeon_connections.update(dict(zip(duns_to_place, randomized_dungeon_entrances)))
 
         req_duns = [dun for dun, reg in DUNGEON_INITIAL_REGIONS.items() if dun in self.world.dungeons.required_dungeons]
         req_dun_regions = [reg for dun, reg in DUNGEON_INITIAL_REGIONS.items() if dun in self.world.dungeons.required_dungeons]
@@ -617,12 +619,14 @@ class EntranceRando:
                     SSExit(ex.region, ex.name, world=self.world).link(ent, reversible=False, plando=True)
 
 
-    def randomize_trial_gates(self) -> None:
+    def randomize_trial_gates(self, ut_gen: bool) -> None:
         """
         Randomize the trials connected to each trial gate based on the player's options.
         """
 
-        if self.world.options.randomize_trials:
+        if ut_gen:
+            self.trial_connections = dict(self.multiworld.re_gen_passthrough[self.world.game]["trial_connections"])
+        elif self.world.options.randomize_trials:
             randomized_trial_gates = deepcopy(self.trial_gates)
             self.world.random.shuffle(randomized_trial_gates)
             self.trial_connections = dict(zip(self.trials, randomized_trial_gates))
@@ -635,10 +639,12 @@ class EntranceRando:
             SSExit(trl, "Trial Gate", world=self.world).link(SSEntrance(gate_region, "Entrance from Trial", world=self.world), reversible=False, plando=True)
             SSExit(gate_region, gate, world=self.world).link(SSEntrance(trl, "Trial Gate Entrance", world=self.world), reversible=False, plando=True)
 
-    def randomize_starting_statues(self) -> None:
+    def randomize_starting_statues(self, ut_gen: bool) -> None:
         """
         Randomize the starting statues for each province based on the player's options.
         """
+        if ut_gen:
+            return # see world's interpret slot data.
 
         possible_starting_statues = {}
         if self.world.options.random_start_statues:
@@ -687,10 +693,14 @@ class EntranceRando:
                 },
             )
 
-    def randomize_starting_entrance(self) -> None:
+    def randomize_starting_entrance(self, ut_gen: bool) -> None:
         """
         Randomize the starting spawn based on the player's options.
         """
+        if ut_gen:
+            self.starting_entrance = dict(self.world.multiworld.re_gen_passthrough[self.world.game]["starting_entrance"])
+            return
+
         ser = self.world.options.random_start_entrance
         #limit_ser = self.world.options.limit_start_entrance
 
@@ -714,4 +724,3 @@ class EntranceRando:
             "day-night": starting_entrance.tod,
             "apregion": starting_entrance.apregion,
         }
-    

@@ -20,7 +20,7 @@ class DungeonRando:
 
     def __init__(self, world: "SSWorld"):
         self.world = world
-        self.multiword = world.multiworld
+        self.multiworld = world.multiworld
 
         self.required_dungeons: list[str] = []
         self.banned_dungeons: list[str] = []
@@ -32,24 +32,28 @@ class DungeonRando:
 
         self.key_handler: DungeonKeyHandler = DungeonKeyHandler(self.world)
 
-    def randomize_required_dungeons(self) -> None:
+    def randomize_required_dungeons(self, ut_gen: bool) -> None:
         """
         Randomize required dungeons based on player's options
         """
 
         self.num_required_dungeons = self.world.options.required_dungeon_count.value
         main_dungeons = list(DUNGEON_FINAL_CHECKS.keys())
-        self.world.random.shuffle(main_dungeons)
 
-        if self.num_required_dungeons > 6 or self.num_required_dungeons < 0:
-            raise OptionError("Required dungeon count must be between 0 and 6.")
+        if ut_gen:
+            self.required_dungeons = list(self.world.multiworld.re_gen_passthrough[self.world.game]["required_dungeons"])
+        else:
+            self.world.random.shuffle(main_dungeons)
 
-        # Randomize required dungeons
-        self.required_dungeons.extend(
-            self.world.random.sample(
-                main_dungeons, k=self.num_required_dungeons
+            if self.num_required_dungeons > 6 or self.num_required_dungeons < 0:
+                raise OptionError("Required dungeon count must be between 0 and 6.")
+
+            # Randomize required dungeons
+            self.required_dungeons.extend(
+                self.world.random.sample(
+                    main_dungeons, k=self.num_required_dungeons
+                )
             )
-        )
         self.required_dungeons = sorted(self.required_dungeons, key=lambda i: DUNGEON_LIST.index(i))
 
         self.required_dungeon_checks.extend(
@@ -123,14 +127,22 @@ class DungeonKeyHandler:
         if self.world.options.map_mode == "start_with":
             raise FillError("Tried to place maps, but option is start with.")
         elif self.world.options.map_mode == "vanilla":
-            for loc, data in LOCATION_TABLE.items():
+            for loc in self.multiworld.get_locations(self.world.player):
+                data = LOCATION_TABLE.get(loc.name)
+                if not data:
+                    continue
                 if data.vanilla_item is None:
                     continue
                 if "Map" in data.vanilla_item:
                     if data.vanilla_item in self.start_maps:
                         continue
-                    self.world.get_location(loc).place_locked_item(self.world.create_item(data.vanilla_item))
+                    if loc.item:
+                        continue
+                    loc.place_locked_item(self.world.create_item(data.vanilla_item))
                     placed.append(data.vanilla_item)
+                for dun, map_item in self.all_maps.items():
+                    if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons and map_item not in placed):
+                        placed.extend([map_item])
             return placed
         elif self.world.options.map_mode == "own_dungeon_restricted":
             for dun in self.all_maps.keys():
@@ -150,16 +162,26 @@ class DungeonKeyHandler:
                 locs_placeable[dun] = []
                 for loc in self.multiworld.get_locations(self.world.player):
                     if self.world.region_to_hint_region(loc.parent_region) == dun and loc.item is None:
-                        if loc.item:
-                            continue
                         locs_placeable[dun].append(tuple([loc.name, loc.player]))
         elif self.world.options.map_mode == "anywhere":
-            return []
+            for dun, map_item in self.all_maps.items():
+                if(self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons):
+                    placed.extend([map_item]) 
+                    continue
+                if map_item in self.start_maps:
+                    continue
+            return placed
         for dun, map_item in self.all_maps.items():
+            if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons):
+                    placed.extend([map_item]) 
+                    continue
             if map_item in self.start_maps:
                 continue
-            if len(locs_placeable[dun]) == 0:
-                raise FillError(f"Could not find a location to place map: {map_item}")
+            if len(locs_placeable[dun])== 0:
+                if not self.world.options.empty_unrequired_dungeons:
+                    raise FillError(f"Could not find a location to place map: {map_item}")
+                else:
+                        continue
             loc_to_place = self.world.random.choice(locs_placeable[dun])
             self.world.get_location(loc_to_place[0]).place_locked_item(self.world.create_item(map_item))
             placed.append(map_item)
@@ -174,6 +196,10 @@ class DungeonKeyHandler:
         locs_placeable = {}
         if self.world.options.small_key_mode == "vanilla":
             for dun, skey_items in self.all_skeys.items():
+                if dun not in self.progression_dungeons and self.world.options.empty_unrequired_dungeons:
+                        for skey in skey_items:
+                            placed.extend([skey])
+                        continue
                 dun_start_skeys = self.start_skeys.count(skey_items[0])
                 for i, skey in enumerate(skey_items):
                     if i < dun_start_skeys:
@@ -188,6 +214,9 @@ class DungeonKeyHandler:
             return placed
         elif self.world.options.small_key_mode == "own_dungeon":
             locs_placeable = deepcopy(KEY_PLACEMENTS)
+            for dun in list(locs_placeable.keys()):
+                if dun not in self.progression_dungeons and self.world.options.empty_unrequired_dungeons:
+                    del locs_placeable[dun]
             for dun, keydata in locs_placeable.items():
                 if dun in self.progression_dungeons:
                     for i, locs in keydata.items():
@@ -196,18 +225,27 @@ class DungeonKeyHandler:
                     for i, locs in keydata.items():
                         locs_placeable[dun][i] = [(loc, self.world.player) for loc in locs if not self.world.get_location(loc).item]
         elif self.world.options.small_key_mode == "anywhere":
-            return []
+            for dun, skey_items in self.all_skeys.items():
+                if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons):
+                    placed.extend(skey_items)
+            return placed
         for dun, skey_items in self.all_skeys.items():
             dun_start_skeys = self.start_skeys.count(skey_items[0])
             if dun not in locs_placeable:
-                if dun == "Lanayru Caves":
+                    if self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons:
+                        for skey in skey_items:
+                            placed.append(skey)
                     continue
-                raise FillError(f"Tried to fill unknown dungeon with small keys: {dun}")
             for i, skey in enumerate(skey_items):
+                if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons):
+                     continue
                 if i < dun_start_skeys:
                     continue
                 if len(locs_placeable[dun][i]) == 0:
-                    raise FillError(f"Could not find a location to place small key: {skey}")
+                    if (self.world.options.empty_unrequired_dungeons == False and dun not in self.progression_dungeons):
+                        raise FillError(f"Could not find a location to place small key: {skey}")
+                    else: 
+                        continue
                 loc_to_place = self.world.random.choice(locs_placeable[dun][i])
                 self.world.get_location(loc_to_place[0]).place_locked_item(self.world.create_item(skey))
                 for keyindex in locs_placeable[dun].keys():
@@ -253,16 +291,20 @@ class DungeonKeyHandler:
             ]:
                 # In this case, we must place the key in sand sea
                 locs_placeable.extend([
-                    loc for loc, data in LOCATION_TABLE.items()
-                    if data.region in ["Lanayru Sand Sea"]
-                    and self.world.get_location(loc).item is None
+                    loc.name
+                    for loc in self.multiworld.get_locations(self.world.player)
+                    if loc.name in LOCATION_TABLE
+                    and LOCATION_TABLE[loc.name].region in ["Lanayru Sand Sea"]
+                    and loc.item is None
                 ])
             else:
                 # Otherwise, place the key anywhere except sand sea
                 locs_placeable.extend([
-                    loc for loc, data in LOCATION_TABLE.items()
-                    if data.region in ["Lanayru Mine", "Lanayru Desert", "Lanayru Caves", "Lanayru Gorge"]
-                    and self.world.get_location(loc).item is None
+                    loc.name
+                    for loc in self.multiworld.get_locations(self.world.player)
+                    if loc.name in LOCATION_TABLE
+                    and LOCATION_TABLE[loc.name].region in ["Lanayru Mine", "Lanayru Desert", "Lanayru Caves", "Lanayru Gorge"]
+                    and loc.item is None
                 ])
         elif self.world.options.lanayru_caves_small_key == "anywhere":
             return []
@@ -282,14 +324,22 @@ class DungeonKeyHandler:
         placed = []
         locs_placeable = {}
         if self.world.options.boss_key_mode == "vanilla":
-            for loc, data in LOCATION_TABLE.items():
+            for loc in self.multiworld.get_locations(self.world.player):
+                data = LOCATION_TABLE.get(loc.name)
+                if not data:
+                    continue
                 if data.vanilla_item is None:
                     continue
                 if "Boss Key" in data.vanilla_item:
                     if data.vanilla_item in self.start_bkeys:
                         continue
-                    self.world.get_location(loc).place_locked_item(self.world.create_item(data.vanilla_item))
+                    if loc.item:
+                        continue
+                    (loc).place_locked_item(self.world.create_item(data.vanilla_item))
                     placed.append(data.vanilla_item)
+                for dun, bkey_item in self.all_bkeys.items():
+                    if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons and bkey_item not in placed):
+                        placed.extend([bkey_item])
             return placed
         elif self.world.options.boss_key_mode == "own_dungeon":
             for dun in self.all_bkeys.keys():
@@ -307,12 +357,21 @@ class DungeonKeyHandler:
                             continue
                         locs_placeable[dun].append(tuple([loc.name, loc.player]))
         elif self.world.options.boss_key_mode == "anywhere":
-            return []
+                for dun, bkey_item in self.all_bkeys.items():
+                    if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons and bkey_item not in placed):
+                        placed.extend([bkey_item])
+                return placed
         for dun, bkey_item in self.all_bkeys.items():
+            if (self.world.options.empty_unrequired_dungeons == True and dun not in self.progression_dungeons):
+                placed.append(bkey_item)
+                continue
             if bkey_item in self.start_bkeys:
                 continue
             if len(locs_placeable[dun]) == 0:
-                raise FillError(f"Could not find a location to place boss key: {bkey_item}")
+                if not self.world.options.empty_unrequired_dungeons:
+                    raise FillError(f"Could not find a location to place boss key: {bkey_item}")
+                else:
+                    continue
             loc_to_place = self.world.random.choice(locs_placeable[dun])
             self.world.get_location(loc_to_place[0]).place_locked_item(self.world.create_item(bkey_item))
             placed.append(bkey_item)

@@ -12,10 +12,13 @@ from ..Constants import *
 if TYPE_CHECKING:
     from .. import SSWorld
 
-def shuffle_batreaux_counts(world: "SSWorld") -> dict[str, int]:
+def shuffle_batreaux_counts(world: "SSWorld", ut_gen: bool) -> dict[str, int]:
     """
-    
+    Shuffle Batreaux's various rewards for collecting gratitude crystals.
     """
+    if ut_gen:
+        return dict(world.multiworld.re_gen_passthrough[world.game]["batreaux_rewards"])
+
     batreaux_setting = world.options.batreaux_counts
     if batreaux_setting == "vanilla":
         batreaux_counts = [5, 10, 30, 40, 50, 70, 80]

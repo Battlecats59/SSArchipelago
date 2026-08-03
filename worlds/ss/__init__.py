@@ -5,7 +5,7 @@ from base64 import b64encode
 from copy import deepcopy
 from collections.abc import Mapping
 from dataclasses import fields
-from typing import Any, ClassVar
+from typing import Any, ClassVar, Optional
 
 import threading
 import yaml
@@ -28,7 +28,7 @@ from worlds.LauncherComponents import (
 from .Constants import *
 
 from .Items import ITEM_TABLE, SSItem
-from .Locations import LOCATION_TABLE, SSLocation, SSLocFlag
+from .Locations import LOCATION_TABLE, SSLocType, SSLocation, SSLocFlag
 from .Options import SSOptions
 from .Rules import set_rules
 from .Names import HASH_NAMES
@@ -131,7 +131,7 @@ class SSWorld(World):
     web = SSWeb()
     required_client_version: tuple[int, int, int] = (0, 5, 6)
     origin_region_name: str = "" # This is set later
-    explicit_indirect_conditions = True 
+    explicit_indirect_conditions = False 
     
     item_name_to_id: ClassVar[dict[str, int]] = {
         name: SSItem.get_apid(data.code)
@@ -147,11 +147,22 @@ class SSWorld(World):
     create_items = handle_itempool
     set_rules = set_rules
 
+    num_required_dungeons: int
+    batreaux_rewards: dict
+    batreaux_requirements: dict
+    batreaux_ognames: dict
+    connected_regions: set
+    connected_entrances: set
+
+    ut_gen: bool
+    ut_can_gen_without_yaml = True  # class var that tells it to ignore the player yaml
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.progress_locations: set[str] = set()
         self.nonprogress_locations: set[str] = set()
+        self.overflow_items: list[str] = []
 
         self.dungeons = DungeonRando(self)
         self.entrances = EntranceRando(self)
@@ -166,6 +177,7 @@ class SSWorld(World):
 
         progress_locations: set[str] = set()
         nonprogress_locations: set[str] = set()
+        trial_relic_amount = self.options.trial_treasure_amount.value
 
         def add_flag(option: Toggle, flag: SSLocFlag) -> SSLocFlag:
             return flag if option else SSLocFlag.ALWAYS
@@ -242,6 +254,12 @@ class SSWorld(World):
                     progress_locations.add(loc)
                 else:
                     nonprogress_locations.add(loc)
+            elif (self.options.treasuresanity_in_silent_realms 
+                  and data.flags & SSLocFlag.TRIAL and data.type == SSLocType.RELIC 
+                  and int(loc.split(" ")[-1]) > trial_relic_amount
+                  ):
+                nonprogress_locations.add(loc)
+
             elif data.flags & enabled_flags == data.flags:
                 progress_locations.add(loc)
             else:
@@ -283,11 +301,19 @@ class SSWorld(World):
         Run before any other steps of the multiworld, but after options.
         """
 
-        # Shuffle required dungeons and entrances according to options
-        self.dungeons.randomize_required_dungeons()
+        ut_gen: bool = hasattr(self.multiworld, "re_gen_passthrough") \
+                and isinstance(self.multiworld.re_gen_passthrough, dict) \
+                and self.game in self.multiworld.re_gen_passthrough
+        self.ut_gen = ut_gen
 
-        self.entrances.randomize_starting_statues()
-        self.entrances.randomize_starting_entrance()
+        if ut_gen:
+            self.interpret_slot_data(None)
+
+        # Shuffle required dungeons and entrances according to options
+        self.dungeons.randomize_required_dungeons(ut_gen)
+
+        self.entrances.randomize_starting_statues(ut_gen)
+        self.entrances.randomize_starting_entrance(ut_gen)
         self.origin_region_name = self.entrances.starting_entrance["apregion"]
 
         # Determine progress and nonprogress locations
@@ -295,8 +321,9 @@ class SSWorld(World):
             self.determine_progress_and_nonprogress_locations()
         )
 
-        self.batreaux_rewards = shuffle_batreaux_counts(self)
+        self.batreaux_rewards = shuffle_batreaux_counts(self, ut_gen)
         self.batreaux_requirements = {}
+        self.batreaux_ognames = {}
 
     def create_regions(self) -> None:
         """
@@ -308,6 +335,7 @@ class SSWorld(World):
             for short_loc_name, rule in data["locations"].items():
                 full_loc_name = f"{data["hint_region"]} - {short_loc_name}"
                 og_full_loc_name = deepcopy(full_loc_name)
+                loc_data = LOCATION_TABLE[full_loc_name]
                 if LOCATION_TABLE[full_loc_name].flags & SSLocFlag.BTREAUX:
                     # Remove location from progress or nonprogress locations
                     if full_loc_name in self.progress_locations:
@@ -327,16 +355,19 @@ class SSWorld(World):
                         short_loc_name = f"{str(crystal_count)} Crystals Chest"
                         full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Chest"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
+                        self.batreaux_ognames[full_loc_name] = og_full_loc_name
                     elif short_loc_name == "Seventh Reward":
                         crystal_count = self.batreaux_rewards["Sixth Reward"]
                         short_loc_name = f"{str(crystal_count)} Crystals Second Reward"
                         full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Second Reward"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
+                        self.batreaux_ognames[full_loc_name] = og_full_loc_name
                     else:
                         crystal_count = self.batreaux_rewards[short_loc_name]
                         short_loc_name = f"{str(crystal_count)} Crystals"
                         full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
+                        self.batreaux_ognames[full_loc_name] = og_full_loc_name
 
                     # Add new location back into progress or nonprogress locations
                     if bat_loc_progress:
@@ -346,11 +377,14 @@ class SSWorld(World):
 
                     # Create a batreaux reward location
                     location = SSLocation(self.player, full_loc_name, region, LOCATION_TABLE[og_full_loc_name], ogname=og_full_loc_name)
+                    if not bat_loc_progress:
+                        location.progress_type = LocationProgressType.EXCLUDED
                 else:
+                    if full_loc_name in self.nonprogress_locations:
+                        if not (loc_data.flags & (SSLocFlag.BEEDLE | SSLocFlag.ALWAYS)):
+                            continue
                     # Create a normal location
                     location = SSLocation(self.player, full_loc_name, region, LOCATION_TABLE[full_loc_name])
-                if full_loc_name in self.nonprogress_locations:
-                    location.progress_type = LocationProgressType.EXCLUDED
                 region.locations.append(location)
             self.multiworld.regions.append(region)
 
@@ -359,13 +393,13 @@ class SSWorld(World):
 
         self.connect_regions(self.origin_region_name)
 
-        self.entrances.randomize_trial_gates()
+        self.entrances.randomize_trial_gates(self.ut_gen)
 
         # if self.options.randomize_entrances == "all_entrances":
         #     self.entrances.randomize_entrances()
         # elif
         if self.options.randomize_entrances == "dungeons_only" or self.options.randomize_entrances == "required_dungeons_only":
-            self.entrances.randomize_dungeon_entrances_only()
+            self.entrances.randomize_dungeon_entrances_only(self.ut_gen)
 
         #for ent in self.get_entrances():
         #    print(f"{ent.parent_region} -> {ent.name} -> {ent.connected_region}")
@@ -375,6 +409,8 @@ class SSWorld(World):
 
         for loc in LOCATION_TABLE.keys():
             if LOCATION_TABLE[loc].region == "Batreaux's House":
+                continue
+            if loc in self.nonprogress_locations:
                 continue
             assert self.get_location(loc), f"Location found in location table, but not in requirements: {loc}"
 
@@ -578,7 +614,6 @@ class SSWorld(World):
             "Starting Statues": self.entrances.starting_statues,
             "Starting Entrance": self.entrances.starting_entrance,
         }
-
         # Output options to file.
         for field in fields(self.options):
             if field.name =="plando_items":
@@ -589,8 +624,8 @@ class SSWorld(World):
 
         # Excluded locations, and account for batreaux checks
         for loc in self.nonprogress_locations:
-            if self.get_location(loc).ogname:
-                output_data["Excluded Locations"].add(self.get_location(loc).ogname)
+            if loc in self.batreaux_ognames:
+                output_data["Excluded Locations"].add(self.batreaux_ognames[loc])
             else:
                 output_data["Excluded Locations"].add(loc)
 
@@ -627,6 +662,37 @@ class SSWorld(World):
                     output_data["Locations"][location.ogname] = item_info
                 else:
                     output_data["Locations"][location.name] = item_info
+        ap_location_names = {loc.name for loc in multiworld.get_locations(player)}
+
+        for location in self.nonprogress_locations:
+            if location in ap_location_names:
+                continue
+            loc_data = LOCATION_TABLE.get(location)
+
+            if loc_data is None:
+                item_name = "Red Rupee"
+            else:    
+                # decide if we want to place the vanilla item or fill based on overflow pool
+                is_trial_relic = loc_data.type == SSLocType.RELIC
+                is_rupee_location = loc_data.flags == SSLocFlag.RUPEE
+
+                if is_trial_relic or is_rupee_location:
+                    item_name = loc_data.vanilla_item
+                else:
+                    if self.overflow_items:
+                        item_name = self.overflow_items.pop()
+                    else:
+                        item_name = "Red Rupee"
+                item_info = {
+                    "player": self.player,
+                    "name": item_name,
+                    "game": "Skyward Sword",
+                    "classification": "filler",
+                }
+                if location in self.batreaux_ognames:
+                    output_data["Locations"][self.batreaux_ognames[location]] = item_info
+                else:
+                    output_data["Locations"][location] = item_info
 
         # Output the plando details to file.
         apssr = SSContainer(
@@ -684,6 +750,9 @@ class SSWorld(World):
             "gondo_upgrades": self.options.gondo_upgrades.value,
             "sword_dungeon_reward": self.options.sword_dungeon_reward.value,
             "batreaux_counts": self.options.batreaux_counts.value,
+            "batreaux_rewards": self.batreaux_rewards,
+            "starting_statues": self.entrances.starting_statues,
+            "starting_entrance": self.entrances.starting_entrance,
             "randomize_boss_key_puzzles": self.options.randomize_boss_key_puzzles.value,
             "random_puzzles": self.options.random_puzzles.value,
             "peatrice_conversations": self.options.peatrice_conversations.value,
@@ -723,8 +792,43 @@ class SSWorld(World):
             "excluded_locations": self.nonprogress_locations,
             "required_dungeons": self.dungeons.required_dungeons,
             "entrances": self.entrances.entrance_mapping.output_entrance_mapping(),
+            "progression_goddess_chests": self.options.progression_goddess_chests.value,
+            "progression_minigames": self.options.progression_minigames.value,
+            "progression_crystals": self.options.progression_crystals.value,
+            "progression_scrapper": self.options.progression_scrapper.value,
+            "progression_batreaux": self.options.progression_batreaux.value,
+            "progression_balancing": self.options.progression_balancing.value,
+            "lanayru_caves_small_key": self.options.lanayru_caves_small_key.value,
+            "trial_connections": self.entrances.trial_connections,
+            "dungeon_connections": self.entrances.dungeon_connections,
         }
 
         return slot_data
 
+    def interpret_slot_data(self, slot_data: Optional[dict[str, Any]]) -> Optional[dict[str, Any]]:
+        """Used by Universal Tracker to correctly rebuild state"""
 
+        if not slot_data:
+            slot_data = self.multiworld.re_gen_passthrough[self.game]
+
+        if not slot_data:
+            return None
+
+        option_aliases = {"hint_distribution": "ap_hint_distribution"}
+        for option_name, option_type in self.options_dataclass.type_hints.items():
+            slot_key = option_aliases.get(option_name, option_name)
+            if slot_key not in slot_data:
+                continue
+            option_value = slot_data[slot_key]
+            if isinstance(option_value, option_type):
+                setattr(self.options, option_name, option_value)
+            else:
+                setattr(self.options, option_name, option_type.from_any(option_value))
+
+        self.entrances.starting_entrance = slot_data["starting_entrance"]
+        self.origin_region_name = self.entrances.starting_entrance["apregion"]
+        self.entrances.starting_statues = slot_data["starting_statues"]
+        self.dungeons.required_dungeons = slot_data["required_dungeons"]
+        self.batreaux_rewards = slot_data["batreaux_rewards"]
+
+        return slot_data
