@@ -60,6 +60,8 @@ class Hints:
         ]
         self.hintable_items = []
         for itm, data in ITEM_TABLE.items():
+            if itm == "Gratitude Crystal":
+                continue
             classification = (
                 data.classification
                 if item_classification(self.world, itm) is None
