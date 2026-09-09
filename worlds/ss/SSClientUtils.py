@@ -1,28 +1,7 @@
+from typing import List, Optional
+
 from NetUtils import HintStatus
-
-# dAcPy_c::LINK
-LINK_PTR = 0x8057578C
-
-# This address is used to check/set the player's health for DeathLink.
-CURR_HEALTH_ADDR = 0x8095A76A  # HALFWORD
-
-# Link's state- make sure he is not in a loading zone
-# fBase_c::actor_list.mpLast
-CURR_STATE_OFFSET = 0x59
-
-# Link's action - make sure he is in a "normal" action (i.e. idle, moving on the ground, etc.)
-# dAcPy_c::mCurrentAction
-LINK_ACTION_OFFSET = 0x36F
-
-CURR_STAMINA_OFFSET = 0x4498
-
-MAX_SAFE_ACTION = 0xD
-ITEM_GET_ACTION = 0x78
-SWIM_ACTIONS = [0x4F, 0x50, 0x51, 0x52]
-
-DEMISE_STAGE = "B400"
 BEEDLE_STAGE = "F002r"
-
 # Location indices for Beedle checks (used for scouting their items)
 BEEDLE_LEFTMOST_CHECKS = [41, 42, 43]
 BEEDLE_LEFT_MIDDLE_CHECKS = [44, 45]
@@ -35,53 +14,15 @@ BEEDLE_CHECKS = (
     BEEDLE_RIGHTMOST_CHECKS
 )
 
-MINIGAME_STATE_ADDR = 0x80572250
-
-# The byte at this address stores which save file is currently selected (0 indexed)
-SELECTED_FILE_ADDR = 0x8095FC98
-
-# The expected index for the following item that should be received. Array of 2 bytes right after the give item array
-# Uses an unused scene index which is 16 bytes wide
-EXPECTED_INDEX_ADDR = 0x80956F28 # HALFWORD
-
-# This address contains the current stage ID.
-CURR_STAGE_ADDR = 0x805B388C  # STRING[16]
-
-# The patcher will write the AP slot name at this address
-ARCHIPELAGO_SLOT_ADDR = 0x806786A0
-
-# A byte here represents what item ID to give to the player. The game will clear this out and give items whenever possible.
-ARCHIPELAGO_ITEM_SLOT = EXPECTED_INDEX_ADDR + 2
-
-# This is the address that holds the player's file name.
-FILE_NAME_ADDR = 0x80955D38  # ARRAY[16]
-
-# A bit at this address is set if on the title screen
-GLOBAL_TITLE_LOADER_ADDR = 0x80575780
-
-# An array at the address pointed to here holds text to be displayed by the game
-CLIENT_TEXT_BUFFER_PTR = 0x8005526C # Pointer to STRING[512]
-CLIENT_TEXT_BUFFER_SIZE = 512
+CLIENT_TEXT_BUFFER_SIZE = 1000 # actually 1024 but the recv buffer isn't that big
 
 # Time for a client message to disappear in-game (in seconds, not including stagger time for multiple lines in the queue)
-CLIENT_TEXT_TIMEOUT = 6
+CLIENT_TEXT_TIMEOUT = 10
 
 # Max number of characters in a line for in-game client text
 INGAME_LINE_LENGTH = 64
 
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "ss_visited_stages_%i"
-
-LINK_INVALID_STATES = [
-    b'\x00\x00\x00',
-    b'\x5A\x2C\x88', # Loading zone
-    b'\x5A\x32\x8C', # Door / talking to Bird Statue
-    # b'\x5A\x27\x20', # Calling Fi
-    b'\xB4\xF4\x50', # Bird picking up link
-    # b'\xB7\xA6\x7C', # Bed dialogue option
-    b'\x5A\x31\xAC', # Sleeping
-    b'\x5A\x33\x6C', # Waking up
-    b'\x97\x96\xBC', # Load transition maybe?
-]
 
 # Valid addresses for storyflags (ending in zero - final bit is added to this address)
 VALID_STORYFLAG_ADDR = [
@@ -93,9 +34,6 @@ VALID_STORYFLAG_ADDR = [
     0x805A9B20,
     0x805A9B30,
 ]
-
-# Address for the sceneflags for the current stage
-CURR_STAGE_SCENEFLAG_ADDR = 0x805A78D0
 
 # Addresses to the sceneflags saved on the current save file
 STAGE_TO_SCENEFLAG_ADDR = {
@@ -127,9 +65,6 @@ STAGE_TO_SCENEFLAG_ADDR = {
 STORYFLAG_START_ADDR = 0x805A9AD8
 SCENEFLAG_START_ADDR = 0x80956EC8
 
-# Boolean used by the patched game to determine whether to use networking & display network info
-NETWORK_USAGE_BOOL = 0x806871F5 # Be sure to update if the patcher ever changes something in the assembly!
-
 # DME Connection Messages for the client
 CONNECTION_REFUSED_GAME_STATUS = "Dolphin failed to connect. Please load a randomized ROM for Skyward Sword. Trying again in 5 seconds..."
 CONNECTION_REFUSED_SAVE_STATUS = "Dolphin failed to connect. Please load into the save file. Trying again in 5 seconds..."
@@ -155,6 +90,77 @@ COLOR_CONTROL_SEQUENCES = {
     "orange": "\x0e\x00\x03\x02\x02",
     # ">>": "\x0e\x00\x03\x02\uffff",  # end color
 }
+
+def _consume_control_sequence(text: str, index: int) -> Optional[str]:
+    if index >= len(text) or text[index] != "\x0e":
+        return None
+
+    sequence_end = index + 5
+    if sequence_end > len(text):
+        return None
+
+    return text[index:sequence_end]
+
+
+def wrap_console_text(text: str, max_visible_chars: int = INGAME_LINE_LENGTH) -> List[str]:
+    if max_visible_chars <= 0:
+        return []
+
+    wrapped_lines: List[str] = []
+    current_line = ""
+    visible_count = 0
+    index = 0
+
+    while index < len(text):
+        sequence = _consume_control_sequence(text, index)
+        if sequence is not None:
+            current_line += sequence
+            index += len(sequence)
+            continue
+
+        if visible_count >= max_visible_chars:
+            wrapped_lines.append(current_line)
+            current_line = ""
+            visible_count = 0
+            continue
+
+        current_line += text[index]
+        visible_count += 1
+        index += 1
+
+    if current_line:
+        wrapped_lines.append(current_line)
+
+    return wrapped_lines
+
+
+def truncate_console_text(text: str, max_bytes: int) -> bytes:
+    if max_bytes <= 0:
+        return b""
+
+    encoded_chunks: bytearray = bytearray()
+    index = 0
+
+    while index < len(text):
+        sequence = _consume_control_sequence(text, index)
+        if sequence is not None:
+            encoded_sequence = sequence.encode("utf-8")
+            if len(encoded_chunks) + len(encoded_sequence) > max_bytes:
+                break
+
+            encoded_chunks.extend(encoded_sequence)
+            index += len(sequence)
+            continue
+
+        encoded_char = text[index].encode("utf-8")
+        if len(encoded_chunks) + len(encoded_char) > max_bytes:
+            break
+
+        encoded_chunks.extend(encoded_char)
+        index += 1
+
+    return bytes(encoded_chunks)
+
 
 class LocationForHint():
     """

@@ -53,7 +53,7 @@ UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 1: invalid 
 This error occurs upon connecting the client when it attempts to read your slot name from game memory, but cannot find it. Make sure you are using a compatible version of the patcher for the AP world version you are using. You can do this by checking the version hash in the patcher window title. If this issue persists, please report it to the Discord so we can help you further.
 
 ### My client is not sending locations or receiving items in game
-This problem is likely because you are not connected to the Archipelago room or you are not playing on file 1. Make sure your client is connected and you are on file 1 in-game. If this issue persists, it is likely due to a larger issue. If this is the case, please report your issue to the Discord so we can investigate and help you further.
+This problem is likely because you are not connected to the Archipelago room. Make sure your client is connected and you are playing a file in-game. If this issue persists, it is likely due to a larger issue. If this is the case, please report your issue to the Discord so we can investigate and help you further.
 
 ### I just got sent an item and I did not get it in game
 There are very few edge cases where an item send you may get deleted and you won't receive it. Make sure you get to a location where Link is standing and in a state where he can receive items. If you still haven't gotten it, use the !getitem command to manually send it to yourself. Please report the issue to the Discord so it can be resolved in the future.

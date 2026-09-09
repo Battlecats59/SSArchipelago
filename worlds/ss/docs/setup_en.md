@@ -52,7 +52,6 @@ From now on, Archipelago may be referred to as "AP". Skyward Sword may be referr
     - If your client does not open, follow the steps listed [here](https://github.com/Battlecats59/SS_APWorld/releases/tag/DME) to make sure the DME package is installed.
 - Make sure the client hooks to Dolphin, then begin a new file in game.
     - **NOTE: It is recommended that all 3 files in-game are empty. This will prevent any confusion with the client later on.**
-    - **NOTE: You MUST play the multiworld on file 1. To prevent issues with location checking in BiT, the client will only send locations and give items if it detects you on file 1. You may use the other 2 files for BiT Magic files or corrupt files, however.**
     - Your filename in game does not need to match your AP slot name
 - Connect to the room in your client by running `/connect {address}`. The link to the room should be given to you by the multiworld host. The address will be in the form of `archipelago.gg:XXXXX`.
     - If you get an invalid slot error, make sure you generated with the latest build of the randomizer, you generated using the correct APSSR file, and you opened the correct iso in Dolphin.
@@ -75,7 +74,6 @@ From now on, Archipelago may be referred to as "AP". Skyward Sword may be referr
 - By default, the client waits for an instance of Dolphin to connect to. Switch to console mode and connect your client to your console by running `/console {on-screen IP address}`. The shown IP is the private IP of the console on which it is listening for connections.
     - If successful, the AP client will confirm the connection, and the text on-screen will disappear. Otherwise, check to ensure your computer is on the same network as the console, or follow the error code-related instructions on-screen.
     - **NOTE: It is recommended that all 3 files in-game are empty. This will prevent any confusion with the client later on.**
-    - **NOTE: You MUST play the multiworld on file 1. To prevent issues with location checking in BiT, the client will only send locations and give items if it detects you on file 1. You may use the other 2 files for BiT Magic files or corrupt files, however.**
     - Your filename in game does not need to match your AP slot name
 - Connect to the room in your client by running `/connect {address}`. The link to the room should be given to you by the multiworld host. The address will be in the form of `archipelago.gg:XXXXX`.
     - If you get an invalid slot error, make sure you generated with the latest build of the randomizer, you generated using the correct APSSR file, and you opened the correct iso.
