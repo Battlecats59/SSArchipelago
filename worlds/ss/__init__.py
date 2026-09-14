@@ -306,7 +306,7 @@ class SSWorld(World):
         for reg_name, data in ALL_REQUIREMENTS.items():
             region = Region(reg_name, self.player, self.multiworld)
             for short_loc_name, rule in data["locations"].items():
-                full_loc_name = f"{data["hint_region"]} - {short_loc_name}"
+                full_loc_name = f"{data['hint_region']} - {short_loc_name}"
                 og_full_loc_name = deepcopy(full_loc_name)
                 if LOCATION_TABLE[full_loc_name].flags & SSLocFlag.BTREAUX:
                     # Remove location from progress or nonprogress locations
@@ -325,17 +325,17 @@ class SSWorld(World):
                     if short_loc_name == "Chest":
                         crystal_count = self.batreaux_rewards["Third Reward"]
                         short_loc_name = f"{str(crystal_count)} Crystals Chest"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Chest"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals Chest"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
                     elif short_loc_name == "Seventh Reward":
                         crystal_count = self.batreaux_rewards["Sixth Reward"]
                         short_loc_name = f"{str(crystal_count)} Crystals Second Reward"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals Second Reward"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals Second Reward"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
                     else:
                         crystal_count = self.batreaux_rewards[short_loc_name]
                         short_loc_name = f"{str(crystal_count)} Crystals"
-                        full_loc_name = f"{data["hint_region"]} - {str(crystal_count)} Crystals"
+                        full_loc_name = f"{data['hint_region']} - {str(crystal_count)} Crystals"
                         self.batreaux_requirements[short_loc_name] = f"{str(crystal_count)} Gratitude Crystals"
 
                     # Add new location back into progress or nonprogress locations
