@@ -63,6 +63,11 @@ Make sure this check hasn't been collected yet (by someone finishing or using !c
 
 ## Game Patcher Issues
 
+### My patcher will not open properly, it's just a blank black terminal screen
+Try temporarily disconnecting any external devices before launching. (USB sticks, controllers, headphones, etc.). It seems like an interference thing, but only on some machines, and it doesn't always happen. Fix is courtesy of SpaceRawk.
+
+If this doesn't fix your issue, try looking on other monitors, if you have them connected, for a small white popup asking for your ISO. If you don't see anything else other than the black screen, ask for further assistance in the Discord.
+
 ### Game will not generate, outputting invalid APSSR file
 ```
 Traceback (most recent call last):
