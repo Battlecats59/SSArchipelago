@@ -25,10 +25,11 @@ class Hints:
         self.multiworld = world.multiworld
 
         self.hint_regions = HintRegions(self.world)
-        self.hint_regions.get_sots_barren_regions()
-        self.hint_regions.get_path_regions()
-        self.hint_regions.get_er_regions()
-
+        
+        if self.world.options.hint_distribution != 7 and self.world.options.hint_distribution != 4:
+            self.hint_regions.get_sots_barren_regions()
+            self.hint_regions.get_path_regions()
+            self.hint_regions.get_er_regions()
         #self.advancement_hints = AdvancementHints(self.world, self.hint_regions)
 
         self.placed_hints: dict[str, list] = {}
